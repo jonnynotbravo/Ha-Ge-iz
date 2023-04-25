@@ -1,5 +1,17 @@
+#schools {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
 .school {
-    border: 2px solid black;
-    padding: 50px;
-
+    width: 800px; /* or any other value */
+    height: 200px; /* or any other value */
+    margin: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 }
+
+
