@@ -4,11 +4,13 @@ const Header = () => {
   return (
     <header id="header">
       <nav className="links" style={{ "--items": 5 }}>
-        <a href="#">Home</a>
-        <a href="#">About</a>
-        <a href="#">Schools</a>
-        <a href="#">Contact</a>
-        <a href="#">Admin</a>
+        <NavLink to="/">Home</NavLink>
+        <NavLink to="/about">About</NavLink>
+        <NavLink to="/schools">Schools</NavLink>
+        <NavLink to="/contact">Contact</NavLink>
+        <NavLink to="/admin" style={{ color: "red" }}>
+          Admin
+        </NavLink>
         <span className="line"></span>
       </nav>
     </header>

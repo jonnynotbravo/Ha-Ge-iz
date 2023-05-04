@@ -1,6 +1,9 @@
+import Header from "./Header";
+
 const SchoolsList = () => {
   return (
     <div>
+      <Header />
       <div id="schools">
         <div className="school">School One</div>
         <div className="school">School Two</div>
