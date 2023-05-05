@@ -28,9 +28,7 @@ html, body, h1, h2, h3, h4, h5, h6, p, li, ol, ul, pre {
 	display: flex; /* change display to flex */
 	justify-content: space-around; /* center horizontally */
 	align-items: center; /* center vertically */
-	height: 100%; /* add height */
-	/* margin-top: 100px; */
-	
+	height: 100%; /* add height */	
 
 }
 
@@ -190,7 +188,7 @@ main {
 
 	align-items: stretch;
 	outline: var(--outline-width) solid lime;
-	margin-bottom: 150px;
+	/* margin-bottom: 150px; */
 }
 
 .card__content > div {
