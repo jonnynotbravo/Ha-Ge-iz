@@ -238,3 +238,32 @@ main {
 	border-radius: 0.25em;
 }
 
+/* about page */
+#about {
+	width: 80%;
+	margin: 100px auto;
+	text-align: center;
+  }
+  
+#about h1 {
+	font-size: 2.5rem;
+	margin-bottom: 2rem;
+  }
+  
+#about p {
+	font-size: 1.2rem;
+	line-height: 1.5;
+	margin-bottom: 2rem;  
+}
+  
+  @media (max-width: 768px) {
+	#about h1 {
+	  font-size: 2rem;
+	}
+	
+	#about p {
+	  font-size: 1rem;
+	  margin-bottom: 1.5rem;
+	}
+  }
+  
