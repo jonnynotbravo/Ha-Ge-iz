@@ -2,7 +2,7 @@ import Home from "./Home";
 import SchoolsList from "./SchoolsList";
 import GenericNotFound from "./GenericNotFound";
 import Form from "./Form";
-import About from './About'
+import About from "./About";
 import { Routes, Route, Navigate } from "react-router-dom";
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/form" element={<Form />} />
         <Route path="/schools" element={<SchoolsList />} />
-        <Route path='/about' element={<About />} />
+        <Route path="/about" element={<About />} />
         <Route path="/404" element={<GenericNotFound />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
