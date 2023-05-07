@@ -1,3 +1,5 @@
+
+
 @import url('https://fonts.googleapis.com/css?family=Inconsolata|Lato:300,400,700');
 
 html, body, h1, h2, h3, h4, h5, h6, p, li, ol, ul, pre {
@@ -14,6 +16,7 @@ html, body, h1, h2, h3, h4, h5, h6, p, li, ol, ul, pre {
 	display: flex;
 	align-items: center; /* center vertically */
 	z-index: 1;
+	background-color: #fff;
 
 }
   
@@ -310,4 +313,210 @@ main {
   .dot.active {
 	background-color: #fff;
   }
+
+/* shade */
+
+/* Darken the entire page when opening the dialog */
+.dialog-container {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.6); /* Darken the background with 60% opacity */
+	display: none; /* Hide the dialog container by default */
+	z-index: 999; /* Set the z-index to be on top of other elements */
+  }
   
+  /* Show the dialog container and produce a fade-in effect */
+  .dialog-container.show {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	animation: fade-in 0.3s ease-in-out;
+  }
+  
+  /* Hide the dialog container and produce a fade-out effect */
+  .dialog-container.hide {
+	animation: fade-out 0.3s ease-in-out;
+  }
+  
+  /* The dialog window */
+  .dialog {
+	position: relative;
+	background-color: #fff;
+	width: 400px;
+	padding: 20px;
+	border-radius: 10px;
+  }
+  
+  /* The close button */
+  .close-btn {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+  }
+  
+  /* Animation to fade in the dialog container */
+  @keyframes fade-in {
+	from {
+	  opacity: 0;
+	}
+	to {
+	  opacity: 1;
+	}
+  }
+  
+  /* Animation to fade out the dialog container */
+  @keyframes fade-out {
+	from {
+	  opacity: 1;
+	}
+	to {
+	  opacity: 0;
+	}
+  }
+
+/* steps */
+
+#steps  {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	background: #1A1C21;
+	min-height: 100vh;
+}
+
+#stepsOuter {
+	position: relative;
+  }
+  
+#stepsOuter h1 {
+	text-align: center;
+	position: absolute;
+	left: 50%;
+	top: 10%;
+	transform: translate(-50%, -50%);
+	color: #fff;
+	font-size: 50px;
+}
+
+#steps section::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(#ffffff, #ffffff);
+	clip-path: circle(30% at right 70%);
+}
+
+#steps section::after {
+	content: '';
+	position: absolute;
+	top: 0px;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(#dadada, #ffffff);
+	clip-path: circle(20% at 10% 10%);
+}
+
+#steps .container {
+	position: relative;
+	z-index: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	margin-bottom: 300px;
+}
+
+#steps .container .card {
+	position: relative;
+	width: 300px;
+	height: 400px;
+	background: rgba(255, 255, 255, 0.05);
+	margin: 20px;
+	box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+	border-radius: 15px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	backdrop-filter: blur(10px);
+}
+
+#steps .container .card .content {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	transition: 0.5s;
+}
+
+#steps .container .card:hover .content {
+	transform: translateY(-20px);
+}
+
+#steps .container .card .content .imgBx {
+	position: relative;
+	width: 150px;
+	height: 150px;
+	overflow: hidden;
+}
+
+#steps .container .card .content .imgBx img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+#steps .container .card .content .contentBx h3 {
+	color: #fff;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	font-weight: 500;
+	font-size: 18px;
+	text-align: center;
+	margin: 20px 0 10px;
+	line-height: 1.1em;
+}
+
+#steps .container .card .content .contentBx h3 span {
+	font-size: 12px;
+	font-weight: 300;
+	text-transform: initial;
+}
+
+#steps .container .card .sci {
+	position: absolute;
+	bottom: 50px;
+	display: flex;
+}
+
+#steps .container .card .sci li {
+	list-style: none;
+	margin: 0 10px;
+	transform: translateY(40px);
+	transition: 0.5s;
+	opacity: 0;
+}
+
+#steps .container .card:hover .sci li {
+	transform: translateY(0px);
+	opacity: 1;
+}
+
+#steps .container .card .sci li a {
+	color: #fff;
+	font-size: 20px;
+}
