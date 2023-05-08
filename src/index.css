@@ -544,40 +544,40 @@ main {
 
 /* button  */
 
-.center #button {
+.center button {
 	margin: auto;
-	border-radius: 20px;
-	box-shadow: 10px 12px 50px #d7d6d6;
-	width: 400px;
-	height: 100px;
-	font-size: 50px;
+	border-radius: 25px;
+	background-color: #33A6FF;
+	box-shadow: 10px 15px 40px #a59a9a;
+	width: 250px;
+	height: 50px;
+	font-size: 30px;
 	font-family: cambria;
-	text-decoration: none;
-	padding: 10px;
-}
-
-.center #button:hover {
+	color: #ffffff;
 	border: none;
-	background-color: #bab7b7;
+  }
+  
+  .center button:hover {
+	border: none;
+	background-color: #33A6FF;
 	opacity: 1;
-	color: #ffffff;
-}
-
-.center {
+	color: #36486b;
+  }
+  
+  .center {
 	position: absolute;
-	color: #ffffff;
 	bottom: 30px;
-
-}
-
-.center .btn:hover {
+	
+  }
+  
+  .center .btn:hover {
 	transition: 0.5s ease-in-out;
-	background-color: #ff0000;
-}
-
-.center #button {
-	--color1: #ffffff;
-	--color2: #ffffff;
+	background: #33A6FF;
+  }
+  
+  .center #button {
+	--color1: #36486b;
+	--color2: #bccad6;
 	font-family: cambria;
 	text-align: center;
 	font-size: 46px;
@@ -592,15 +592,57 @@ main {
 	color: transparent;
 	-webkit-background-clip: text;
 	animation: 40s linear 0s infinite move;
-	
-}
-
-@keyframes move {
+  }
+  
+  @keyframes move {
 	from {
-		background-position: 0px;
+	  background-position: 0px;
 	}
-
+  
 	to {
-		background-position: 1000px;
+	  background-position: 1000px;
 	}
-}
+  }
+  
+
+/* Contact us */
+#contact {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+	background: linear-gradient(to bottom right, #1A1C21, #1A1C21);
+  }
+  
+  #contact h1 {
+	font-size: 4rem;
+	color: #fff;
+	text-align: center;
+	text-shadow: 2px 2px #333;
+	margin-bottom: 3rem;
+  }
+  
+  #contact p {
+	font-size: 1.5rem;
+	color: #fff;
+	text-align: center;
+	text-shadow: 1px 1px #333;
+  }
+  
+  #contact button {
+	font-size: 1.3rem;
+	color: #fff;
+	background: #33a6ff;
+	padding: 1rem 2rem;
+	border-radius: 1rem;
+	border: none;
+	margin-top: 2rem;
+	cursor: pointer;
+	box-shadow: 2px 2px #33a6ff;
+  }
+  
+
+
+	
+	

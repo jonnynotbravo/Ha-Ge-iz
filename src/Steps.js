@@ -1,6 +1,11 @@
-import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Steps = () => {
+  const navigate = useNavigate();
+
+  const handleSubmit = () => {
+    navigate("/schools");
+  };
   return (
     <div id="stepsOuter">
       <h1>Steps</h1>
@@ -54,9 +59,9 @@ const Steps = () => {
         <p>With just this 3 simple steps, you can start your jounrey</p>
 
         <div className="center">
-          <NavLink to="/schools" id="button" className="btn">
-           Browse Schools
-          </NavLink>
+          <button onClick={handleSubmit} className="btn">
+            Browse Schools
+          </button>
         </div>
       </div>
     </div>
