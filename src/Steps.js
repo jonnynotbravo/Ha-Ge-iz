@@ -1,3 +1,5 @@
+import { NavLink } from "react-router-dom";
+
 const Steps = () => {
   return (
     <div id="stepsOuter">
@@ -50,12 +52,11 @@ const Steps = () => {
           </div>
         </section>
         <p>With just this 3 simple steps, you can start your jounrey</p>
-        <div class="center">
-          <a href="https://codepen.io/chloe47632">
-            <button type="submit" class="btn">
-              Click me
-            </button>{" "}
-          </a>
+
+        <div className="center">
+          <NavLink to="/schools" id="button" className="btn">
+           Browse Schools
+          </NavLink>
         </div>
       </div>
     </div>

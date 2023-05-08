@@ -532,7 +532,7 @@ main {
 #steps p {
 	position: absolute;
 	color: #ffffff;
-	bottom: 50px;
+	bottom: 150px;
 	font-size: 20px;
 	font-family:'Times New Roman', Times, serif
 }
@@ -540,4 +540,67 @@ main {
 .des {
 	font-size: 50px;
 	font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
+
+/* button  */
+
+.center #button {
+	margin: auto;
+	border-radius: 20px;
+	box-shadow: 10px 12px 50px #d7d6d6;
+	width: 400px;
+	height: 100px;
+	font-size: 50px;
+	font-family: cambria;
+	text-decoration: none;
+	padding: 10px;
+}
+
+.center #button:hover {
+	border: none;
+	background-color: #bab7b7;
+	opacity: 1;
+	color: #ffffff;
+}
+
+.center {
+	position: absolute;
+	color: #ffffff;
+	bottom: 30px;
+
+}
+
+.center .btn:hover {
+	transition: 0.5s ease-in-out;
+	background-color: #ff0000;
+}
+
+.center #button {
+	--color1: #ffffff;
+	--color2: #ffffff;
+	font-family: cambria;
+	text-align: center;
+	font-size: 46px;
+	background: repeating-linear-gradient(
+		45deg,
+		var(--color1),
+		var(--color1) 30px,
+		var(--color2) 30px,
+		var(--color2) 60px
+	);
+	background-clip: text;
+	color: transparent;
+	-webkit-background-clip: text;
+	animation: 40s linear 0s infinite move;
+	
+}
+
+@keyframes move {
+	from {
+		background-position: 0px;
+	}
+
+	to {
+		background-position: 1000px;
+	}
 }
