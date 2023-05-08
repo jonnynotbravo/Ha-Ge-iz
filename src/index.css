@@ -412,7 +412,7 @@ main {
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background: linear-gradient(#ffffff, #ffffff);
+	background: linear-gradient(#4e4e4e, #ffffff);
 	clip-path: circle(30% at right 70%);
 }
 
@@ -519,4 +519,25 @@ main {
 #steps .container .card .sci li a {
 	color: #fff;
 	font-size: 20px;
+}
+
+#steps h3 {
+	font-size: 209px;
+}
+
+.stepNumbers {
+	font-size: 100px !important;
+}
+
+#steps p {
+	position: absolute;
+	color: #ffffff;
+	bottom: 50px;
+	font-size: 20px;
+	font-family:'Times New Roman', Times, serif
+}
+
+.des {
+	font-size: 50px;
+	font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 }
