@@ -151,11 +151,13 @@ main {
 	grid-template-columns: 1fr;
 	grid-template-rows: repeat(var(--numcards), var(--card-height));
 	gap: var(--card-margin);
+	
 
 }
 
 .card {
 	outline: var(--outline-width) solid hotpink;
+
 
 }
 
@@ -390,6 +392,7 @@ main {
 	flex-wrap: wrap;
 	background: #1A1C21;
 	min-height: 100vh;
+	
 }
 
 #stepsOuter {
@@ -436,6 +439,7 @@ main {
 	align-items: center;
 	flex-wrap: wrap;
 	margin-bottom: 300px;
+	
 }
 
 #steps .container .card {
@@ -644,7 +648,53 @@ main {
 	box-shadow: 2px 2px #33a6ff;
   }
   
+/* FQA */
+
+/* .fqa {
+	margin-bottom: 500px;
+} */
 
 
-	
-	
+.faq {
+	max-width: 800px;
+	margin: 0 auto;
+	padding: 20px;
+	font-family: Arial, sans-serif;
+  }
+  
+  .faq h2 {
+	font-size: 24px;
+	font-weight: bold;
+	margin-bottom: 20px;
+  }
+  
+  .faq .accordion-item {
+	margin-bottom: 20px;
+  }
+  
+  .faq .accordion-header {
+	padding: 10px;
+	background-color: #f2f2f2;
+	border: 1px solid #ccc;
+	cursor: pointer;
+  }
+  
+  .faq .accordion-header:hover {
+	background-color: #e6e6e6;
+  }
+  
+  .faq .accordion-header.active {
+	background-color: #007bff;
+	color: #fff;
+  }
+  
+  .faq .accordion-content {
+	padding: 10px;
+	background-color: #fff;
+	border: 1px solid #ccc;
+  }
+  
+  .faq .accordion-content.active {
+	display: block;
+  }
+  
