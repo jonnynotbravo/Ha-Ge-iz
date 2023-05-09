@@ -1,6 +1,11 @@
+import { useNavigate } from "react-router-dom";
 import Header from "./Header";
 
 const SchoolsList = () => {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate("/sample");
+  };
   return (
     <div>
       <Header />
@@ -11,11 +16,10 @@ const SchoolsList = () => {
               <div>
                 <h2>El Bethel Academy</h2>
                 <p>"The name of the lord is the begninning of wisdom"</p>
-                <p>
-                  <a href="#top" className="btn btn--accent">
-                    Read more
-                  </a>
-                </p>
+
+                <div onClick={handleClick} className="btn btn--accent">
+                  Read more
+                </div>
               </div>
               <figure>
                 <img
@@ -30,11 +34,10 @@ const SchoolsList = () => {
               <div>
                 <h2>Falcon Acadmey</h2>
                 <p>"The stupidest school ever"</p>
-                <p>
-                  <a href="#top" className="btn btn--accent">
-                    Read more
-                  </a>
-                </p>
+
+                <div onClick={handleClick} className="btn btn--accent">
+                  Read more
+                </div>
               </div>
               <figure>
                 <img
@@ -49,11 +52,10 @@ const SchoolsList = () => {
               <div>
                 <h2>Addis Anba</h2>
                 <p>"I don't know what to write"</p>
-                <p>
-                  <a href="#top" className="btn btn--accent">
-                    Read more
-                  </a>
-                </p>
+
+                <div onClick={handleClick} className="btn btn--accent">
+                  Read more
+                </div>
               </div>
               <figure>
                 <img
@@ -68,11 +70,10 @@ const SchoolsList = () => {
               <div>
                 <h2>School of Aygoda</h2>
                 <p>baluan metakatelewa mist temerbet</p>
-                <p>
-                  <a href="#top" className="btn btn--accent">
-                    Read more
-                  </a>
-                </p>
+
+                <div onClick={handleClick} className="btn btn--accent">
+                  Read more
+                </div>
               </div>
               <figure>
                 <img
