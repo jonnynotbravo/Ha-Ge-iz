@@ -10,21 +10,21 @@ function FAQ() {
   const faqItems = [
     {
       id: 1,
-      question: "What is Data Structure?",
+      question: "What is this website used for?",
       answer:
-        "Data structure is a fundamental concept of any programming language, essential for algorithmic design.",
+        "blah blah blah blah blahblah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah",
     },
     {
       id: 2,
-      question: "Benefits of Learning Data Structures",
+      question: "is the reservation guaranteed?",
       answer:
-        "Any given problem has constraints on how fast the problem should be solved (time) and how much less resources the problem consumes (space). That is, a problem is constrained by the space and time complexity within which it has to be solved efficiently.",
+        "NO!!!",
     },
     {
       id: 3,
-      question: "What is an array?",
+      question: "Who made this ?",
       answer:
-        "An array is a collection of elements, each identified by an index or a key. It is a basic data structure used in programming and is commonly used to store homogeneous values like integers or strings.",
+        "Me",
     },
   ];
 

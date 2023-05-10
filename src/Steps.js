@@ -48,7 +48,7 @@ const Steps = () => {
                     <br />
                     <br />
                     <span className="des">
-                      Fill out the form and acquire a place.
+                      Fill out the form and reserve a place.
                     </span>
                   </h3>
                 </div>
@@ -56,7 +56,7 @@ const Steps = () => {
             </div>
           </div>
         </section>
-        <p>With just this 3 simple steps, you can start your jounrey</p>
+        <p>With just these 3 simple steps, you can start your jounrey</p>
 
         <div className="center">
           <button onClick={handleSubmit} className="btn">
