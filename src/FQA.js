@@ -17,14 +17,12 @@ function FAQ() {
     {
       id: 2,
       question: "is the reservation guaranteed?",
-      answer:
-        "NO!!!",
+      answer: "NO!!!",
     },
     {
       id: 3,
       question: "Who made this ?",
-      answer:
-        "Me",
+      answer: "Me",
     },
   ];
 
