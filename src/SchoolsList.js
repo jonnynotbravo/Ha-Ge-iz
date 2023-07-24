@@ -1,88 +1,55 @@
+import React, { useEffect, useState } from "react";
+import { collection, getDocs } from "firebase/firestore";
+import firestore from "./firebase";
+
 import { useNavigate } from "react-router-dom";
 import Header from "./Header";
 
 const SchoolsList = () => {
   const navigate = useNavigate();
-  const handleClick = () => {
-    navigate("/sample");
-  };
+  const [schools, setSchools] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const snapshot = await getDocs(collection(firestore, "Schools"));
+        const schoolsData = snapshot.docs.map((doc) => doc.data());
+        setSchools(schoolsData);
+      } catch (error) {
+        console.error("Error fetching schools:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+  const handleClick = () => {};
+
   return (
     <div>
       <Header />
       <main>
         <ul id="cards">
-          <li className="card" id="card_1">
-            <div className="card__content">
-              <div>
-                <h2>El Bethel Academy</h2>
-                <p>"The name of the lord is the begninning of wisdom"</p>
+          {schools.map((school) => (
+            <li key={school.id} className="card">
+              <div className="card__content">
+                <div>
+                  <h2>{school.name}</h2>
+                  <p>{school.quote}</p>
+                  <p></p>
 
-                <div onClick={handleClick} className="btn btn--accent">
-                  Read more
+                  <div onClick={handleClick} className="btn btn--accent">
+                    Read more
+                  </div>
                 </div>
+                <figure>
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Todd_Street_school.jpg/640px-Todd_Street_school.jpg"
+                    alt="Image description"
+                  />
+                </figure>
               </div>
-              <figure>
-                <img
-                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Todd_Street_school.jpg/640px-Todd_Street_school.jpg"
-                  alt="Image description"
-                />
-              </figure>
-            </div>
-          </li>
-          <li className="card" id="card_2">
-            <div className="card__content">
-              <div>
-                <h2>Falcon Acadmey</h2>
-                <p>"The stupidest school ever"</p>
-
-                <div onClick={handleClick} className="btn btn--accent">
-                  Read more
-                </div>
-              </div>
-              <figure>
-                <img
-                  src="https://images.alphacoders.com/105/thumb-1920-105131.jpg"
-                  alt="Image description"
-                />
-              </figure>
-            </div>
-          </li>
-          <li className="card" id="card_3">
-            <div className="card__content">
-              <div>
-                <h2>Addis Anba</h2>
-                <p>"I don't know what to write"</p>
-
-                <div onClick={handleClick} className="btn btn--accent">
-                  Read more
-                </div>
-              </div>
-              <figure>
-                <img
-                  src="https://www.sdb.k12.wi.us/cms/lib/WI01919658/Centricity/Domain/302/Gaston_Building_2.jpg"
-                  alt="Image description"
-                />
-              </figure>
-            </div>
-          </li>
-          <li className="card" id="card_4">
-            <div className="card__content">
-              <div>
-                <h2>School of Aygoda</h2>
-                <p>baluan metakatelewa mist temerbet</p>
-
-                <div onClick={handleClick} className="btn btn--accent">
-                  Read more
-                </div>
-              </div>
-              <figure>
-                <img
-                  src="https://pbs.twimg.com/media/E7zsLtSXoAIiJB5?format=jpg&name=4096x4096"
-                  alt="Image description"
-                />
-              </figure>
-            </div>
-          </li>
+            </li>
+          ))}
         </ul>
       </main>
     </div>

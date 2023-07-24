@@ -58,8 +58,8 @@ const Steps = () => {
         </section>
         <p>With just these 3 simple steps, you can start your jounrey</p>
 
-        <div className="center">
-          <button onClick={handleSubmit} className="btn">
+        <div>
+          <button onClick={handleSubmit} className="btn" type="button">
             Browse Schools
           </button>
         </div>
