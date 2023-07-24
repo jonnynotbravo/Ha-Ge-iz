@@ -1,6 +1,6 @@
 import Header from "./Header";
 
-const Sample = () => {
+const School = ({id, name, quote, desc, location}) => {
   return (
     <div>
       <Header />
@@ -53,4 +53,4 @@ const Sample = () => {
   );
 };
 
-export default Sample;
+export default School;
