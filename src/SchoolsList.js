@@ -5,7 +5,28 @@ import firestore from "./firebase";
 import { useNavigate } from "react-router-dom";
 import Header from "./Header";
 
-const SchoolsList = ({ schools, handleClick }) => {
+const SchoolsList = () => {
+  const navigate = useNavigate();
+  const [schools, setSchools] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const snapshot = await getDocs(collection(firestore, "Schools"));
+        const schoolsData = snapshot.docs.map((doc) => doc.data());
+        setSchools(schoolsData);
+      } catch (error) {
+        console.error("Error fetching schools:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const handleClick = (id) => {
+    navigate("/schools/${id}");
+  };
+
   return (
     <div>
       <Header />
@@ -20,7 +41,7 @@ const SchoolsList = ({ schools, handleClick }) => {
                   <p></p>
 
                   <div
-                    onClick={() => handleClick(school.id, school.name, school.desc, school.quote)}
+                    onClick={() => handleClick(school.id)}
                     className="btn btn--accent"
                   >
                     Read more
