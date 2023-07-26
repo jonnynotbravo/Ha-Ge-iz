@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
-import firestore from "./firebase";
+import { firestore } from "./firebase";
 
 import { useNavigate } from "react-router-dom";
 import Header from "./Header";
@@ -24,8 +24,11 @@ const SchoolsList = () => {
   }, []);
 
   const handleClick = (id) => {
-    navigate("/schools/${id}");
+    navigate(`/schools/${id}`);
+    console.log(id)
   };
+
+  
 
   return (
     <div>
@@ -38,7 +41,7 @@ const SchoolsList = () => {
                 <div>
                   <h2>{school.name}</h2>
                   <p>{school.quote}</p>
-                  <p></p>
+                  <h1>{school.id}</h1>
 
                   <div
                     onClick={() => handleClick(school.id)}

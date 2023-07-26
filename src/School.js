@@ -1,10 +1,53 @@
 import Header from "./Header";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { doc, getDoc } from "firebase/firestore"; // Use named import for v9 syntax
+import { firestore } from "./firebase";
 
-const School = ({id, name, quote, desc, location}) => {
+const School = () => {
+  const { id } = useParams(); // Extract the ID from the URL
+
+  const [schoolData, setSchoolData] = useState(null);
+
+  useEffect(() => {
+    const fetchSchoolData = async () => {
+      try {
+        // Use the ID to fetch data for the specific school
+        const docRef = doc(firestore, "schools", id); // Use doc() instead of collection()
+        const docSnapshot = await getDoc(docRef); // Use getDoc() instead of getDocs()
+        if (docSnapshot.exists()) {
+          setSchoolData(docSnapshot.data());
+        } else {
+          console.log("School not found!");
+        }
+      } catch (error) {
+        console.error("Error fetching school data:", error);
+      }
+    };
+
+    fetchSchoolData();
+  }, [id]);
+
+  console.log(schoolData)
+
+  if (!schoolData) {
+    // Styling for the "Loading..." text
+    const loadingStyles = {
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      height: "100vh",
+      fontSize: "36px",
+      fontWeight: "bold",
+    };
+
+    return <div style={loadingStyles}>Loading...</div>;
+  }
+
   return (
     <div>
       <Header />
-      <span className="school-name">El-Bethel Academy</span>
+      <span className="school-name">{schoolData.name}</span>
       <blockquote className="blockquote">
         <p>"The name of the lord is the begninning of wisdom"</p>
       </blockquote>
