@@ -5,6 +5,7 @@ import Form from "./Form";
 import About from "./About";
 import Contact from "./Contact";
 import School from "./School";
+import Login from "./Login";
 import { Routes, Route, Navigate } from "react-router-dom";
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/schools/:id" element={<School />} />
+        <Route path="/admin" element={<Login />} />
         <Route path="/404" element={<GenericNotFound />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
