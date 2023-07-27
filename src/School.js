@@ -1,10 +1,12 @@
 import Header from "./Header";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { doc, getDoc } from "firebase/firestore"; // Use named import for v9 syntax
 import { firestore } from "./firebase";
 
 const School = () => {
+  const navigate = useNavigate();
+
   const { id } = useParams(); // Extract the ID from the URL
 
   const [schoolData, setSchoolData] = useState(null);
@@ -28,8 +30,6 @@ const School = () => {
     fetchSchoolData();
   }, [id]);
 
-  console.log(schoolData);
-
   if (!schoolData) {
     // Styling for the "Loading..." text
     const loadingStyles = {
@@ -43,6 +43,11 @@ const School = () => {
 
     return <div style={loadingStyles}>Loading...</div>;
   }
+
+  const handleReserveSpot = () => {
+    navigate(`/schools/${id}/form`);
+    console.log(id)
+  };
 
   return (
     <div>
@@ -86,7 +91,9 @@ const School = () => {
         </ul>
       </div>
       <div className="wrap">
-        <button className="reserve">Reserve a spot</button>
+        <button className="reserve" onClick={handleReserveSpot}>
+          Reserve a spot
+        </button>
       </div>
 
       <div id="map">
