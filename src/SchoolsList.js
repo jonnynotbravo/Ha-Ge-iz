@@ -12,8 +12,11 @@ const SchoolsList = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const snapshot = await getDocs(collection(firestore, "Schools"));
-        const schoolsData = snapshot.docs.map((doc) => doc.data());
+        const querySnapshot = await getDocs(collection(firestore, "Schools"));
+        const schoolsData = querySnapshot.docs.map((doc) => ({
+          id: doc.id, // Set the document ID as 'id'
+          ...doc.data(), // Include the data from the document
+        }));
         setSchools(schoolsData);
       } catch (error) {
         console.error("Error fetching schools:", error);
@@ -25,10 +28,8 @@ const SchoolsList = () => {
 
   const handleClick = (id) => {
     navigate(`/schools/${id}`);
-    console.log(id)
+    console.log(id);
   };
-
-  
 
   return (
     <div>
@@ -41,7 +42,6 @@ const SchoolsList = () => {
                 <div>
                   <h2>{school.name}</h2>
                   <p>{school.quote}</p>
-                  <h1>{school.id}</h1>
 
                   <div
                     onClick={() => handleClick(school.id)}

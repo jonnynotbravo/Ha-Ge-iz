@@ -13,7 +13,7 @@ const School = () => {
     const fetchSchoolData = async () => {
       try {
         // Use the ID to fetch data for the specific school
-        const docRef = doc(firestore, "schools", id); // Use doc() instead of collection()
+        const docRef = doc(firestore, "Schools", id); // Use doc() instead of collection()
         const docSnapshot = await getDoc(docRef); // Use getDoc() instead of getDocs()
         if (docSnapshot.exists()) {
           setSchoolData(docSnapshot.data());
@@ -28,7 +28,7 @@ const School = () => {
     fetchSchoolData();
   }, [id]);
 
-  console.log(schoolData)
+  console.log(schoolData);
 
   if (!schoolData) {
     // Styling for the "Loading..." text
@@ -49,7 +49,7 @@ const School = () => {
       <Header />
       <span className="school-name">{schoolData.name}</span>
       <blockquote className="blockquote">
-        <p>"The name of the lord is the begninning of wisdom"</p>
+        <p>Mission Statement: {schoolData.quote}</p>
       </blockquote>
       <br />
 
