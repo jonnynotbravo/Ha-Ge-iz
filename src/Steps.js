@@ -4,8 +4,10 @@ const Steps = () => {
   const navigate = useNavigate();
 
   const handleSubmit = () => {
-    navigate("/schools");
+    window.scrollTo(0, 0); // Scroll to the top of the page
+    navigate("/schools"); // Navigate to the "/schools" route
   };
+
   return (
     <div id="stepsOuter">
       <h1>Steps</h1>
@@ -48,7 +50,17 @@ const Steps = () => {
                     <br />
                     <br />
                     <span className="des">
-                      Fill out the form and reserve a place.
+                      Fill out the form and{" "}
+                      <a
+                        style={{
+                          color: "#ffff",
+                          fontSize: 11,
+                          fontWeight: "bold",
+                          textTransform: "uppercase",
+                        }}
+                      >
+                        reserve a place.
+                      </a>
                     </span>
                   </h3>
                 </div>
@@ -56,10 +68,10 @@ const Steps = () => {
             </div>
           </div>
         </section>
-        <p>With just these 3 simple steps, you can start your jounrey</p>
+        <p>With just these 3 simple steps, you can start your journey</p>
 
-        <div>
-          <button onClick={handleSubmit} className="btn" type="button">
+        <div className="center">
+          <button onClick={handleSubmit} type="button">
             Browse Schools
           </button>
         </div>
