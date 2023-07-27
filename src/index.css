@@ -886,3 +886,70 @@ main {
 	object-fit: cover;
   }
   
+
+ /* FQA */
+ .faq {
+	max-width: 800px;
+	margin: 0 auto;
+	padding: 20px;
+	font-family: Arial, sans-serif;
+  }
+  
+  .faq h2 {
+	font-size: 24px;
+	font-weight: bold;
+	margin-bottom: 20px;
+	text-align: center;
+  }
+  
+  .accordion-item {
+	border: 1px solid #e8e8e8;
+	border-radius: 5px;
+	margin-bottom: 10px;
+	overflow: hidden;
+  }
+  
+  .accordion-header {
+	background-color: #f2f2f2;
+	padding: 15px;
+	font-size: 18px;
+	font-weight: bold;
+	cursor: pointer;
+	position: relative;
+	display: flex;
+	align-items: center;
+  }
+  
+  .hint {
+	font-size: 12px;
+	color: #666666;
+	margin-left: 10px;
+  }
+  
+  .arrow {
+	margin-left: auto;
+	font-size: 20px;
+	transition: transform 0.3s ease;
+  }
+  
+  .accordion-header:hover .arrow {
+	transform: rotateX(180deg);
+  }
+  
+  .accordion-content {
+	background-color: #ffffff;
+	padding: 15px;
+	font-size: 16px;
+	line-height: 1.6;
+	display: none;
+  }
+  
+  .accordion-content.active {
+	display: block;
+  }
+  
+  .accordion-header.active {
+	background-color: #007bff;
+	color: #ffffff;
+  }
+  
