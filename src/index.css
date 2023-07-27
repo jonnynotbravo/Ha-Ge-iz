@@ -663,10 +663,6 @@ main {
   
 /* FQA */
 
-/* .fqa {
-	margin-bottom: 500px;
-} */
-
 
 .faq {
 	max-width: 800px;
@@ -683,6 +679,7 @@ main {
   
   .faq .accordion-item {
 	margin-bottom: 20px;
+	
   }
   
   .faq .accordion-header {
@@ -690,6 +687,7 @@ main {
 	background-color: #f2f2f2;
 	border: 1px solid #ccc;
 	cursor: pointer;
+	color: #0957D0
   }
   
   .faq .accordion-header:hover {
