@@ -46,7 +46,7 @@ const School = () => {
 
   const handleReserveSpot = () => {
     navigate(`/schools/${id}/form`);
-    console.log(id)
+    console.log(id);
   };
 
   return (
@@ -68,13 +68,13 @@ const School = () => {
             <img src="https://www.gannett-cdn.com/presto/2022/05/16/PAPN/99a9b13f-17ac-4a91-8877-e6462b8f1255-APC_EdistonSchool_0516220036djp.jpg" />
           </li>
           <li>
-            <img src="https://wallpapercrafter.com/desktop/233241-perspective-protrait-education-and-elementary-scho.jpg" />
+            <img src="https://www.providenceschools.org/cms/lib/RI01900003/Centricity/Domain/4/20210413-Bailey-0160-862x530.png" />
           </li>
           <li>
             <img src="https://pbs.twimg.com/media/FqpovHFX0AAP1nJ?format=jpg&name=large" />
           </li>
           <li>
-            <img src="https://c1.wallpaperflare.com/preview/492/907/716/school-className-school-children-bali.jpg" />
+            <img src="https://www.verywellfamily.com/thmb/mi5BR5mruiShD9HnmFwoIu241E4=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/high-school-teacher-calling-on-student-in-classroom-595349163-5adf35e6fa6bcc0036b16732.jpg" />
           </li>
           <li>
             <img src="https://img.freepik.com/free-photo/young-people-studying-using-laptop_23-2147844843.jpg" />
