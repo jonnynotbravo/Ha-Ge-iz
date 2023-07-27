@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getAuth, signOut } from "firebase/auth";
-
+import Footer from "./Footer";
 const Admin = ({ setLoggedIn }) => {
   const auth = getAuth();
 
@@ -31,6 +31,7 @@ const Admin = ({ setLoggedIn }) => {
   return (
     <div className="admin-container">
       <button onClick={handleLogout}>Logout</button>
+      <Footer />
     </div>
   );
 };

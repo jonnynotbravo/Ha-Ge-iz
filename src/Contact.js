@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import Footer from "./Footer";
 
 const Contact = () => {
   const navigate = useNavigate();
@@ -12,6 +13,7 @@ const Contact = () => {
       <h1>Contact Us</h1>
       <p>For any questions, please email: jobuiznes@gmail.com</p>
       <button onClick={handleGoBack}>Back to Home</button>
+      <Footer />
     </div>
   );
 };

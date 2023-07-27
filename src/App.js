@@ -9,6 +9,7 @@ import Contact from "./Contact";
 import School from "./School";
 import Login from "./Login";
 import Admin from "./Admin";
+
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 function App() {

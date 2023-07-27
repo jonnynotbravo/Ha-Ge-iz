@@ -4,6 +4,7 @@ import { firestore } from "./firebase";
 
 import { useNavigate } from "react-router-dom";
 import Header from "./Header";
+import Footer from "./Footer";
 
 const SchoolsList = () => {
   const navigate = useNavigate();
@@ -76,6 +77,7 @@ const SchoolsList = () => {
           ))}
         </ul>
       </main>
+      <Footer />
     </div>
   );
 };

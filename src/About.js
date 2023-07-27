@@ -1,4 +1,5 @@
 import Header from "./Header";
+import Footer from "./Footer";
 
 const About = () => {
   return (
@@ -35,6 +36,7 @@ const About = () => {
         ትምህርት ቤት ከጥታ እናንተን ያነጋግርዎታል::
       </p>
       <p>የእኛን ድረ-ገጽ ስለመረጡ እናመሰግናለን!</p>
+      <Footer />
     </div>
   );
 };

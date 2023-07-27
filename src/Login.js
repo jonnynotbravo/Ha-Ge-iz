@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import Footer from "./Footer";
 
 const Login = ({ setLoggedIn }) => {
   const [email, setEmail] = useState("");
@@ -72,6 +73,7 @@ const Login = ({ setLoggedIn }) => {
           Back to Home
         </Link>
       </div>
+      <Footer />
     </div>
   );
 };
