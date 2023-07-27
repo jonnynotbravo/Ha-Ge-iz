@@ -8,23 +8,38 @@ import Header from "./Header";
 const SchoolsList = () => {
   const navigate = useNavigate();
   const [schools, setSchools] = useState([]);
+  const [loading, setLoading] = useState(true); // Add a loading state
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const querySnapshot = await getDocs(collection(firestore, "Schools"));
         const schoolsData = querySnapshot.docs.map((doc) => ({
-          id: doc.id, // Set the document ID as 'id'
-          ...doc.data(), // Include the data from the document
+          id: doc.id,
+          ...doc.data(),
         }));
         setSchools(schoolsData);
+        setLoading(false); // Set loading to false when data is fetched
       } catch (error) {
         console.error("Error fetching schools:", error);
+        setLoading(false); // Set loading to false in case of an error
       }
     };
 
     fetchData();
   }, []);
+
+  if (loading) {
+    const loadingStyles = {
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      height: "100vh",
+      fontSize: "36px",
+      fontWeight: "bold",
+    };
+    return <div style={loadingStyles}>Loading...</div>;
+  }
 
   const handleClick = (id) => {
     navigate(`/schools/${id}`);
