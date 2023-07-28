@@ -9,6 +9,7 @@ import Contact from "./Contact";
 import School from "./School";
 import Login from "./Login";
 import Admin from "./Admin";
+import ConfirmationPage from "./ConfirmationPage";
 
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
@@ -36,6 +37,10 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/schools/:id/form" element={<Form />} />
+        <Route
+          path="schools/:id/form/confirmation-page" // Add the ConfirmationPage route
+          element={<ConfirmationPage />}
+        />
         <Route path="/schools" element={<SchoolsList />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />

@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { collection, setDoc, doc } from "firebase/firestore";
 import { firestore } from "./firebase";
 import { Timestamp } from "firebase/firestore";
 
 const Form = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -87,6 +88,7 @@ const Form = () => {
       await setDoc(doc(submissionsRef, documentId), formDataWithTimestamp);
 
       console.log("Form data submitted:", formDataWithTimestamp);
+      navigate(`/schools/${id}/form/confirmation-page`);
     } catch (error) {
       console.error("Error submitting form data:", error);
     }
