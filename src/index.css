@@ -1101,3 +1101,73 @@ footer {
 	}
   }
   
+/*  */
+/* Common styles for #about, #contact, .login-container footer */
+#about footer,
+#contact footer,
+.login-container footer {
+  background-color: #333;
+  color: #fff;
+  padding: 2rem 0;
+  /* Add "position" and "bottom" properties */
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.footer-links a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.footer-links a:hover {
+  color: #aaa;
+}
+
+.footer-info {
+  font-size: 0.9rem;
+  text-align: right;
+}
+
+.footer-copyright {
+  font-size: 0.8rem;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+/* Add any additional styles for footer-info and footer-copyright here */
+
+/* Media query for responsiveness */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .footer-info {
+    text-align: left;
+    margin-top: 1rem;
+  }
+
+  /* Remove absolute positioning on mobile to keep the footer at the end of the content */
+  #about footer,
+  #contact footer,
+  .login-container footer {
+    position: relative;
+    bottom: initial;
+    width: auto; /* Adjust as needed based on your design */
+  }
+}
