@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
+import { collection, setDoc, doc } from "firebase/firestore";
+import { firestore } from "./firebase";
+import { Timestamp } from "firebase/firestore";
 
 const Form = () => {
   const { id } = useParams();
@@ -19,15 +22,80 @@ const Form = () => {
       ...prevFormData,
       [name]: value,
     }));
+
+    // Check if the input is "gradeToBe" and if the value is not within the valid range (1 to 12)
+    if (name === "gradeToBe" && (value < 1 || value > 12)) {
+      setShowWarning(true); // Show the warning message
+    } else {
+      setShowWarning(false); // Hide the warning message if the input is valid
+    }
   };
 
-  const handleSubmit = () => {
-    // Add your form submission logic here
-    console.log("Form data submitted:", formData);
+  // Add your form submission logic here
+
+  // ... (previous code)
+
+  const handleSubmit = async (e) => {
+    e.preventDefault(); // Prevent the default form submission
+
+    try {
+      // Check if the grade input is within the valid range (1 to 12)
+      if (formData.gradeToBe < 1 || formData.gradeToBe > 12) {
+        setShowWarning(true);
+        return; // Stop the form submission
+      } else {
+        setShowWarning(false);
+      }
+
+      // Create a reference to the "Submissions" collection inside the specific school
+      const submissionsRef = collection(
+        firestore,
+        "Schools",
+        id,
+        "Submissions"
+      );
+
+      // Generate the document ID as "firstName-lastName-month-day-year-time-AM/PM"
+      const timestamp = Timestamp.fromDate(new Date());
+      const month = new Intl.DateTimeFormat("en-US", { month: "long" }).format(
+        timestamp.toDate()
+      );
+      const day = timestamp.toDate().getDate();
+      const year = timestamp.toDate().getFullYear();
+      const time = timestamp.toDate().toLocaleTimeString("en-US", {
+        hour12: true,
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+      });
+      const amOrPm = timestamp
+        .toDate()
+        .toLocaleTimeString("en-US", {
+          hour12: true,
+          hour: "numeric",
+        })
+        .slice(-2); // Get AM or PM from the end of the time string
+      const documentId = `${formData.firstName}-${formData.lastName}-${month}-${day}-${year}-${time}`;
+
+      // Add the formatted timestamp to the formData
+      const formDataWithTimestamp = {
+        ...formData,
+        timestamp: `${month}-${day}-${year}-${time}`,
+      };
+
+      // Set the document with the desired ID and the formData (including the timestamp) in the "Submissions" collection
+      await setDoc(doc(submissionsRef, documentId), formDataWithTimestamp);
+
+      console.log("Form data submitted:", formDataWithTimestamp);
+    } catch (error) {
+      console.error("Error submitting form data:", error);
+    }
   };
+
+  // ... (remaining code)
 
   return (
-    <div style={formContainerStyles}>
+    <form style={formContainerStyles} onSubmit={handleSubmit}>
       <div style={outerLayerStyles}>
         <h1 style={formTitleStyles}>Form</h1>
         <div style={formFieldStyles}>
@@ -39,6 +107,7 @@ const Form = () => {
             style={inputStyles}
             value={formData.firstName}
             onChange={handleInputChange}
+            required
           />
         </div>
         <div style={formFieldStyles}>
@@ -50,6 +119,7 @@ const Form = () => {
             style={inputStyles}
             value={formData.lastName}
             onChange={handleInputChange}
+            required
           />
         </div>
         <div style={formFieldStyles}>
@@ -61,6 +131,7 @@ const Form = () => {
             style={inputStyles}
             value={formData.birthDate}
             onChange={handleInputChange}
+            required
           />
         </div>
         <div style={formFieldStyles}>
@@ -70,6 +141,7 @@ const Form = () => {
             style={inputStyles}
             value={formData.gender}
             onChange={handleInputChange}
+            required
           >
             <option value="" disabled>
               Select Gender
@@ -93,9 +165,14 @@ const Form = () => {
             }}
             value={formData.gradeToBe}
             onChange={handleInputChange}
+            required
           />
           {showWarning && (
-            <span style={warningStyles}>Grade should be between 1 and 12.</span>
+            <span style={warningStyles}>
+              {formData.gradeToBe < 1 || formData.gradeToBe > 12
+                ? "Grade should be between 1 and 12."
+                : ""}
+            </span>
           )}
         </div>
         <div style={formFieldStyles}>
@@ -106,18 +183,19 @@ const Form = () => {
             readOnly
             style={{ ...inputStyles, ...readOnlyInputStyles }}
             value={formData.school}
+            required
           />
         </div>
+
         <div style={submitButtonStyles}>
-          <button onClick={handleSubmit}>Submit</button>
+          <button>Submit</button>
         </div>
       </div>
-    </div>
+    </form>
   );
 };
-// CSS styles (same as before)
-// ...
 
+// CSS styles
 const submitButtonStyles = {
   textAlign: "center",
   marginTop: "20px",
@@ -140,10 +218,6 @@ const warningStyles = {
   marginTop: "5px",
 };
 
-// CSS styles (same as before)
-// ...
-
-// CSS styles
 const formContainerStyles = {
   display: "flex",
   alignItems: "center",
