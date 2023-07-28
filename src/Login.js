@@ -73,7 +73,7 @@ const Login = ({ setLoggedIn }) => {
           Back to Home
         </Link>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };

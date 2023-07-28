@@ -31,7 +31,7 @@ const Admin = ({ setLoggedIn }) => {
   return (
     <div className="admin-container">
       <button onClick={handleLogout}>Logout</button>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };

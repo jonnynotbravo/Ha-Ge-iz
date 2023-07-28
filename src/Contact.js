@@ -13,7 +13,7 @@ const Contact = () => {
       <h1>Contact Us</h1>
       <p>For any questions, please email: jobuiznes@gmail.com</p>
       <button onClick={handleGoBack}>Back to Home</button>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };
