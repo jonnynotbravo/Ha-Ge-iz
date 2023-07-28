@@ -3,23 +3,27 @@ import { useParams } from "react-router-dom";
 
 const Form = () => {
   const { id } = useParams();
-  const [gradeToBe, setGradeToBe] = useState("");
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    birthDate: "",
+    gender: "",
+    gradeToBe: "",
+    school: id,
+  });
   const [showWarning, setShowWarning] = useState(false);
 
-  const handleGradeChange = (event) => {
-    const grade = parseInt(event.target.value, 10);
-    if (grade >= 1 && grade <= 12) {
-      setGradeToBe(grade);
-      setShowWarning(false);
-    } else {
-      setGradeToBe("");
-      setShowWarning(true);
-    }
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    }));
   };
 
   const handleSubmit = () => {
     // Add your form submission logic here
-    console.log("Form submitted!");
+    console.log("Form data submitted:", formData);
   };
 
   return (
@@ -30,26 +34,44 @@ const Form = () => {
           <label style={labelStyles}>First Name:</label>
           <input
             type="text"
+            name="firstName"
             placeholder="Enter First Name"
             style={inputStyles}
+            value={formData.firstName}
+            onChange={handleInputChange}
           />
         </div>
         <div style={formFieldStyles}>
           <label style={labelStyles}>Last Name:</label>
           <input
             type="text"
+            name="lastName"
             placeholder="Enter Last Name"
             style={inputStyles}
+            value={formData.lastName}
+            onChange={handleInputChange}
           />
         </div>
         <div style={formFieldStyles}>
           <label style={labelStyles}>Birth Date:</label>
-          <input type="date" placeholder="Enter Your Age" style={inputStyles} />
+          <input
+            type="date"
+            name="birthDate"
+            placeholder="Enter Your Age"
+            style={inputStyles}
+            value={formData.birthDate}
+            onChange={handleInputChange}
+          />
         </div>
         <div style={formFieldStyles}>
           <label style={labelStyles}>Gender:</label>
-          <select style={inputStyles}>
-            <option value="" disabled selected>
+          <select
+            name="gender"
+            style={inputStyles}
+            value={formData.gender}
+            onChange={handleInputChange}
+          >
+            <option value="" disabled>
               Select Gender
             </option>
             <option value="Male">Male</option>
@@ -60,6 +82,7 @@ const Form = () => {
           <label style={labelStyles}>Grade To be:</label>
           <input
             type="number"
+            name="gradeToBe"
             min="1"
             max="12"
             placeholder="Enter Your Grade To be"
@@ -68,8 +91,8 @@ const Form = () => {
               ...gradeToBeInputStyles,
               borderColor: showWarning ? "red" : "#ccc",
             }}
-            value={gradeToBe}
-            onChange={handleGradeChange}
+            value={formData.gradeToBe}
+            onChange={handleInputChange}
           />
           {showWarning && (
             <span style={warningStyles}>Grade should be between 1 and 12.</span>
@@ -79,9 +102,10 @@ const Form = () => {
           <label style={labelStyles}>School:</label>
           <input
             type="text"
-            defaultValue={id}
+            name="school"
             readOnly
             style={{ ...inputStyles, ...readOnlyInputStyles }}
+            value={formData.school}
           />
         </div>
         <div style={submitButtonStyles}>
@@ -91,7 +115,6 @@ const Form = () => {
     </div>
   );
 };
-
 // CSS styles (same as before)
 // ...
 
