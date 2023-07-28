@@ -69,13 +69,7 @@ const Form = () => {
         minute: "2-digit",
         second: "2-digit",
       });
-      const amOrPm = timestamp
-        .toDate()
-        .toLocaleTimeString("en-US", {
-          hour12: true,
-          hour: "numeric",
-        })
-        .slice(-2); // Get AM or PM from the end of the time string
+
       const documentId = `${formData.firstName}-${formData.lastName}-${month}-${day}-${year}-${time}`;
 
       // Add the formatted timestamp to the formData
@@ -87,8 +81,10 @@ const Form = () => {
       // Set the document with the desired ID and the formData (including the timestamp) in the "Submissions" collection
       await setDoc(doc(submissionsRef, documentId), formDataWithTimestamp);
 
-      console.log("Form data submitted:", formDataWithTimestamp);
-      navigate(`/schools/${id}/form/confirmation-page`);
+      // console.log("Form data submitted:", formDataWithTimestamp);
+      navigate(`/schools/${id}/form/confirmation-page`, {
+        state: { formData: formDataWithTimestamp },
+      });
     } catch (error) {
       console.error("Error submitting form data:", error);
     }

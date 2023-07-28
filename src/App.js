@@ -36,15 +36,15 @@ function App() {
     <div>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/schools/:id/form" element={<Form />} />
         <Route
-          path="schools/:id/form/confirmation-page" // Add the ConfirmationPage route
+          path="/schools/:id/form/confirmation-page" // Add the forward slash at the beginning of the path
           element={<ConfirmationPage />}
         />
         <Route path="/schools" element={<SchoolsList />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/schools/:id" element={<School />} />
+        <Route path="/schools/:id/form" element={<Form />} />
         {loggedIn ? (
           <Route path="/admin" element={<Admin setLoggedIn={setLoggedIn} />} />
         ) : (
