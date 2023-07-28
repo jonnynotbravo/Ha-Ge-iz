@@ -21,6 +21,8 @@ const School = () => {
           setSchoolData(docSnapshot.data());
         } else {
           console.log("School not found!");
+          // Navigate to the 404 page if school data is not found
+          navigate("/404");
         }
       } catch (error) {
         console.error("Error fetching school data:", error);
@@ -28,7 +30,7 @@ const School = () => {
     };
 
     fetchSchoolData();
-  }, [id]);
+  }, [id, navigate]);
 
   if (!schoolData) {
     // Styling for the "Loading..." text
