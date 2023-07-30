@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getAuth, signOut } from "firebase/auth";
 import { collection, getFirestore, getDocs } from "firebase/firestore";
+import SudentPDFDocument from "./StudentPDFDocument";
 import Footer from "./Footer";
 
 const Admin = ({ setLoggedIn }) => {
