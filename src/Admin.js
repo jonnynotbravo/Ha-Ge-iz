@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { getAuth, signOut } from "firebase/auth";
 import { collection, getFirestore, getDocs } from "firebase/firestore";
+import { PDFDownloadLink } from "@react-pdf/renderer";
 import Footer from "./Footer";
+import StudentPDF from "./StudentPDF";
 
 const Admin = ({ setLoggedIn }) => {
   const auth = getAuth();
@@ -33,9 +35,12 @@ const Admin = ({ setLoggedIn }) => {
               const studentsQuerySnapshot = await getDocs(
                 studentsCollectionRef
               );
-              const studentsData = studentsQuerySnapshot.docs.map((doc) =>
-                doc.data()
-              );
+
+              // Update studentsData with the fetched data and use Firebase's document ID as the key
+              const studentsData = studentsQuerySnapshot.docs.map((doc) => ({
+                ...doc.data(),
+                documentId: doc.id, // Add the Firebase document ID to each student object
+              }));
               setStudentsData(studentsData);
             } else {
               console.log("No matching admin user found for email:", userEmail);
@@ -81,20 +86,45 @@ const Admin = ({ setLoggedIn }) => {
       });
   };
 
-  console.log(studentsData);
+  const handleOpenPDF = (student) => {
+    const pdfBlob = new Blob([<StudentPDF student={student} />], {
+      type: "application/pdf",
+    });
+    const pdfUrl = URL.createObjectURL(pdfBlob);
+    window.open(pdfUrl, "_blank");
+  };
+
+  const generateLogo = (firstName, lastName) => {
+    // Customize the logo with any text and styles you want
+    return (
+      <div style={{ backgroundColor: "#1861e0", color: "#ffffff", padding: 8 }}>
+        {firstName.charAt(0)}
+        {lastName.charAt(0)}
+      </div>
+    );
+  };
+
   return (
     <div className="admin-container">
       <h1>{userEmail ? `Welcome, ${userEmail}` : "Not signed in"}</h1>
       <button onClick={handleLogout}>Logout</button>
       {studentsData.map((student) => (
-        <div key={student.id}>
-          {" "}
-          {/* Assuming student has a unique 'id' property */}
-          <p>First name: {student.firstName}</p>
-          <p>Last name: {student.lastName}</p>
-          <p>Birthdate: {student.birthDate}</p>
-          <p>Gender: {student.gender}</p>
-          <p>Grade to be: {student.gradeToBe}</p>
+        <div key={student.documentId} className="student-box">
+          <p>
+            {student.firstName} {student.lastName}
+          </p>
+          <PDFDownloadLink
+            document={<StudentPDF student={student} />}
+            fileName={`${student.firstName}_${student.lastName}_${student.timestamp}.pdf`}
+          >
+            {({ loading }) =>
+              loading ? (
+                <i className="fas fa-spinner fa-spin"></i>
+              ) : (
+                <i className="fas fa-file-download"></i>
+              )
+            }
+          </PDFDownloadLink>
         </div>
       ))}
       {/* <Footer /> */}

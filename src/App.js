@@ -10,6 +10,8 @@ import School from "./School";
 import Login from "./Login";
 import Admin from "./Admin";
 import ConfirmationPage from "./ConfirmationPage";
+import '@fortawesome/fontawesome-free/css/all.min.css';
+
 
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
