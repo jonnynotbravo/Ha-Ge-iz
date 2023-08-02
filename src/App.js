@@ -10,8 +10,8 @@ import School from "./School";
 import Login from "./Login";
 import Admin from "./Admin";
 import ConfirmationPage from "./ConfirmationPage";
-import '@fortawesome/fontawesome-free/css/all.min.css';
-
+import TermsAndConditions from "./TermsAndConditions";
+import "@fortawesome/fontawesome-free/css/all.min.css";
 
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
@@ -38,6 +38,7 @@ function App() {
     <div>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/Terms-and-Conditions" element={<TermsAndConditions />} />
         <Route
           path="/schools/:id/form/confirmation-page" // Add the forward slash at the beginning of the path
           element={<ConfirmationPage />}
