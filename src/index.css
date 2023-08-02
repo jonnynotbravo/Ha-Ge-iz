@@ -1174,34 +1174,105 @@ footer {
 
 
 /* Add this to your existing stylesheet or create a new one */
-.student-box-container {
+.timestamp {
+	font-size: 20px;
+	font-weight: bold;
+	margin-bottom: 10px;
+  }
+
+  .timestamp-group {
 	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	margin-top: 20px;
+	flex-direction: column;
+	align-items: center;
+	margin-bottom: 20px;
+  }
+
+  .admin-container {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start; /* Align the content to the left */
+	padding: 20px;
+  }
+  
+  .welcome-message {
+	font-size: 60px;
+	font-weight: bold;
+	margin-bottom: 20px;
+  }
+  
+  .logout-button {
+	padding: 8px 16px;
+	background-color: #f44336;
+	color: white;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+  }
+  
+  .logout-button:hover {
+	background-color: #d32f2f;
+  }
+  
+  .logout-button:focus {
+	outline: none;
+  }
+  
+  .students-list {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
   }
   
   .student-box {
-	border: 1px solid #ccc;
-	border-radius: 8px;
+	display: flex;
+	align-items: center;
 	padding: 10px;
-	margin: 10px;
-	text-align: center;
-	width: 200px; /* Adjust the width as needed */
-	background-color: #f0f0f0;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	width: 400px;
+	margin-bottom: 10px;
+	background-color: #d2d2d2;
+}
+.student-info {
+	margin-right: auto;
   }
   
-  .student-box p {
-	margin: 5px 0;
+  
+  .student-name {
+	font-size: 18px;
 	font-weight: bold;
-  }
-  
-  .student-box i {
-	font-size: 24px;
-	cursor: pointer;
 	color: #333;
   }
   
-  .student-box i.fa-file-download {
-	color: #df150f;
+  .download-button {
+	margin-top: 8px;
+  }
+  
+  .fa-spinner,
+  .fa-file-download {
+	font-size: 24px;
+	color: #1861e0;
+	cursor: pointer;
+  }
+  
+  .fa-spinner.fa-spin {
+	animation: spin 2s linear infinite;
+  }
+  
+  @keyframes spin {
+	0% {
+	  transform: rotate(0deg);
+	}
+	100% {
+	  transform: rotate(360deg);
+	}
+  }
+
+
+  .headerAdmin {
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 20px;
   }

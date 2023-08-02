@@ -7,8 +7,11 @@ import StudentPDF from "./StudentPDF";
 
 const Admin = ({ setLoggedIn }) => {
   const auth = getAuth();
-  const [userEmail, setUserEmail] = useState(null); // State to store the user's email
-  const [studentsData, setStudentsData] = useState([]); // State to store the fetched students data
+  const [userEmail, setUserEmail] = useState(null);
+  const [studentsData, setStudentsData] = useState([]);
+  const [currentSchool, setCurrentSchool] = useState("");
+
+  console.log(studentsData);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -19,13 +22,11 @@ const Admin = ({ setLoggedIn }) => {
           const querySnapshot = await getDocs(adminCollectionRef);
 
           if (!querySnapshot.empty) {
-            // Find the document with matching email
             const adminDoc = querySnapshot.docs.find(
               (doc) => doc.id === userEmail
             );
 
             if (adminDoc) {
-              // Fetch data from /Admins/{userEmail}/Students
               const studentsCollectionRef = collection(
                 firestore,
                 "Admins",
@@ -36,10 +37,9 @@ const Admin = ({ setLoggedIn }) => {
                 studentsCollectionRef
               );
 
-              // Update studentsData with the fetched data and use Firebase's document ID as the key
               const studentsData = studentsQuerySnapshot.docs.map((doc) => ({
                 ...doc.data(),
-                documentId: doc.id, // Add the Firebase document ID to each student object
+                documentId: doc.id,
               }));
               setStudentsData(studentsData);
             } else {
@@ -56,16 +56,11 @@ const Admin = ({ setLoggedIn }) => {
 
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
-        // If the user is authenticated, update the 'loggedIn' state to true
         setLoggedIn(true);
-        // Set the user's email to the state
         setUserEmail(user.email);
-        // Fetch data
         fetchData();
       } else {
-        // If the user is not authenticated, update the 'loggedIn' state to false
         setLoggedIn(false);
-        // Reset the user's email and students data to null
         setUserEmail(null);
         setStudentsData([]);
       }
@@ -86,47 +81,76 @@ const Admin = ({ setLoggedIn }) => {
       });
   };
 
-  const handleOpenPDF = (student) => {
-    const pdfBlob = new Blob([<StudentPDF student={student} />], {
-      type: "application/pdf",
-    });
-    const pdfUrl = URL.createObjectURL(pdfBlob);
-    window.open(pdfUrl, "_blank");
+  useEffect(() => {
+    if (studentsData.length > 0) {
+      setCurrentSchool(studentsData[0].school);
+    }
+  }, [studentsData]);
+
+  const sortedStudentsData = studentsData.sort(
+    (a, b) => b.timestamp - a.timestamp
+  );
+
+  const formatDate = (timestamp) => {
+    const date = new Date(timestamp);
+    const options = { year: "numeric", month: "long", day: "numeric" };
+    return new Intl.DateTimeFormat("en-US", options).format(date);
   };
 
-  const generateLogo = (firstName, lastName) => {
-    // Customize the logo with any text and styles you want
-    return (
-      <div style={{ backgroundColor: "#1861e0", color: "#ffffff", padding: 8 }}>
-        {firstName.charAt(0)}
-        {lastName.charAt(0)}
-      </div>
-    );
-  };
+  const timestampGroups = [];
+  let currentGroup = null;
+
+  // Group students with the same timestamp (ignoring the time part)
+  sortedStudentsData.forEach((student) => {
+    const date = formatDate(student.timestamp);
+    if (!currentGroup || currentGroup.date !== date) {
+      currentGroup = { date, students: [student] };
+      timestampGroups.push(currentGroup);
+    } else {
+      currentGroup.students.push(student);
+    }
+  });
 
   return (
     <div className="admin-container">
-      <h1>{userEmail ? `Welcome, ${userEmail}` : "Not signed in"}</h1>
-      <button onClick={handleLogout}>Logout</button>
-      {studentsData.map((student) => (
-        <div key={student.documentId} className="student-box">
-          <p>
-            {student.firstName} {student.lastName}
-          </p>
-          <PDFDownloadLink
-            document={<StudentPDF student={student} />}
-            fileName={`${student.firstName}_${student.lastName}_${student.timestamp}.pdf`}
-          >
-            {({ loading }) =>
-              loading ? (
-                <i className="fas fa-spinner fa-spin"></i>
-              ) : (
-                <i className="fas fa-file-download"></i>
-              )
-            }
-          </PDFDownloadLink>
-        </div>
-      ))}
+      <div className="headerAdmin">
+        <h1 className="welcome-message">
+          {userEmail ? `Welcome, ${currentSchool}` : "Not signed in"}
+        </h1>
+        <button className="logout-button" onClick={handleLogout}>
+          Logout
+        </button>
+      </div>
+      <div className="students-list">
+        {timestampGroups.map((group) => (
+          <div key={group.date} className="timestamp-group">
+            <div className="timestamp">{group.date}</div>
+            {group.students.map((student) => (
+              <div className="student-box" key={student.documentId}>
+                <div className="student-info">
+                  <p className="student-name">
+                    {student.firstName} {student.lastName}
+                  </p>
+                </div>
+                <div className="download-button">
+                  <PDFDownloadLink
+                    document={<StudentPDF student={student} />}
+                    fileName={`${student.firstName}_${student.lastName}_${student.timestamp}.pdf`}
+                  >
+                    {({ loading }) =>
+                      loading ? (
+                        <i className="fas fa-spinner fa-spin"></i>
+                      ) : (
+                        <i className="fas fa-file-download"></i>
+                      )
+                    }
+                  </PDFDownloadLink>
+                </div>
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
       {/* <Footer /> */}
     </div>
   );
