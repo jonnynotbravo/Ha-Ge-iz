@@ -11,6 +11,7 @@ import Login from "./Login";
 import Admin from "./Admin";
 import ConfirmationPage from "./ConfirmationPage";
 import TermsAndConditions from "./TermsAndConditions";
+import PrivacyPolicy from "./PrivacyPolicy";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 
 import { getAuth, onAuthStateChanged } from "firebase/auth";
@@ -39,6 +40,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/Terms-and-Conditions" element={<TermsAndConditions />} />
+        <Route path="/Privacy-Policy" element={<PrivacyPolicy />} />
         <Route
           path="/schools/:id/form/confirmation-page" // Add the forward slash at the beginning of the path
           element={<ConfirmationPage />}
