@@ -10,7 +10,7 @@ const Footer = () => {
           {/* Add other links as needed */}
         </div>
         <div className="footer-info">
-          {/* Add additional footer information here */}© 2023 N/A. All rights
+          {/* Add additional footer information here */}© 2023 Temarleje. All rights
           reserved.
         </div>
       </div>
