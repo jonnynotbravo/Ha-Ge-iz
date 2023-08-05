@@ -147,6 +147,11 @@ const Admin = ({ setLoggedIn }) => {
         </button>
       </div>
       <div className="students-list">
+        <div className="mouse">
+          <div className="mouse-icon">
+            <span className="mouse-wheel"></span>
+          </div>
+        </div>
         {timestampGroups.map((group, index) => (
           <div key={index} className="timestamp-group">
             <div className="timestamp">{group.date}</div>
