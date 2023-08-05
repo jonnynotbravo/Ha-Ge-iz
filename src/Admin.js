@@ -11,7 +11,7 @@ const Admin = ({ setLoggedIn }) => {
   const [studentsData, setStudentsData] = useState([]);
   const [currentSchool, setCurrentSchool] = useState("");
 
-  console.log(studentsData);
+  // console.log(studentsData);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -87,27 +87,44 @@ const Admin = ({ setLoggedIn }) => {
     }
   }, [studentsData]);
 
-  const sortedStudentsData = studentsData.sort(
-    (a, b) => b.timestamp - a.timestamp
-  );
+  const sortedStudentsData = studentsData.sort((a, b) => {
+    const dateA = new Date(a.timestamp).toLocaleDateString();
+    const dateB = new Date(b.timestamp).toLocaleDateString();
+
+    if (dateA > dateB) return -1;
+    if (dateA < dateB) return 1;
+    return 0;
+  });
 
   const formatDate = (timestamp) => {
     const date = new Date(timestamp);
-    const options = { year: "numeric", month: "long", day: "numeric" };
-    return new Intl.DateTimeFormat("en-US", options).format(date);
+    const year = date.getFullYear();
+    const month = date.toLocaleString("default", { month: "long" });
+    const day = String(date.getDate()).padStart(2, "0");
+    return `${month} ${day}, ${year}`;
   };
 
-  const timestampGroups = [];
-  let currentGroup = null;
+  const uniqueDatesSet = new Set();
+  sortedStudentsData.forEach((student) => {
+    const date = formatDate(student.timestamp);
+    uniqueDatesSet.add(date);
+  });
+
+  const timestampGroups = Array.from(uniqueDatesSet).map((date) => ({
+    date,
+    students: [],
+  }));
+
+  console.log(timestampGroups);
 
   // Group students with the same timestamp (ignoring the time part)
   sortedStudentsData.forEach((student) => {
     const date = formatDate(student.timestamp);
-    if (!currentGroup || currentGroup.date !== date) {
-      currentGroup = { date, students: [student] };
-      timestampGroups.push(currentGroup);
-    } else {
-      currentGroup.students.push(student);
+    const groupIndex = timestampGroups.findIndex(
+      (group) => group.date === date
+    );
+    if (groupIndex !== -1) {
+      timestampGroups[groupIndex].students.push(student);
     }
   });
 
@@ -122,8 +139,8 @@ const Admin = ({ setLoggedIn }) => {
         </button>
       </div>
       <div className="students-list">
-        {timestampGroups.map((group) => (
-          <div key={group.date} className="timestamp-group">
+        {timestampGroups.map((group, index) => (
+          <div key={index} className="timestamp-group">
             <div className="timestamp">{group.date}</div>
             {group.students.map((student) => (
               <div className="student-box" key={student.documentId}>
