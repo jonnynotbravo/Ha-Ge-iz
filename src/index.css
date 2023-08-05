@@ -1105,6 +1105,7 @@ footer {
 /* Common styles for #about, #contact, .login-container footer */
 #about footer,
 #contact footer,
+.admin-container footer,
 .login-container footer {
   background-color: #333;
   color: #fff;
@@ -1113,6 +1114,7 @@ footer {
   position: absolute;
   bottom: 0;
   width: 100%;
+  left: 0;
 }
 
 .footer-container {
@@ -1165,6 +1167,7 @@ footer {
   /* Remove absolute positioning on mobile to keep the footer at the end of the content */
   #about footer,
   #contact footer,
+  .admin-container footer,
   .login-container footer {
     position: relative;
     bottom: initial;
@@ -1184,10 +1187,9 @@ footer {
 	margin-bottom: 30px;
   }
   .admin-container {
-	font-family: Arial, sans-serif;
 	padding: 20px;
   }
-  
+
   .welcome-message {
 	font-size: 32px;
 	font-weight: bold;

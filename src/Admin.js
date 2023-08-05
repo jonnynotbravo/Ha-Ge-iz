@@ -168,7 +168,7 @@ const Admin = ({ setLoggedIn }) => {
           </div>
         ))}
       </div>
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 };
