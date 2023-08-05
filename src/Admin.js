@@ -10,6 +10,7 @@ const Admin = ({ setLoggedIn }) => {
   const [userEmail, setUserEmail] = useState(null);
   const [studentsData, setStudentsData] = useState([]);
   const [currentSchool, setCurrentSchool] = useState("");
+  const [loading, setLoading] = useState(true);
 
   // console.log(studentsData);
 
@@ -42,6 +43,8 @@ const Admin = ({ setLoggedIn }) => {
                 documentId: doc.id,
               }));
               setStudentsData(studentsData);
+              setLoading(false);
+              setCurrentSchool(studentsData[0].school);
             } else {
               console.log("No matching admin user found for email:", userEmail);
             }
@@ -70,6 +73,17 @@ const Admin = ({ setLoggedIn }) => {
       unsubscribe();
     };
   }, [auth, setLoggedIn, userEmail]);
+  if (loading) {
+    const loadingStyles = {
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      height: "100vh",
+      fontSize: "36px",
+      fontWeight: "bold",
+    };
+    return <div style={loadingStyles}>Loading...</div>;
+  }
 
   const handleLogout = () => {
     signOut(auth)
@@ -80,12 +94,6 @@ const Admin = ({ setLoggedIn }) => {
         console.error("Error logging out:", error);
       });
   };
-
-  useEffect(() => {
-    if (studentsData.length > 0) {
-      setCurrentSchool(studentsData[0].school);
-    }
-  }, [studentsData]);
 
   const sortedStudentsData = studentsData.sort((a, b) => {
     const dateA = new Date(a.timestamp).toLocaleDateString();
