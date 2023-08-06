@@ -52,16 +52,41 @@ const School = () => {
   };
 
   return (
-    <div>
+    <div className="school-container">
       <Header />
-      <span className="school-name">{schoolData.name}</span>
-      <blockquote className="blockquote">
-        <p>Mission Statement: {schoolData.quote}</p>
-      </blockquote>
-      <br />
+      <div className="banner">
+        <h2 className="banner-title">Welcome to {schoolData.name}</h2>
+        <p className="banner-description">
+          Discover our educational programs and facilities.
+        </p>
+        <button className="banner-button" onClick={handleReserveSpot}>
+          Reserve a spot
+        </button>
+      </div>
+      <div className="school-info">
+        <h1 className="school-name">{schoolData.name}</h1>
+        <div className="about-us">
+          <div className="about-us-image">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/a/a5/IUB-SchoolofEducation.jpg"
+              alt="About Us"
+            />
+          </div>
+          <div className="about-us-content">
+            <h2 className="about-us-title">About Us</h2>
+            <p className="about-us-text">{schoolData.about}</p>
+          </div>
+        </div>
 
+        <blockquote className="blockquote">
+          <p>Mission Statement: {schoolData.quote}</p>
+        </blockquote>
+        <blockquote className="blockvision">
+          <p>Vision: {schoolData.vision}</p>
+        </blockquote>
+      </div>
       <div id="galleries">
-        <h1 id="gallery-header">Galleries</h1>
+        <h2 id="gallery-header">Galleries</h2>
         <ul className="img-list">
           <li>
             <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/IUB-SchoolofEducation.jpg" />
@@ -92,13 +117,14 @@ const School = () => {
           </li>
         </ul>
       </div>
-      <div className="wrap">
+
+      <div className="reserve-button">
         <button className="reserve" onClick={handleReserveSpot}>
           Reserve a spot
         </button>
       </div>
 
-      <div id="map">
+      <div className="map">
         <img src="https://media.wired.com/photos/59269cd37034dc5f91bec0f1/191:100/w_1280,c_limit/GoogleMapTA.jpg" />
       </div>
     </div>
