@@ -9,40 +9,88 @@ function FAQ() {
 
   const faqItems = [
     {
-      id: 3,
-      question: "What is this website used for?",
-      answer:
-        "This website is used for booking reservations at various establishments such as hotels, restaurants, and event venues. It provides a user-friendly interface for users to find and book their desired reservations.",
+      id: 1,
+      question: "What is Ha Ge'iz?",
+      answer: (
+        <p>
+          Ha Ge'iz helps students and parents in Ethiopia find and secure a
+          place in partnered schools. It simplifies the school selection and
+          registration process, offering a user-friendly platform to browse
+          schools, submit applications, and acquire a place hassle-free. We are
+          dedicated to supporting students throughout their academic journey.
+          For more information, please refer to the{" "}
+          <a href="/about" style={{ color: "#007bff", textDecoration: "none" }}>
+            About
+          </a>{" "}
+          page.
+        </p>
+      ),
     },
     {
       id: 2,
-      question: "Is the reservation guaranteed?",
-      answer: "Yes, all reservations made through this website are guaranteed.",
+      question: "How do I make a reservation?",
+      answer: (
+        <div>
+          <p>To make a reservation, please follow these steps:</p>
+          <ol style={{ marginLeft: "20px", fontSize: "15px" }}>
+            <li>
+              Navigate to the{" "}
+              <a
+                href="/schools"
+                style={{ color: "#007bff", textDecoration: "none" }}
+              >
+                Schools
+              </a>{" "}
+              section.
+            </li>
+            <li>Explore and find a school that best fits your requirements.</li>
+            <li>Click on the "Reserve a Spot" button.</li>
+            <li>Fill out the reservation form with your details.</li>
+            <li>Submit the form to confirm your reservation.</li>
+          </ol>
+        </div>
+      ),
     },
     {
-      id: 1,
-      question: "Who made this website?",
-      answer:
-        "This website was developed by a team of skilled web developers from XYZ Company.",
+      id: 3,
+      question: "Are there any fees associated with reservations?",
+      answer: <p>No! There are no fees associated with reservations</p>,
     },
     {
       id: 4,
-      question: "How do I make a reservation on the website?",
-      answer:
-        "To make a reservation, navigate to the 'Reservations' section and select the type of establishment you want to book (e.g., hotel, restaurant, event venue). Then, choose the date, time, and number of guests, and click on the 'Book Now' button. Follow the prompts to complete the reservation.",
+      question:
+        "How long will it take to hear back after making a reservation?",
+      answer: (
+        <p>
+          After completing the reservation form, you will receive a confirmation
+          via email.{" "}
+          <strong>
+            Within 5 - 10 business days, you can expect a call from the school
+            you reserved at to discuss the next steps.
+          </strong>
+        </p>
+      ),
     },
     {
       id: 5,
-      question: "Are there any fees associated with reservations?",
-      answer:
-        "No, we are transparent about our fees. The price you see during the reservation process includes all applicable taxes and fees. There are no hidden charges.",
+      question: "Is the reservation guaranteed?",
+      answer: (
+        <p>
+          After making a reservation, the school will contact you to discuss the
+          next steps. The school is responsible for guaranteeing the
+          reservation.
+        </p>
+      ),
     },
     {
       id: 6,
-      question:
-        "How long will it take to hear back after making a reservation?",
-      answer:
-        "After completing the reservation process, you will receive a reservation confirmation via email. Within 5 - 10 business days, you can expect a call from the establishment you reserved at to discuss the next steps.",
+      question: "Owners",
+      answer: (
+        <p>
+          All rights for this site are owned by © Dagem Tewodros and Jonny
+          Tilahun
+        </p>
+      ),
     },
   ];
 
