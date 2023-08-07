@@ -66,12 +66,6 @@ const School = () => {
       <div className="school-info">
         <h1 className="school-quote">{schoolData.quote}</h1>
         <div className="about-us">
-          <div className="about-us-image">
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/a/a5/IUB-SchoolofEducation.jpg"
-              alt="About Us"
-            />
-          </div>
           <div className="about-us-content">
             <h2 className="about-us-title">About Us</h2>
             <p className="about-us-text">{schoolData.about}</p>
@@ -79,12 +73,30 @@ const School = () => {
         </div>
 
         <div className="mission">
-          <h2 className="mission-title">Mission Statement</h2>
-          <p className="mission-text">{schoolData.MS}</p>
+          <div className="mission-content">
+            <h2 className="mission-title">Mission Statement</h2>
+            <p className="mission-text">{schoolData.MS}</p>
+          </div>
+          <div className="mission-image">
+            <img
+              src="https://www.providenceschools.org/cms/lib/RI01900003/Centricity/Domain/4/20210413-Bailey-0160-862x530.png"
+              alt="Mission Statement"
+            />
+          </div>
         </div>
-        <blockquote className="blockvision">
-          <p>Vision: {schoolData.vision}</p>
-        </blockquote>
+
+        <div className="vision">
+          <div className="vision-image">
+            <img
+              src="https://img.freepik.com/free-photo/young-people-studying-using-laptop_23-2147844843.jpg"
+              alt="Vision"
+            />
+          </div>
+          <div className="vision-content">
+            <h2 className="vision-title">Vision</h2>
+            <p className="vision-text">{schoolData.vision}</p>
+          </div>
+        </div>
       </div>
       <div id="galleries">
         <h2 id="gallery-header">Galleries</h2>

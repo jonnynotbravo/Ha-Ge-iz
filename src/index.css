@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Inconsolata|Lato:300,400,700');
 
+
 html, body, h1, h2, h3, h4, h5, h6, p, li, ol, ul, pre {
 	margin: 0;
 	padding: 0;
@@ -839,32 +840,143 @@ main {
 	
   }
   
-  .blockquote {
+  .about-us {
 	display: flex;
-	justify-content: space-between;
-	align-items:self-start;
+	justify-content: center; /* Center horizontally */
+	align-items: center;
 	margin: 2rem 0;
-	background-color: var(--light);
+	/* background-color: var(--light); */
 	border-radius: 8px;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 2px 4px rgba(108, 108, 108, 0.053);
 	color: #017BFE;
+	/* background-color: #f0eded; */
   }
-  .blockquote-title {
+  
+  .about-us-image {
+	flex: 0 0 40%;
+	border-radius: 8px;
+	overflow: hidden;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .about-us-image img {
+	width: 100%;
+	height: auto;
+  }
+  
+  .about-us-content {
+	flex: 1;
+	text-align: center;
+	padding: 5rem;
+	margin: 0 auto;
+  }
+  
+  .about-us-title {
 	font-size: 45px;
 	font-weight: bold;
 	color: var(--primary);
-	margin-right: 45rem;
-	margin-bottom: 2rem;
+	margin-bottom: 1rem; /* Adjust margin to create space between title and text */
   }
   
-  .blockquote-text {
-	font-size: 24px;
+  .about-us-text {
+	font-size: 20px;
 	color: #333;
 	line-height: 2;
-	text-align: left;
-	display: inline-block;
+	text-align: center;
+	font-family: Optima, sans-serif;
+	width: 1200px;
+	/* height: 10px; */
+  }
+
+/* Mission styles */
+.mission {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin: 2rem 0;
+	/* background-color: var(--light); */
+	border-radius: 8px;
+	box-shadow: 0 2px 4px rgba(108, 108, 108, 0.053);
+	color: #017BFE;
+	/* background-color: #f0eded; */
   }
   
+  .mission-content {
+	flex: 1;
+	text-align: left; /* Align content to the left */
+	padding: 5rem; /* Adjust the padding to match the .about-us padding */
+  }
+  
+  .mission-title {
+	font-size: 45px;
+	font-weight: bold;
+	color: var(--primary);
+	margin-bottom: 1rem; /* Adjust margin to create space between title and text */
+  }
+  
+  .mission-text {
+	font-size: 20px;
+	color: #333;
+	line-height: 2;
+	text-align: left; /* Align text to the left */
+  }
+  
+  .mission-image {
+	flex: 0 0 40%;
+	border-radius: 8px;
+	overflow: hidden;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .mission-image img {
+	width: 100%;
+	height: auto;
+  }
+  
+
+.vision {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin: 2rem 0;
+	/* background-color: var(--light); */
+	border-radius: 8px;
+	box-shadow: 0 2px 4px rgba(108, 108, 108, 0.053);
+	color: #017BFE;
+	/* background-color: #f0eded; */
+  }
+  
+  .vision-content {
+	flex: 1;
+	text-align: right; /* Align content to the right */
+	padding: 5rem; /* Adjust the padding to match the .about-us padding */
+  }
+  
+  .vision-title {
+	font-size: 45px;
+	font-weight: bold;
+	color: var(--primary);
+	margin-bottom: 1rem; /* Adjust margin to create space between title and text */
+  }
+  
+  .vision-text {
+	font-size: 20px;
+	color: #333;
+	line-height: 2;
+	text-align: left; /* Align text to the right */
+  }
+  
+  .vision-image {
+	flex: 0 0 40%;
+	border-radius: 8px;
+	overflow: hidden;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .vision-image img {
+	width: 100%;
+	height: auto;
+  }
   /* Image gallery styles */
   #galleries {
 	text-align: center;
@@ -967,53 +1079,7 @@ main {
 	line-height: 1.6;
   }
   
-  /* About Us styles */
-/* About Us styles */
-.about-us {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	margin: 2rem 0;
-	/* background-color: var(--light); */
-	border-radius: 8px;
-	box-shadow: 0 2px 4px rgba(108, 108, 108, 0.053);
-	color: #017BFE;
-	/* background-color: #f0eded; */
-	
-}
 
-.about-us-image {
-	flex: 0 0 40%;
-	border-radius: 8px;
-	overflow: hidden;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.about-us-image img {
-	width: 100%;
-	height: auto;
-}
-
-.about-us-content {
-	flex: 1;
-	text-align: left;
-	padding: 5rem; /* Adjust the padding to match the .about-us padding */
-}
-
-.about-us-title {
-	font-size: 45px;
-	font-weight: bold;
-	color: var(--primary);
-	margin-left: 10rem;
-	margin-bottom: 2rem;
-}
-
-.about-us-text {
-	font-size: 20px;
-	color: #333;
-	line-height: 2;
-	text-align: left; /* Align the title and paragraph to the left */
-}
   
   
   /* Map styles */
