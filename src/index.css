@@ -776,7 +776,6 @@ main {
 
 /* school */
 .school-container {
-	margin-top: 70px; /* Add the height of the header to push content below it */
 	max-width: 1200px;
 	margin: 0 auto;
 	padding: 2rem;
@@ -787,11 +786,12 @@ main {
 	background-color: #007bff;
 	color: #fff;
 	text-align: center;
-	padding: 10rem;
+	padding: 12rem;
 	position: absolute; /* Make the banner fixed position */
 	top: 70px; /* Match the top position to the header height */
 	left: 0;
 	right: 0;
+	
   }
   
   .banner-title {
@@ -807,13 +807,13 @@ main {
   
   .banner-button {
 	background-color: #fff;
-	color: #007bff;
-	font-size: 18px;
-	padding: 12px 24px;
-	border: none;
-	border-radius: 4px;
-	cursor: pointer;
-	transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  color: #007bff;
+  font-size: 18px;
+  padding: 15px 24px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
   }
   
   .banner-button:hover {
@@ -824,20 +824,45 @@ main {
   /* School information styles */
   .school-info {
 	text-align: center;
-	margin-top: 500px; /* Adjust the margin to create spacing below the banner */
+	margin-top: 650px; /* Adjust the margin to create spacing below the banner */
   }
   
-  .school-name {
+  .school-quote {
 	font-size: 32px;
 	font-weight: bold;
-	color: #007bff;
+	text-align: center;
+	color: #555;
+	/* margin-top: 15rem; */
+	font-style: italic;
+	/* border: 2px solid black; */
+	
+	
   }
   
   .blockquote {
-	font-style: italic;
-	color: #555;
-	padding: 1rem;
-	border-left: 4px solid #007bff;
+	display: flex;
+	justify-content: space-between;
+	align-items:self-start;
+	margin: 2rem 0;
+	background-color: var(--light);
+	border-radius: 8px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	color: #017BFE;
+  }
+  .blockquote-title {
+	font-size: 45px;
+	font-weight: bold;
+	color: var(--primary);
+	margin-right: 45rem;
+	margin-bottom: 2rem;
+  }
+  
+  .blockquote-text {
+	font-size: 24px;
+	color: #333;
+	line-height: 2;
+	text-align: left;
+	display: inline-block;
   }
   
   /* Image gallery styles */
@@ -902,10 +927,31 @@ main {
   
 
   .blockvision {
-	text-align: center;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 	margin: 2rem 0;
 	padding: 2rem;
 	background-color: #f0f0f0;
+	border-radius: 8px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .blockvision-image {
+	flex: 0 0 250px;
+	margin-right: 2rem;
+	border-radius: 8px;
+	overflow: hidden;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .blockvision-image img {
+	width: 100%;
+	height: auto;
+  }
+  
+  .blockvision-content {
+	flex: 1;
   }
   
   .blockvision-title {
@@ -915,53 +961,60 @@ main {
 	margin-bottom: 1rem;
   }
   
-  .blockvision-description {
+  .blockvision-text {
 	font-size: 16px;
 	color: #333;
 	line-height: 1.6;
   }
   
   /* About Us styles */
-  .about-us {
+/* About Us styles */
+.about-us {
 	display: flex;
+	justify-content: space-between;
 	align-items: center;
 	margin: 2rem 0;
-	padding: 2rem;
-	background-color: #fff;
-	border: 1px solid #ddd;
+	/* background-color: var(--light); */
 	border-radius: 8px;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .about-us-image {
-	flex: 0 0 300px; /* Adjust the width of the image container */
-	margin-right: 2rem;
+	box-shadow: 0 2px 4px rgba(108, 108, 108, 0.053);
+	color: #017BFE;
+	/* background-color: #f0eded; */
+	
+}
+
+.about-us-image {
+	flex: 0 0 40%;
 	border-radius: 8px;
 	overflow: hidden;
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .about-us-image img {
+}
+
+.about-us-image img {
 	width: 100%;
 	height: auto;
-  }
-  
-  .about-us-content {
+}
+
+.about-us-content {
 	flex: 1;
-  }
-  
-  .about-us-title {
-	font-size: 24px;
+	text-align: left;
+	padding: 5rem; /* Adjust the padding to match the .about-us padding */
+}
+
+.about-us-title {
+	font-size: 45px;
 	font-weight: bold;
-	color: #007bff;
-	margin-bottom: 1rem;
-  }
-  
-  .about-us-text {
-	font-size: 16px;
+	color: var(--primary);
+	margin-left: 10rem;
+	margin-bottom: 2rem;
+}
+
+.about-us-text {
+	font-size: 20px;
 	color: #333;
-	line-height: 1.6;
-  }
+	line-height: 2;
+	text-align: left; /* Align the title and paragraph to the left */
+}
+  
   
   /* Map styles */
   .map {

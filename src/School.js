@@ -64,7 +64,7 @@ const School = () => {
         </button>
       </div>
       <div className="school-info">
-        <h1 className="school-name">{schoolData.name}</h1>
+        <h1 className="school-quote">{schoolData.quote}</h1>
         <div className="about-us">
           <div className="about-us-image">
             <img
@@ -78,9 +78,10 @@ const School = () => {
           </div>
         </div>
 
-        <blockquote className="blockquote">
-          <p>Mission Statement: {schoolData.quote}</p>
-        </blockquote>
+        <div className="mission">
+          <h2 className="mission-title">Mission Statement</h2>
+          <p className="mission-text">{schoolData.MS}</p>
+        </div>
         <blockquote className="blockvision">
           <p>Vision: {schoolData.vision}</p>
         </blockquote>
