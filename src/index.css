@@ -784,7 +784,7 @@ main {
   
   /* Banner styles */
   .banner {
-	
+	animation: fadeIn 1s ease-in-out;
 	color: #fff;
 	text-align: center;
 	padding: 12rem;
@@ -793,6 +793,22 @@ main {
 	left: 0;
 	right: 0;
 	z-index: 1;
+  }
+  @keyframes fadeIn {
+	from {
+	  opacity: 0;
+	}
+	to {
+	  opacity: 1;
+	}
+  }
+  @keyframes slideIn {
+	from {
+	  transform: translateX(-100%);
+	}
+	to {
+	  transform: translateX(0);
+	}
   }
   .banner::before {
 	content: "";
@@ -818,6 +834,14 @@ main {
 	margin-bottom: 1rem;
 	z-index: 1; 
   }
+
+  .banner-title,
+.banner-description {
+  animation: slideIn 1s ease-in-out; /* Apply the animation to the title and description */
+  /* transform: translateX(-100%); Start with content outside the viewport */
+}
+
+
   
   .banner-button {
 	background-color: #017BFD;
@@ -871,6 +895,7 @@ main {
 .quote-container {
 
 	background-color: #F8F8F8;
+	animation: fadeIn 2s ease-in-out;
 }
 
 .article {
@@ -1153,6 +1178,16 @@ main {
 	/* margin: 2rem 0; */
 	
   }
+
+  .about-us-content.visible,
+.mission-content.visible,
+.vision-content.visible,
+.img-list.visible,
+.reserve-button.visible,
+.map.visible {
+  animation: slideInFromLeft 1s ease-in-out;
+  opacity: 1;
+}
 /* 
   .school-container footer {
 

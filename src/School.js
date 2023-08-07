@@ -15,6 +15,21 @@ const School = () => {
   const { id } = useParams(); // Extract the ID from the URL
 
   const [schoolData, setSchoolData] = useState(null);
+  const [scrollPosition, setScrollPosition] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollPosition(window.scrollY);
+    };
+
+    // Add event listener for scroll
+    window.addEventListener("scroll", handleScroll);
+
+    // Clean up the event listener
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   useEffect(() => {
     const fetchSchoolData = async () => {
@@ -95,14 +110,22 @@ const School = () => {
           </div>
         </div>
         <div className="about-us">
-          <div className="about-us-content">
+          <div
+            className={`about-us-content ${
+              scrollPosition > 300 ? "visible" : ""
+            }`}
+          >
             <h2 className="about-us-title">About Us</h2>
             <p className="about-us-text">{schoolData.about}</p>
           </div>
         </div>
 
         <div className="mission">
-          <div className="mission-content">
+          <div
+            className={`mission-content ${
+              scrollPosition > 600 ? "visible" : ""
+            }`}
+          >
             <h2 className="mission-title">Mission Statement</h2>
             <p className="mission-text">{schoolData.MS}</p>
           </div>
@@ -121,7 +144,11 @@ const School = () => {
               alt="Vision"
             />
           </div>
-          <div className="vision-content">
+          <div
+            className={`vision-content ${
+              scrollPosition > 900 ? "visible" : ""
+            }`}
+          >
             <h2 className="vision-title">Vision</h2>
             <p className="vision-text">{schoolData.vision}</p>
           </div>
@@ -130,7 +157,10 @@ const School = () => {
       <div id="galleries">
         <h2 id="gallery-header">Galleries</h2>
         <div className="img-container">
-          <Slider {...settings} className="img-list">
+          <Slider
+            {...settings}
+            className={`img-list ${scrollPosition > 1200 ? "visible" : ""}`}
+          >
             <div>
               <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/IUB-SchoolofEducation.jpg" />
             </div>
@@ -162,12 +192,14 @@ const School = () => {
         </div>
       </div>
 
-      <div className="reserve-button">
+      <div
+        className={`reserve-button ${scrollPosition > 1500 ? "visible" : ""}`}
+      >
         <button className="reserve" onClick={handleReserveSpot}>
           Reserve a spot
         </button>
       </div>
-      <div className="map">
+      <div className={`map ${scrollPosition > 1800 ? "visible" : ""}`}>
         <div className="responsive-map">
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3964.3213565732023!2d38.74631601527894!3d9.022736288119697!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x163fbbf8f401756d%3A0x202dbd36f38eb166!2sAddis%20Ababa!5e0!3m2!1sen!2set!4v1637114312042!5m2!1sen!2set"
