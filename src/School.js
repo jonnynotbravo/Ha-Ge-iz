@@ -119,7 +119,7 @@ const School = () => {
         <div className="mission">
           <div className="mission-content">
             <h2 className="mission-title">Mission Statement</h2>
-            <p className="mission-text">{schoolData.MS}</p>
+            <p className="mission-text">{schoolData.ms}</p>
           </div>
           <div className="mission-image">
             <img
