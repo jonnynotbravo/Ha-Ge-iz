@@ -1350,7 +1350,6 @@ footer {
 /* Common styles for #about, #contact, .login-container footer */
 #about footer,
 #contact footer,
-.school-container
 .admin-container footer,
 .login-container footer {
   background-color: #333;
@@ -1413,7 +1412,6 @@ footer {
   /* Remove absolute positioning on mobile to keep the footer at the end of the content */
   #about footer,
   #contact footer,
-  .school-container,
   .admin-container footer,
   .login-container footer {
     position: relative;
@@ -1440,6 +1438,8 @@ footer {
   .welcome-message {
 	font-size: 32px;
 	font-weight: bold;
+	/* border-left: 2px solid #000000; */
+	font-style: italic;
   }
   
   .logout-button {
