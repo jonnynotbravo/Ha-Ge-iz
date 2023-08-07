@@ -839,7 +839,7 @@ main {
   /* School information styles */
   .school-info {
 	text-align: center;
-	margin-top: 650px; /* Adjust the margin to create spacing below the banner */
+	margin-top: 590px; /* Adjust the margin to create spacing below the banner */
   }
   
   .school-quote {
@@ -847,13 +847,106 @@ main {
 	font-weight: bold;
 	text-align: center;
 	color: #555;
-	/* margin-top: 15rem; */
 	font-style: italic;
-	/* border: 2px solid black; */
 	margin-bottom: 100px;
-	
-	
+	padding: 2rem;
+	/* border: 2px solid #007bff; Add a border with a blue color */
+	border-radius: 8px; /* Add rounded corners */
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+	background-color: #f5f5f5;
   }
+  @import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Vollkorn:ital,wght@0,600;1,500&display=swap');
+
+:root {
+	--type-body: Open Sans, Helvetica, Arial, sans-serif;
+	--type-quote: Vollkorn;
+	--quote-image-width: 140px;
+	--border-rad: 7px;
+	--accent-color: hsl(211, 99%, 50%);
+	--quote-bg: hsl(0 0% 97%);
+}
+
+
+
+.quote-container {
+
+	background-color: #F8F8F8;
+}
+
+.article {
+	max-width: 900px;
+	margin: auto;
+}
+
+.article h1 {
+	width: max-content;
+	margin: 0 auto 0.1em;
+	box-shadow:
+		0 2px 0 var(--accent-color),
+		0 4px 0 white,
+		0 6px 0 var(--accent-color);
+	font: 2rem var(--type-quote);
+	color: hsl(0 0% 25%);
+}
+
+.article p {
+	margin: 0;
+}
+
+
+.article blockquote {
+	position: relative;
+	margin: 40px 0px;
+	padding: 1.6em 2.4em .7em calc(1.4em + var(--quote-image-width) - 100px);
+	font: italic 1.2rem var(--type-quote);
+	background: var(--quote-bg) no-repeat left / var(--quote-image-width);
+	border-radius: var(--border-rad);
+	border: 2px solid white;
+	box-shadow: 2px 2px 4px hsl(0 0% 0% / 20%);
+	/* text-indent: 1.6em; */
+	text-align: center;
+	
+}
+
+
+.article blockquote::before {
+	text-align: center;
+	content: "";
+	pointer-events: none;
+	position: absolute;
+	z-index: 1;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	border-radius: var(--border-rad);
+	box-shadow:
+		inset -2px -2px 1px hsl(0 0% 100%),
+		inset 2px 2px 4px hsl(0 0% 0% / 20%);
+}
+
+.article blockquote::after {
+	content: "❝";
+	position: absolute;
+	z-index: 1;
+	left: 50%;
+	top: -2px;
+	transform: translate(-50%, -50%);
+	width: 1.3em;
+	height: 1.3em;
+	background: white;
+	box-shadow: 0 4px 5px -1px hsla(0 0% 0% / 20%);
+	border-radius: 999px;
+	display: grid;
+	place-content: center;
+	padding-top: .5em;
+	color: var(--accent-color);
+	font-size: 36px;
+	font-style: normal;
+	text-indent: 0;
+}
+
+
   
   .about-us {
 	display: flex;
@@ -1049,48 +1142,6 @@ main {
   
   .reserve:hover {
 	background-color: #0056b3;
-  }
-  
-
-  .blockvision {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	margin: 2rem 0;
-	padding: 2rem;
-	background-color: #f0f0f0;
-	border-radius: 8px;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .blockvision-image {
-	flex: 0 0 250px;
-	margin-right: 2rem;
-	border-radius: 8px;
-	overflow: hidden;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .blockvision-image img {
-	width: 100%;
-	height: auto;
-  }
-  
-  .blockvision-content {
-	flex: 1;
-  }
-  
-  .blockvision-title {
-	font-size: 24px;
-	font-weight: bold;
-	color: #007bff;
-	margin-bottom: 1rem;
-  }
-  
-  .blockvision-text {
-	font-size: 16px;
-	color: #333;
-	line-height: 1.6;
   }
   
 

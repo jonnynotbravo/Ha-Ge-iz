@@ -86,7 +86,14 @@ const School = () => {
       </div>
 
       <div className="school-info">
-        <h1 className="school-quote">{schoolData.quote}</h1>
+        <div className="quote-container">
+          <div class="article">
+            <h1>{schoolData.name}</h1>
+            <blockquote>
+              <p>{schoolData.quote}</p>
+            </blockquote>
+          </div>
+        </div>
         <div className="about-us">
           <div className="about-us-content">
             <h2 className="about-us-title">About Us</h2>
