@@ -123,7 +123,7 @@ const School = () => {
           </div>
           <div className="mission-image">
             <img
-              src="https://www.providenceschools.org/cms/lib/RI01900003/Centricity/Domain/4/20210413-Bailey-0160-862x530.png"
+              src="https://arc-anglerfish-washpost-prod-washpost.s3.amazonaws.com/public/SHJ4VOCJVMI6TDH4FROQTGOCDY.jpg"
               alt="Mission Statement"
             />
           </div>
