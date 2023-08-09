@@ -32,10 +32,6 @@ const Form = () => {
     }
   };
 
-  // Add your form submission logic here
-
-  // ... (previous code)
-
   const handleSubmit = async (e) => {
     e.preventDefault(); // Prevent the default form submission
 
@@ -89,8 +85,6 @@ const Form = () => {
       console.error("Error submitting form data:", error);
     }
   };
-
-  // ... (remaining code)
 
   return (
     <form style={formContainerStyles} onSubmit={handleSubmit}>

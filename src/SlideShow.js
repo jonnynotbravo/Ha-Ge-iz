@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-// import './SlideShow.css';
-// https://i.pinimg.com/originals/7b/aa/62/7baa622282bf30064b525ac78d296491.jpg
+
 
 const SlideShow = () => {
   const [currentSlide, setCurrentSlide] = useState(0);

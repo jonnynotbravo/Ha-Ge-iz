@@ -12,8 +12,6 @@ const Admin = ({ setLoggedIn }) => {
   const [currentSchool, setCurrentSchool] = useState("");
   const [loading, setLoading] = useState(true);
 
-  // console.log(studentsData);
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -122,8 +120,6 @@ const Admin = ({ setLoggedIn }) => {
     date,
     students: [],
   }));
-
-  console.log(timestampGroups);
 
   // Group students with the same timestamp (ignoring the time part)
   sortedStudentsData.forEach((student) => {

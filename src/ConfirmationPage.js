@@ -12,8 +12,6 @@ const ConfirmationPage = () => {
     return <Navigate to="/schools" />;
   }
 
-  console.log(formData);
-
   // If form data is available, display the confirmation page
   return (
     <div style={confirmationContainerStyles}>

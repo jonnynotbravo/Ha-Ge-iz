@@ -1,7 +1,7 @@
 import Header from "./Header";
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { doc, getDoc } from "firebase/firestore"; // Use named import for v9 syntax
+import { doc, getDoc } from "firebase/firestore"; 
 import { firestore } from "./firebase";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
