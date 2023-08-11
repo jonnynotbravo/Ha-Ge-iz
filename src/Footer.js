@@ -6,7 +6,7 @@ const Footer = () => {
           {/* Add links to About Us, Privacy Policy, Terms and Conditions */}
           <a href="/about">About Us</a>
           <a href="/">Privacy Policy</a>
-          <a href="/Terms-and-Conditions">Terms and Conditions</a>
+          <a href="/">Terms and Conditions</a>
           {/* Add other links as needed */}
         </div>
         <div className="footer-info">
