@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react";
 
-
 const SlideShow = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const slides = [
     {
       imageUrl:
-        "https://upload.wikimedia.org/wikipedia/commons/a/a3/Addis_ababa_night_skyline.jpg",
+        "https://st.depositphotos.com/25186480/56621/i/450/depositphotos_566212450-stock-photo-bucharest-romania-september-2018-cloudy.jpg",
     },
     {
       imageUrl:
