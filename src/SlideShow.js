@@ -6,7 +6,7 @@ const SlideShow = () => {
   const slides = [
     {
       imageUrl:
-        "https://st.depositphotos.com/25186480/56621/i/450/depositphotos_566212450-stock-photo-bucharest-romania-september-2018-cloudy.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/6/6e/AddisView.jpg",
     },
     {
       imageUrl:
