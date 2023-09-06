@@ -42,7 +42,7 @@ function App() {
         <Route path="/Terms-and-Conditions" element={<TermsAndConditions />} />
         <Route path="/Privacy-Policy" element={<PrivacyPolicy />} />
         <Route
-          path="/schools/:id/form/confirmation-page" // Add the forward slash at the beginning of the path
+          path="/schools/:id/form/confirmation-page"
           element={<ConfirmationPage />}
         />
         <Route path="/schools" element={<SchoolsList />} />
