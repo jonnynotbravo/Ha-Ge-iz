@@ -9,7 +9,7 @@ import Footer from "./Footer";
 const SchoolsList = () => {
   const navigate = useNavigate();
   const [schools, setSchools] = useState([]);
-  const [loading, setLoading] = useState(true); // Add a loading state
+  const [loading, setLoading] = useState(true); 
 
   useEffect(() => {
     const fetchData = async () => {
@@ -20,10 +20,10 @@ const SchoolsList = () => {
           ...doc.data(),
         }));
         setSchools(schoolsData);
-        setLoading(false); // Set loading to false when data is fetched
+        setLoading(false); 
       } catch (error) {
         console.error("Error fetching schools:", error);
-        setLoading(false); // Set loading to false in case of an error
+        setLoading(false);
       }
     };
 

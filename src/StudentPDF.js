@@ -1,7 +1,7 @@
 import React from "react";
 import { Page, Document, StyleSheet, View, Text } from "@react-pdf/renderer";
 
-// Define your styles
+
 const styles = StyleSheet.create({
   page: {
     fontFamily: "Helvetica",

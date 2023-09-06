@@ -4,8 +4,8 @@ const Steps = () => {
   const navigate = useNavigate();
 
   const handleSubmit = () => {
-    window.scrollTo(0, 0); // Scroll to the top of the page
-    navigate("/schools"); // Navigate to the "/schools" route
+    window.scrollTo(0, 0); 
+    navigate("/schools"); 
   };
 
   return (
