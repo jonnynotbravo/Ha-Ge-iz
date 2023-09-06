@@ -12,7 +12,7 @@ import Footer from "./Footer";
 const School = () => {
   const navigate = useNavigate();
 
-  const { id } = useParams(); // Extract the ID from the URL
+  const { id } = useParams(); 
 
   const [schoolData, setSchoolData] = useState(null);
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -22,10 +22,10 @@ const School = () => {
       setScrollPosition(window.scrollY);
     };
 
-    // Add event listener for scroll
+    
     window.addEventListener("scroll", handleScroll);
 
-    // Clean up the event listener
+  
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
@@ -35,13 +35,13 @@ const School = () => {
     const fetchSchoolData = async () => {
       try {
         // Use the ID to fetch data for the specific school
-        const docRef = doc(firestore, "Schools", id); // Use doc() instead of collection()
-        const docSnapshot = await getDoc(docRef); // Use getDoc() instead of getDocs()
+        const docRef = doc(firestore, "Schools", id); 
+        const docSnapshot = await getDoc(docRef); 
         if (docSnapshot.exists()) {
           setSchoolData(docSnapshot.data());
         } else {
           console.log("School not found!");
-          // Navigate to the 404 page if school data is not found
+          
           navigate("/404");
         }
       } catch (error) {
@@ -53,7 +53,7 @@ const School = () => {
   }, [id, navigate]);
 
   if (!schoolData) {
-    // Styling for the "Loading..." text
+   
     const loadingStyles = {
       display: "flex",
       justifyContent: "center",
@@ -73,7 +73,7 @@ const School = () => {
 
   const settings = {
     autoplay: true,
-    speed: 2000, // Adjust the speed as needed
+    speed: 2000, 
     slidesToShow: 5,
     slidesToScroll: 1,
     arrows: false,
@@ -95,9 +95,6 @@ const School = () => {
         <p className="banner-description">
           Discover our educational programs and facilities.
         </p>
-        {/* <button className="banner-button" onClick={handleReserveSpot}>
-          Reserve a spot
-        </button> */}
       </div>
 
       <div className="school-info">
@@ -188,7 +185,7 @@ const School = () => {
         <div className="responsive-map">
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3964.3213565732023!2d38.74631601527894!3d9.022736288119697!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x163fbbf8f401756d%3A0x202dbd36f38eb166!2sAddis%20Ababa!5e0!3m2!1sen!2set!4v1637114312042!5m2!1sen!2set"
-            width="100%" // Set the width to 100%
+            width="100%" 
             height="450"
             frameBorder="0"
             allowFullScreen
