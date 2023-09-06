@@ -33,7 +33,7 @@ const Form = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Prevent the default form submission
+    e.preventDefault();
 
     try {
       // Check if the grade input is within the valid range (1 to 12)
@@ -52,7 +52,6 @@ const Form = () => {
         "Submissions"
       );
 
-      // Generate the document ID as "firstName-lastName-month-day-year-time-AM/PM"
       const timestamp = Timestamp.fromDate(new Date());
       const month = new Intl.DateTimeFormat("en-US", { month: "long" }).format(
         timestamp.toDate()
@@ -77,7 +76,6 @@ const Form = () => {
       // Set the document with the desired ID and the formData (including the timestamp) in the "Submissions" collection
       await setDoc(doc(submissionsRef, documentId), formDataWithTimestamp);
 
-      // console.log("Form data submitted:", formDataWithTimestamp);
       navigate(`/schools/${id}/form/confirmation-page`, {
         state: { formData: formDataWithTimestamp },
       });
