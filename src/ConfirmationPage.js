@@ -51,7 +51,7 @@ const confirmationTitleStyles = {
 
 const confirmationMessageStyles = {
   fontSize: "18px",
-  marginBottom: "10px", // Adjusted margin here
+  marginBottom: "10px", 
   fontFamily: "Helvetica, Arial, sans-serif",
 };
 
@@ -70,7 +70,7 @@ const buttonStyles = {
   cursor: "pointer",
   transition: "background-color 0.2s ease-in-out, color 0.2s ease-in-out",
   textDecoration: "none",
-  marginTop: "10px", // Adjusted margin here
+  marginTop: "10px",
 };
 
 buttonStyles["&:hover"] = {
