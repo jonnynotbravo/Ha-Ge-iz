@@ -1,18 +1,18 @@
 import Header from "./Header";
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { doc, getDoc } from "firebase/firestore"; 
+import { doc, getDoc } from "firebase/firestore";
 import { firestore } from "./firebase";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import bannerImage from "./banner.jpeg";
+import bannerImage from "./assets/banner.jpeg";
 import Footer from "./Footer";
 
 const School = () => {
   const navigate = useNavigate();
 
-  const { id } = useParams(); 
+  const { id } = useParams();
 
   const [schoolData, setSchoolData] = useState(null);
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -22,10 +22,8 @@ const School = () => {
       setScrollPosition(window.scrollY);
     };
 
-    
     window.addEventListener("scroll", handleScroll);
 
-  
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
@@ -35,13 +33,13 @@ const School = () => {
     const fetchSchoolData = async () => {
       try {
         // Use the ID to fetch data for the specific school
-        const docRef = doc(firestore, "Schools", id); 
-        const docSnapshot = await getDoc(docRef); 
+        const docRef = doc(firestore, "Schools", id);
+        const docSnapshot = await getDoc(docRef);
         if (docSnapshot.exists()) {
           setSchoolData(docSnapshot.data());
         } else {
           console.log("School not found!");
-          
+
           navigate("/404");
         }
       } catch (error) {
@@ -53,7 +51,6 @@ const School = () => {
   }, [id, navigate]);
 
   if (!schoolData) {
-   
     const loadingStyles = {
       display: "flex",
       justifyContent: "center",
@@ -73,7 +70,7 @@ const School = () => {
 
   const settings = {
     autoplay: true,
-    speed: 2000, 
+    speed: 2000,
     slidesToShow: 5,
     slidesToScroll: 1,
     arrows: false,
@@ -185,7 +182,7 @@ const School = () => {
         <div className="responsive-map">
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3964.3213565732023!2d38.74631601527894!3d9.022736288119697!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x163fbbf8f401756d%3A0x202dbd36f38eb166!2sAddis%20Ababa!5e0!3m2!1sen!2set!4v1637114312042!5m2!1sen!2set"
-            width="100%" 
+            width="100%"
             height="450"
             frameBorder="0"
             allowFullScreen
