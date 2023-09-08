@@ -1129,7 +1129,7 @@ main {
   }
   
   .img-list li {
-	/* margin-left: 100px; */
+	
 	border-radius: 8px;
 	overflow: hidden;
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -1146,12 +1146,12 @@ main {
 	transform: scale(1.05);
   }
   
-  /* Reserve button styles */
+
   .reserve-button {
 	text-align: center;
 	margin: 3rem 0;
-	border: 1px solid #f5f5f5; /* Add a border */
-	padding: 2rem; /* Add padding for spacing */
+	border: 1px solid #f5f5f5; 
+	padding: 2rem;
 	background-color: #0478f6;
   }
   
@@ -1178,10 +1178,10 @@ main {
   
   
   
-  /* Map styles */
+ 
   .map {
 	text-align: center;
-	/* margin: 2rem 0; */
+	
 	
   }
 
@@ -1194,18 +1194,6 @@ main {
   animation: slideInFromLeft 1s ease-in-out;
   opacity: 1;
 }
-/* 
-  .school-container footer {
-
-	margin-top: auto;
-	background-color: #333;
-	color: #fff;
-	text-align: center;
-	padding: 1rem;
-  
-  
-  } */
-/* Login */
 
 .login-container {
 	display: flex;
@@ -1216,7 +1204,7 @@ main {
 	background:#0f0f0f
   }
   
-  /* Base styles for the login box */
+
   .login-box {
 	display: flex;
 	flex-direction: column;
@@ -1230,7 +1218,7 @@ main {
 	background-color:rgba(240, 240, 240, 0.923); 
   }
   
-  /* Label styles */
+
   .login-box label {
 	font-size: 18px;
 	font-weight: bold;
@@ -1240,7 +1228,7 @@ main {
 	
   }
   
-  /* Input field styles */
+
   .login-box input {
 	width: 100%;
 	padding: 15px;
@@ -1248,11 +1236,10 @@ main {
 	border: 1px solid #ccc;
 	border-radius: 6px;
 	font-size: 18px;
-	/* color:white;  */
+	
   }
   
-  /* Adjust the color and background of the submit button as per your design */
-  /* Example styles for a button */
+  
   .login-box button {
 	width: 60%;
 	padding: 16px 24px;
@@ -1261,13 +1248,13 @@ main {
 	font-size: 18px;
 	font-weight: bold;
 	color: #fff;
-	background-color: #b61e00f3; /* Replace with your preferred color */
+	background-color: #b61e00f3; 
 	cursor: pointer;
 	transition: background-color 0.3s ease;
   }
   
   .login-box button:hover {
-	background-color: #0056b3; /* Replace with your preferred hover color */
+	background-color: #0056b3; 
   }
 
 
@@ -1287,9 +1274,6 @@ main {
 	font-family: Impact, fantasy
   }
 
-/* footer.css */
-
-/* footer.css */
 
 footer {
 	background-color: #333;
@@ -1331,9 +1315,7 @@ footer {
 	margin-top: 1rem;
   }
   
-  /* Add any additional styles for footer-info and footer-copyright here */
   
-  /* Media query for responsiveness */
   @media (max-width: 768px) {
 	.footer-container {
 	  flex-direction: column;
@@ -1345,8 +1327,6 @@ footer {
 	}
   }
   
-/*  */
-/* Common styles for #about, #contact, .login-container footer */
 #about footer,
 #contact footer,
 .admin-container footer,
@@ -1354,7 +1334,6 @@ footer {
   background-color: #333;
   color: #fff;
   padding: 2rem 0;
-  /* Add "position" and "bottom" properties */
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -1395,9 +1374,6 @@ footer {
   margin-top: 1rem;
 }
 
-/* Add any additional styles for footer-info and footer-copyright here */
-
-/* Media query for responsiveness */
 @media (max-width: 768px) {
   .footer-container {
     flex-direction: column;
@@ -1408,19 +1384,17 @@ footer {
     margin-top: 1rem;
   }
 
-  /* Remove absolute positioning on mobile to keep the footer at the end of the content */
   #about footer,
   #contact footer,
   .admin-container footer,
   .login-container footer {
     position: relative;
     bottom: initial;
-    width: auto; /* Adjust as needed based on your design */
+    width: auto; 
   }
 }
 
 
-/* Add this to your existing stylesheet or create a new one */
 .timestamp {
 	font-size: 20px;
 	font-weight: bold;
@@ -1437,7 +1411,6 @@ footer {
   .welcome-message {
 	font-size: 32px;
 	font-weight: bold;
-	/* border-left: 2px solid #000000; */
 	font-style: italic;
   }
   
@@ -1524,7 +1497,7 @@ footer {
 
 	background-color: #f2f2f2;
 	border: 2px solid #333;
-	padding: 10px; /* Reduce the padding to make the box smaller */
+	padding: 10px; 
 	border-radius: 8px;  
 
   }
@@ -1534,9 +1507,9 @@ footer {
   .mouse {
 	margin: 50px auto;
 	width: 100px;
-	position: fixed; /* Add this line to position it fixed on the screen */
-	top: 60%; /* Adjust the top position as per your requirement */
-	right: 20px; /* Adjust the right position as per your requirement */
+	position: fixed; 
+	top: 60%;
+	right: 20px; 
   }
   .mouse-icon{
 	 width: 25px;
