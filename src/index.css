@@ -11,9 +11,9 @@ html, body, h1, h2, h3, h4, h5, h6, p, li, ol, ul, pre {
 	top: 0;
 	left: 0;
 	right: 0;
-	height: 70px; /* add height */
+	height: 70px; 
 	display: flex;
-	align-items: center; /* center vertically */
+	align-items: center; 
 	z-index: 2;
 	background-color: #fff;
 
@@ -26,11 +26,11 @@ html, body, h1, h2, h3, h4, h5, h6, p, li, ol, ul, pre {
 	box-shadow: 0 0 32px #0003;
 	font-size: 2em;
 	font-weight: 300;
-	width: 100%; /* add width */
-	display: flex; /* change display to flex */
-	justify-content: space-around; /* center horizontally */
-	align-items: center; /* center vertically */
-	height: 100%; /* add height */	
+	width: 100%;
+	display: flex; 
+	justify-content: space-around; 
+	align-items: center;
+	height: 100%; 
 
 }
 
