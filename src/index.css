@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Inconsolata|Lato:300,400,700');
 
-
 html, body, h1, h2, h3, h4, h5, h6, p, li, ol, ul, pre {
 	margin: 0;
 	padding: 0;
@@ -16,7 +15,6 @@ html, body, h1, h2, h3, h4, h5, h6, p, li, ol, ul, pre {
 	align-items: center; 
 	z-index: 2;
 	background-color: #fff;
-
 }
   
 .links {
@@ -31,12 +29,14 @@ html, body, h1, h2, h3, h4, h5, h6, p, li, ol, ul, pre {
 	justify-content: space-around; 
 	align-items: center;
 	height: 100%; 
-
 }
 
-.links #home{
+
+.links #home {
 	font-size: 40px;
 }
+
+
 
 .links > a {
 	color: rgb(255, 255, 255);
@@ -63,7 +63,6 @@ html, body, h1, h2, h3, h4, h5, h6, p, li, ol, ul, pre {
 	--numcards: 4;
 	--outline-width: 0px;
 }
-
 #cards {
 	padding-bottom: calc(var(--numcards) * var(--card-top-offset)); 
 	margin-bottom: var(--card-margin);
@@ -90,8 +89,6 @@ html, body, h1, h2, h3, h4, h5, h6, p, li, ol, ul, pre {
 	position: sticky;
 	top: 100px;
 	padding-top: calc(var(--index) * var(--card-top-offset));
-	
-
 }
 
 @supports (animation-timeline: works) {
@@ -126,6 +123,40 @@ html, body, h1, h2, h3, h4, h5, h6, p, li, ol, ul, pre {
 	animation: var(--duration) linear scale var(--delay) forwards;
 	animation-timeline: cards-element-scrolls-in-body;
 }
+
+@media (max-width: 768px) {
+	/* Header styles for smaller screens */
+	#header {
+		height: auto;
+		padding: 10px 0;
+		text-align: center;
+		position: relative;
+		
+	}
+	.links {
+		flex-direction: column;
+		height: auto;
+		padding: 20px 0;
+		width: fit-content;
+	}
+	.links > a {
+		font-size: 16px;
+		margin: 10px 0;
+	}
+	/* Other styles for smaller screens go here */
+	#about {
+		margin: 70px auto;
+	}
+	#about h1 {
+		font-size: 2rem;
+	}
+	#about p {
+		font-size: 1rem;
+		margin-bottom: 1.5rem;
+	}
+	/* Add more responsive styles as needed */
+}
+
 
 @keyframes scale {
 	to {
@@ -250,16 +281,6 @@ main {
 	margin-bottom: 2rem;  
 }
   
-  @media (max-width: 768px) {
-	#about h1 {
-	  font-size: 2rem;
-	}
-	
-	#about p {
-	  font-size: 1rem;
-	  margin-bottom: 1.5rem;
-	}
-  }
 
 
 .slideshow-container {
