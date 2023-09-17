@@ -1,70 +1,70 @@
-# Getting Started with Create React App
+# Hageiz - Your Path to the Perfect School in Ethiopia
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to the Hageiz GitHub repository! Hageiz is a platform dedicated to helping students and parents in Ethiopia find and secure placements in partnered schools. We understand that the school selection and registration process can be challenging, which is why we've created an intuitive and user-friendly platform to simplify the entire journey. Whether you're a parent searching for the ideal school for your child or a student embarking on your educational journey, Hageiz is here to support you.
 
-## Available Scripts
+## About Hageiz
 
-In the project directory, you can run:
+Our mission is to make the process of finding and securing a school placement in Ethiopia as smooth as possible. Here's what you can expect from Hageiz:
 
-### `npm start`
+- **Effortless School Selection**: Browse through a diverse range of schools in your area and choose the one that best suits your needs. Our user-friendly interface ensures that the school selection process is hassle-free.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Streamlined Application Process**: Once you've selected a school, our platform makes it easy to submit your application and secure a placement with just a few clicks. No more complicated paperwork or long waiting times.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Dedicated Support**: Our team is committed to helping students achieve their academic goals. We offer valuable resources, tips, and guidance to support students every step of the way.
 
-### `npm test`
+- **Powered by React and Firebase**: Our front-end is built with React, while Firebase handles the backend, including authentication, Firestore database, and Firebase Functions. This robust technology stack ensures a seamless and secure user experience.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Getting Started
 
-### `npm run build`
+To get started with Hageiz, follow these steps:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Clone the repository to your local machine.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+git clone https://github.com/yourusername/hageiz.git
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. Install the necessary dependencies.
 
-### `npm run eject`
+```bash
+npm install
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+3. Configure Firebase for your project by following the instructions in the `firebase.config.js` file.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+4. Start the development server.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```bash
+npm start
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Contributing
 
-## Learn More
+We welcome contributions from the open-source community. If you'd like to contribute to Hageiz, please follow these guidelines:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1. Fork the repository.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+2. Create a new branch for your feature or bug fix.
 
-### Code Splitting
+3. Make your changes and thoroughly test them.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+4. Submit a pull request, clearly describing your changes and their purpose.
 
-### Analyzing the Bundle Size
+## Issues and Bug Reports
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+If you encounter any issues or have suggestions for improvements, please [create an issue](https://github.com/yourusername/hageiz/issues) on GitHub. We appreciate your feedback!
 
-### Making a Progressive Web App
+## Contact Us
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Have questions or need assistance? Feel free to reach out to us at [support@hageiz.com](mailto:support@hageiz.com).
 
-### Advanced Configuration
+## Thank You
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Thank you for choosing Hageiz as your trusted partner in your academic journey. We look forward to helping you find the perfect school and making your educational dreams a reality.
 
-### Deployment
+[Visit Hageiz](https://www.hageiz.com)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+![Hageiz Logo](/assets/logo.png)
 
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
+*Disclaimer: This README is a template and should be customized according to your specific project's needs.*
