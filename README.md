@@ -29,7 +29,7 @@ Thank you for choosing Hageiz as your trusted partner in your academic journey. 
 
 [Visit Hageiz](https://www.hageiz.com)
 
-![Hageiz Logo](/assets/logo.png)
+![](/assets/logo.png)
 
 ---
 
