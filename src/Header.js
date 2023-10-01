@@ -13,6 +13,9 @@ const Header = () => {
         <NavLink to="/about">About</NavLink>
         <NavLink to="/schools">Schools</NavLink>
         <NavLink to="/contact">Contact</NavLink>
+        <NavLink to="/student" style={{ color: "#0765FF" }}>
+          Student/Parent Login
+        </NavLink>
         <NavLink to="/admin" style={{ color: "red" }}>
           Admin
         </NavLink>
