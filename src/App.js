@@ -55,7 +55,10 @@ function App() {
         {loggedIn ? (
           <Route path="/admin" element={<Admin setLoggedIn={setLoggedIn} />} />
         ) : (
-          <Route path="/admin" element={<AdminLogin setLoggedIn={setLoggedIn} />} />
+          <Route
+            path="/admin"
+            element={<AdminLogin setLoggedIn={setLoggedIn} />}
+          />
         )}
 
         <Route path="/404" element={<GenericNotFound />} />
