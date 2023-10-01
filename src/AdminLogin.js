@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import Footer from "./Footer";
 
-const Login = ({ setLoggedIn }) => {
+const AdminLogin = ({ setLoggedIn }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -78,4 +78,4 @@ const Login = ({ setLoggedIn }) => {
   );
 };
 
-export default Login;
+export default AdminLogin;

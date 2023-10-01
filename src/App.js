@@ -7,7 +7,7 @@ import Form from "./Form";
 import About from "./About";
 import Contact from "./Contact";
 import School from "./School";
-import Login from "./Login";
+import AdminLogin from "./AdminLogin";
 import StudentLogin from "./StudentLogin";
 import Admin from "./Admin";
 import ConfirmationPage from "./ConfirmationPage";
@@ -55,7 +55,7 @@ function App() {
         {loggedIn ? (
           <Route path="/admin" element={<Admin setLoggedIn={setLoggedIn} />} />
         ) : (
-          <Route path="/admin" element={<Login setLoggedIn={setLoggedIn} />} />
+          <Route path="/admin" element={<AdminLogin setLoggedIn={setLoggedIn} />} />
         )}
 
         <Route path="/404" element={<GenericNotFound />} />
