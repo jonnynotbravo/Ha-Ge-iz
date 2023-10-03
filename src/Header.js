@@ -16,6 +16,9 @@ const Header = () => {
         <NavLink to="/student" style={{ color: "#0765FF" }}>
           Student/Parent Login
         </NavLink>
+        <NavLink to="/teacher" style={{ color: "yellow" }}>
+          Teacher Login
+        </NavLink>
         <NavLink to="/admin" style={{ color: "red" }}>
           Admin
         </NavLink>

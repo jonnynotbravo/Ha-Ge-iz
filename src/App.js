@@ -9,6 +9,8 @@ import Contact from "./Contact";
 import School from "./School";
 import AdminLogin from "./AdminLogin";
 import StudentLogin from "./StudentLogin";
+import Student from "./Student";
+import TeacherLogin from "./TeacherLogin";
 import Admin from "./Admin";
 import ConfirmationPage from "./ConfirmationPage";
 import TermsAndConditions from "./TermsAndConditions";
@@ -51,6 +53,8 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/schools/:id" element={<School />} />
         <Route path="/student" element={<StudentLogin />} />
+        <Route path="/trying" element={<Student />} />
+        <Route path="/teacher" element={<TeacherLogin />} />
         <Route path="/schools/:id/form" element={<Form />} />
         {loggedIn ? (
           <Route path="/admin" element={<Admin setLoggedIn={setLoggedIn} />} />
