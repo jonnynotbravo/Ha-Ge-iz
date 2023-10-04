@@ -16,7 +16,7 @@ const TeacherLogin = () => {
       .then((userCredential) => {
         setError("");
         // setLoggedIn(true);
-        navigate("/admin");
+        navigate("/teacher");
       })
       .catch((error) => {
         setError("Invalid email or password. Please try again.");
@@ -26,10 +26,10 @@ const TeacherLogin = () => {
   return (
     <div className="login-container" style={{ background: "#444349" }}>
       <div className="login-box">
-        <label htmlFor="schoolId">Teacher ID</label>
+        <label htmlFor="teacherId">Teacher ID</label>
         <input
           type="text"
-          id="schoolId"
+          id="teacherId"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />

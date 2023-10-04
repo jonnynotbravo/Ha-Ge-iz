@@ -25,10 +25,10 @@ const StudentLogin = () => {
   return (
     <div className="login-container" style={{ background: "#395796" }}>
       <div className="login-box">
-        <label htmlFor="studentid">Student ID</label>
+        <label htmlFor="studentId">Student ID</label>
         <input
           type="text"
-          id="studentid"
+          id="studentId"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
