@@ -16,7 +16,7 @@ const StudentLogin = () => {
       .then((userCredential) => {
         setError("");
         // setLoggedIn(true);
-        navigate("/admin");
+        navigate("/student");
       })
       .catch((error) => {
         setError("Invalid email or password. Please try again.");
@@ -25,17 +25,17 @@ const StudentLogin = () => {
   return (
     <div className="login-container" style={{ background: "#395796" }}>
       <div className="login-box">
-        <label htmlFor="schoolId">Student ID</label>
+        <label htmlFor="studentid">Student ID</label>
         <input
           type="text"
-          id="schoolId"
+          id="studentid"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-        <label htmlFor="passKey">Password</label>
+        <label htmlFor="password">Password</label>
         <input
           type="password"
-          id="passKey"
+          id="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
