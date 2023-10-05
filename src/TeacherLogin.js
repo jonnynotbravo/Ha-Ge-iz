@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import Footer from "./Footer";
 
-const TeacherLogin = () => {
+const TeacherLogin = ({ setTeacherLoggedIn }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -14,9 +14,15 @@ const TeacherLogin = () => {
   const handleLogin = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        setError("");
-        // setLoggedIn(true);
-        navigate("/teacher");
+        const user = userCredential.user;
+
+        if (user && user.claims.role === "teacher") {
+          setError("");
+          setTeacherLoggedIn(true);
+          navigate("/teacher");
+        } else {
+          setError("You are not authorized as a teacher");
+        }
       })
       .catch((error) => {
         setError("Invalid email or password. Please try again.");

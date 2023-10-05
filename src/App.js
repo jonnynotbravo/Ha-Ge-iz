@@ -11,6 +11,7 @@ import AdminLogin from "./AdminLogin";
 import StudentLogin from "./StudentLogin";
 import Student from "./Student";
 import TeacherLogin from "./TeacherLogin";
+import Teacher from "./Teacher";
 import Admin from "./Admin";
 import ConfirmationPage from "./ConfirmationPage";
 import TermsAndConditions from "./TermsAndConditions";
@@ -22,6 +23,7 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [studentLoggedIn, setStudentLoggedIn] = useState(false);
+  const [teacherLoggedIn, setTeacherLoggedIn] = useState(false);
 
   const auth = getAuth();
 
@@ -30,9 +32,11 @@ function App() {
       if (user) {
         setLoggedIn(true);
         setStudentLoggedIn(true);
+        setTeacherLoggedIn(true);
       } else {
         setLoggedIn(false);
         setStudentLoggedIn(false);
+        setTeacherLoggedIn(false);
       }
     });
 
@@ -67,7 +71,18 @@ function App() {
           />
         )}
 
-        <Route path="/teacher" element={<TeacherLogin />} />
+        {teacherLoggedIn ? (
+          <Route
+            path="/teacher"
+            element={<Teacher setTeacherLoggedIn={setTeacherLoggedIn} />}
+          />
+        ) : (
+          <Route
+            path="/teacher"
+            element={<TeacherLogin setTeacherLoggedIn={setTeacherLoggedIn} />}
+          />
+        )}
+
         <Route path="/schools/:id/form" element={<Form />} />
         {loggedIn ? (
           <Route path="/admin" element={<Admin setLoggedIn={setLoggedIn} />} />
