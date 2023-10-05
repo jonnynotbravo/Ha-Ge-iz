@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import Footer from "./Footer";
 
-const StudentLogin = () => {
+const StudentLogin = ({setStudentLoggedIn}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -15,7 +15,7 @@ const StudentLogin = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         setError("");
-        // setLoggedIn(true);
+        setStudentLoggedIn(true);
         navigate("/student");
       })
       .catch((error) => {

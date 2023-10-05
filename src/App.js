@@ -21,6 +21,7 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
+  const [studentLoggedIn, setStudentLoggedIn] = useState(false);
 
   const auth = getAuth();
 
@@ -28,8 +29,10 @@ function App() {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         setLoggedIn(true);
+        setStudentLoggedIn(true);
       } else {
         setLoggedIn(false);
+        setStudentLoggedIn(false);
       }
     });
 
@@ -52,8 +55,18 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/schools/:id" element={<School />} />
-        <Route path="/student" element={<StudentLogin />} />
-        <Route path="/trying" element={<Student />} />
+        {studentLoggedIn ? (
+          <Route
+            path="/student"
+            element={<Student setStudentLoggedIn={setStudentLoggedIn} />}
+          />
+        ) : (
+          <Route
+            path="/student"
+            element={<StudentLogin setStudentLoggedIn={setStudentLoggedIn} />}
+          />
+        )}
+
         <Route path="/teacher" element={<TeacherLogin />} />
         <Route path="/schools/:id/form" element={<Form />} />
         {loggedIn ? (

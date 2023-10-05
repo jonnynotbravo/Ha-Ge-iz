@@ -1,13 +1,30 @@
 import React, { useState, useEffect } from "react";
+import { getAuth, signOut } from "firebase/auth";
+import { Link, useNavigate } from "react-router-dom";
+import Footer from "./Footer";
 
-const Student = () => {
+const Student = ({ setStudentLoggedIn }) => {
+  const auth = getAuth();
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    signOut(auth)
+      .then(() => {
+        setStudentLoggedIn(false);
+        navigate("/student-login"); // Redirect to the student login page
+      })
+      .catch((error) => {
+        console.error("Error logging out:", error);
+      });
+  };
+  
+
   const [gradeReports, setGradeReports] = useState([]);
   const [reportCards, setReportCards] = useState([]);
   const [messages, setMessages] = useState([]);
 
-  // Fetch grade reports, report cards, and messages from an API or database
+ 
   useEffect(() => {
-    // Example API request to fetch data
+    
     fetchStudentData()
       .then((data) => {
         setGradeReports(data.gradeReports);
@@ -19,29 +36,29 @@ const Student = () => {
       });
   }, []);
 
-  // Example function to fetch student data from an API
+
   const fetchStudentData = async () => {
-    // Simulate fetching data from an API
+
     return {
       gradeReports: [
-        // Example grade report objects
+      
         { subject: "Math", grade: "A" },
         { subject: "Science", grade: "B" },
-        // Add more grade reports
+       
       ],
       reportCards: [
-        // Example report card objects
+       
         { term: "Fall 2023", GPA: "3.7" },
-        // Add more report cards
+      
       ],
       messages: [
-        // Example messages from teachers
+        
         {
           sender: "Teacher 1",
           subject: "Regarding your recent test",
           message: "Your performance in the last test was excellent!",
         },
-        // Add more messages
+      
       ],
     };
   };
@@ -81,7 +98,10 @@ const Student = () => {
         ))}
       </ul>
 
-      {/* Add cool features here, e.g., a calendar, notifications, etc. */}
+      {/* Add cool features , e.g., a calendar, notifications, etc. */}
+      <button onClick={handleLogout} style={{ background: "#ff0000", color: "#fff" }}>
+      Logout
+    </button>
     </div>
   );
 };
