@@ -14,15 +14,9 @@ const AdminLogin = ({ setLoggedIn }) => {
   const handleLogin = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        const user = userCredential.user;
-
-        if (user && user.claims.role === "admin") {
-          setError("");
-          setLoggedIn(true);
-          navigate("/admin");
-        } else {
-          setError("You are not authorized as an Admin");
-        }
+        setError("");
+        setLoggedIn(true);
+        navigate("/admin");
       })
       .catch((error) => {
         setError("Invalid email or password. Please try again.");

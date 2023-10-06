@@ -14,15 +14,9 @@ const TeacherLogin = ({ setTeacherLoggedIn }) => {
   const handleLogin = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        const user = userCredential.user;
-
-        if (user && user.claims.role === "teacher") {
-          setError("");
-          setTeacherLoggedIn(true);
-          navigate("/teacher");
-        } else {
-          setError("You are not authorized as a teacher");
-        }
+        setError("");
+        setTeacherLoggedIn(true);
+        navigate("/teacher");
       })
       .catch((error) => {
         setError("Invalid email or password. Please try again.");

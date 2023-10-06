@@ -14,15 +14,9 @@ const StudentLogin = ({ setStudentLoggedIn }) => {
   const handleLogin = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        const user = userCredential.user;
-
-        if (user && user.claims.role === "student") {
-          setError("");
-          setStudentLoggedIn(true);
-          navigate("/student");
-        } else {
-          setError("You are not authorized as a Student");
-        }
+        setError("");
+        setStudentLoggedIn(true);
+        navigate("/student");
       })
       .catch((error) => {
         setError("Invalid email or password. Please try again.");

@@ -30,9 +30,25 @@ function App() {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        setLoggedIn(true);
-        setStudentLoggedIn(true);
-        setTeacherLoggedIn(true);
+        const userEmail = user.email;
+        if (userEmail.endsWith("@student.com")) {
+          setStudentLoggedIn(true);
+          setTeacherLoggedIn(false);
+          setLoggedIn(false);
+        } else if (userEmail.endsWith("@teacher.com")) {
+          setTeacherLoggedIn(true);
+          setStudentLoggedIn(false);
+          setLoggedIn(false);
+        } else if (userEmail.endsWith("@admin.com")) {
+          setTeacherLoggedIn(false);
+          setStudentLoggedIn(false);
+          setLoggedIn(true);
+        } else {
+          // Handle unauthorized users or unknown email domains
+          setLoggedIn(false);
+          setStudentLoggedIn(false);
+          setTeacherLoggedIn(false);
+        }
       } else {
         setLoggedIn(false);
         setStudentLoggedIn(false);
