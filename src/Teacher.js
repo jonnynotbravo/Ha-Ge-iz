@@ -1,5 +1,88 @@
-const Teacher = () => {
-  return <div><h1>WE're IN</h1></div>;
+import React, { useEffect, useState } from "react";
+import { getAuth, signOut } from "firebase/auth";
+import { collection, getFirestore, getDocs } from "firebase/firestore";
+
+const Teacher = ({setTeacherLoggedIn}) => {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+
+  // Function to handle the search query input
+  const handleSearchInputChange = (e) => {
+    setSearchQuery(e.target.value);
+  };
+
+  // Function to handle the search button click
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        if (searchQuery === "") {
+          setSearchResults([]);
+          return;
+        }
+
+        const studentsRef = collection(firestore, "Students");
+        const querySnapshot = await getDocs(studentsRef);
+
+        const results = [];
+        querySnapshot.forEach((doc) => {
+          const studentData = doc.data();
+          if (
+            studentData.name.toLowerCase().includes(searchQuery.toLowerCase())
+          ) {
+            results.push(studentData);
+          }
+        });
+
+        setSearchResults(results);
+      } catch (error) {
+        console.error("Error searching for students:", error);
+      }
+    };
+
+    fetchData();
+  }, [searchQuery]);
+
+  // Function to handle logout
+  const handleLogout = () => {
+    signOut(auth)
+      .then(() => {
+        setTeacherLoggedIn(false);
+      })
+      .catch((error) => {
+        console.error("Error logging out:", error);
+      });
+  };
+
+  return (
+    <div className="teacher-container">
+      <div className="left-content">
+        <h1 className="header">Teacher Portal</h1>
+        <div className="search-container">
+          <input
+            type="text"
+            placeholder="Search for a student name"
+            value={searchQuery}
+            onChange={handleSearchInputChange}
+            className="search-input"
+          />
+          <button className="search-button">Search</button>
+        </div>
+      </div>
+      <div className="right-content">
+        <button onClick={handleLogout} className="logout-button">
+          Log Out
+        </button>
+        <div className="search-results">
+          <h2>Search Results</h2>
+          <ul>
+            {searchResults.map((student, index) => (
+              <li key={index}>{student.name}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default Teacher;

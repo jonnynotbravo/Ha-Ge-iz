@@ -11,7 +11,7 @@ const Student = ({ setStudentLoggedIn }) => {
     signOut(auth)
       .then(() => {
         setStudentLoggedIn(false);
-        navigate("/student-login"); // Redirect to the student login page
+        navigate("/student"); // Redirect to the student login page
       })
       .catch((error) => {
         console.error("Error logging out:", error);
