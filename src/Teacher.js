@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
+import { collection, getDocs } from "firebase/firestore";
 import { getAuth, signOut } from "firebase/auth";
-import { collection, getFirestore, getDocs } from "firebase/firestore";
+import { getFirestore } from "firebase/firestore"; // Import necessary Firestore functions
 
-const Teacher = ({setTeacherLoggedIn}) => {
+const Teacher = ({ setTeacherLoggedIn }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+
+  const auth = getAuth(); // Initialize the Auth instance
+  const firestore = getFirestore(); // Initialize the Firestore instance
 
   // Function to handle the search query input
   const handleSearchInputChange = (e) => {
@@ -40,7 +44,7 @@ const Teacher = ({setTeacherLoggedIn}) => {
     };
 
     fetchData();
-  }, [searchQuery]);
+  }, [searchQuery, firestore]);
 
   // Function to handle logout
   const handleLogout = () => {
