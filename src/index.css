@@ -1684,16 +1684,24 @@ footer {
 	background-color: #f0f0f0;
 	padding: 150px;
 	min-height: 100vh;
+	justify-content: center; /* Center the content horizontally */
 	align-items: flex-start;
-  }
+}
+
+#searchh2{
+
+	font-size: 36px;
+}
   
-  .left-content {
+.left-content {
 	flex: 1;
-	padding-right: 300px;
+	padding-right: 350px; /* Adjust the padding to create space */
+	padding-left: 30px; /* Add some padding to the left */
   }
   
   .right-content {
 	flex: 1;
+
   }
   
   .center-content {

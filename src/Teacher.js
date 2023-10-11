@@ -69,7 +69,7 @@ const Teacher = ({ setTeacherLoggedIn }) => {
             onChange={handleSearchInputChange}
             className="search-input"
           />
-          <button className="search-button">Search</button>
+          {/* <button className="search-button">Search</button> */}
         </div>
       </div>
       <div className="right-content">
@@ -77,8 +77,8 @@ const Teacher = ({ setTeacherLoggedIn }) => {
           Log Out
         </button>
         <div className="search-results">
-          <h2>Search Results</h2>
-          <ul>
+          <h2 id="searchh2">Search Results</h2>
+          <ul style={{ cursor: "pointer" }}>
             {searchResults.map((student, index) => (
               <li key={index}>{student.name}</li>
             ))}
