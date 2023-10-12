@@ -1785,3 +1785,154 @@ footer {
   li:hover {
 	background-color: #f5f5f5;
   }
+
+
+/* studentinfo */
+/* Define some common styles */
+/* Container for the entire student information section */
+.student-info {
+	padding: 20px;
+	font-family: Arial, sans-serif;
+	background-color: #f7f7f7;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	margin: 20px;
+  }
+  
+  /* Section heading style */
+  h2 {
+	color: #333;
+	font-size: 24px;
+	margin-bottom: 15px;
+  }
+  #student-profile {
+	font-size: 20px;
+  }
+  /* Buttons container */
+  .button-container {
+	display: flex;
+	justify-content: flex-end;
+	margin-top: 20px;
+  }
+  
+  /* Edit and Save buttons style */
+  .edit-button,
+  .save-button,
+  .discard-button {
+	padding: 10px 20px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	font-weight: 600;
+	margin-right: 10px;
+	transition: background-color 0.3s ease;
+  }
+  
+  .edit-button {
+	background-color: #007bff;
+	color: #fff;
+  }
+  
+  .edit-button:hover {
+	background-color: #0056b3;
+  }
+  
+  .save-button {
+	background-color: #28a745;
+	color: #fff;
+  }
+  
+  .save-button:hover {
+	background-color: #218838;
+  }
+  
+  .discard-button {
+	background-color: #dc3545;
+	color: #fff;
+  }
+  
+  .discard-button:hover {
+	background-color: #c82333;
+  }
+  
+  /* Table style */
+  table {
+	width: 100%;
+	border-collapse: collapse;
+	margin: 20px 0;
+  }
+  
+  /* Table header and cell style */
+  th, td {
+	padding: 10px;
+	text-align: left;
+	border-bottom: 1px solid #ddd;
+  }
+  
+  th {
+	background-color: #f2f2f2;
+	font-weight: 600;
+  }
+  
+  /* Input fields style */
+  input[type="text"],
+  input[type="number"],
+  input[type="date"] {
+	padding: 5px;
+	width: 100%;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+  }
+  
+  /* Subject and Activity Section */
+  .subject-activity-section {
+	margin-top: 20px;
+  }
+  
+  /* Add Subject button style */
+  .add-subject-button {
+	background-color: #007bff;
+	color: #fff;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	font-weight: 600;
+	transition: background-color 0.3s ease;
+  }
+  
+  .add-subject-button:hover {
+	background-color: #0056b3;
+  }
+  
+  /* List style */
+  ul {
+	list-style-type: none;
+	padding: 0;
+  }
+  
+  /* List item style */
+  li {
+	margin-bottom: 10px;
+  }
+  
+  /* Responsive layout adjustments (adjust as needed) */
+  @media (max-width: 768px) {
+	.button-container {
+	  flex-direction: column;
+	  align-items: flex-end;
+	}
+  
+	.edit-button,
+	.save-button,
+	.discard-button {
+	  width: 100%;
+	  margin: 10px 0;
+	}
+  
+	th, td {
+	  padding: 5px;
+	}
+  }
+  
