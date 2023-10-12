@@ -138,6 +138,12 @@ const StudentInfo = () => {
     });
   };
 
+  const handleDeleteSubject = (subjectIndex) => {
+    setSubjectRows((prevSubjectRows) =>
+      prevSubjectRows.filter((_, index) => index !== subjectIndex)
+    );
+  };
+
   const handleDiscard = () => {
     // Reset subjectRows to its original value
     if (student && student.subjectRows) {
@@ -246,7 +252,10 @@ const StudentInfo = () => {
           {isEditMode && (
             <div className="right-buttons">
               <button onClick={handleSave}>Save</button>
-              <button style={{ background: "red" }} onClick={handleDiscard}>
+              <button
+                style={{ background: "red", color: "white" }}
+                onClick={handleDiscard}
+              >
                 Discard
               </button>
             </div>
@@ -263,6 +272,8 @@ const StudentInfo = () => {
               <th>Worksheets</th>
               <th>Quizzes</th>
               <th>Tests</th>
+              <th>Action</th>{" "}
+              {/* Add a new column for subject delete buttons */}
             </tr>
           </thead>
           <tbody>
@@ -359,6 +370,16 @@ const StudentInfo = () => {
                     </ul>
                   </td>
                 ))}
+                <td>
+                  {isEditMode && subjectRows.length > 0 && (
+                    <button
+                      style={{ background: "red", color: "white" }}
+                      onClick={() => handleDeleteSubject(subjectIndex)}
+                    >
+                      Delete Subject
+                    </button>
+                  )}
+                </td>
               </tr>
             ))}
             {isEditMode && (
