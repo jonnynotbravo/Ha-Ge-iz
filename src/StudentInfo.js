@@ -18,6 +18,7 @@ const StudentInfo = () => {
   const [editableData, setEditableData] = useState({});
   const [isEditMode, setIsEditMode] = useState(false);
   const [subjectRows, setSubjectRows] = useState([]);
+  const [showTooltip, setShowTooltip] = useState(false);
 
   useEffect(() => {
     // Initialize Firestore
@@ -53,6 +54,7 @@ const StudentInfo = () => {
     if (student) {
       setIsEditMode(true);
     }
+    setShowTooltip(showTooltip);
   };
 
   const handleSave = async () => {
@@ -258,9 +260,17 @@ const StudentInfo = () => {
 
           {isEditMode && (
             <div className="right-buttons">
+              <div className="tooltip">
+                {!showTooltip && (
+                  <div className="tooltiptext">
+                    Click "Save" to save your changes
+                  </div>
+                )}
+              </div>
               <button className="save-button" onClick={handleSave}>
                 Save
               </button>
+
               <button className="discard-button" onClick={handleDiscard}>
                 Discard
               </button>
