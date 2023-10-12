@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
 import { getAuth, signOut } from "firebase/auth";
 import { getFirestore } from "firebase/firestore"; // Import necessary Firestore functions
 
@@ -9,6 +10,7 @@ const Teacher = ({ setTeacherLoggedIn }) => {
 
   const auth = getAuth(); // Initialize the Auth instance
   const firestore = getFirestore(); // Initialize the Firestore instance
+  const navigate = useNavigate();
 
   // Function to handle the search query input
   const handleSearchInputChange = (e) => {
@@ -57,6 +59,10 @@ const Teacher = ({ setTeacherLoggedIn }) => {
       });
   };
 
+  const handleClick = (id) => {
+    navigate(`/teacher/${id}`);
+  };
+
   return (
     <div className="teacher-container">
       <div className="left-content">
@@ -78,11 +84,19 @@ const Teacher = ({ setTeacherLoggedIn }) => {
         </button>
         <div className="search-results">
           <h2 id="searchh2">Search Results</h2>
-          <ul style={{ cursor: "pointer" }}>
-            {searchResults.map((student, index) => (
-              <li key={index}>{student.name}</li>
-            ))}
-          </ul>
+          {searchResults.map((student, index) => {
+            return (
+              <ul
+                key={index}
+                style={{ cursor: "pointer" }}
+                onClick={() => {
+                  handleClick(student.id);
+                }}
+              >
+                <li key={index}>{student.name}</li>
+              </ul>
+            );
+          })}
         </div>
       </div>
     </div>

@@ -13,6 +13,7 @@ import Student from "./Student";
 import TeacherLogin from "./TeacherLogin";
 import Teacher from "./Teacher";
 import Admin from "./Admin";
+import StudentInfo from "./StudentInfo";
 import ConfirmationPage from "./ConfirmationPage";
 import TermsAndConditions from "./TermsAndConditions";
 import PrivacyPolicy from "./PrivacyPolicy";
@@ -75,6 +76,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/schools/:id" element={<School />} />
+        <Route path="/teacher/:id" element={<StudentInfo />} />
         {studentLoggedIn ? (
           <Route
             path="/student"
@@ -89,12 +91,12 @@ function App() {
 
         {teacherLoggedIn ? (
           <Route
-            path="/teacher"
+            path="/teacher/"
             element={<Teacher setTeacherLoggedIn={setTeacherLoggedIn} />}
           />
         ) : (
           <Route
-            path="/teacher"
+            path="/teacher/"
             element={<TeacherLogin setTeacherLoggedIn={setTeacherLoggedIn} />}
           />
         )}
