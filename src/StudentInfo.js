@@ -237,25 +237,31 @@ const StudentInfo = () => {
           <p>
             <strong>Id:</strong> {student.id}
           </p>
+          <p>
+            <strong>Grade:</strong> {student.grade}
+          </p>
         </div>
       ) : (
         <p>Loading student information...</p>
       )}
 
       <div>
+        <br />
+        <br />
         <h2>Subjects and Activities</h2>
         <div className="button-container">
           {student && !isEditMode ? (
-            <button onClick={handleEdit}>Edit</button>
+            <button className="edit-button" onClick={handleEdit}>
+              Edit
+            </button>
           ) : null}
 
           {isEditMode && (
             <div className="right-buttons">
-              <button onClick={handleSave}>Save</button>
-              <button
-                style={{ background: "red", color: "white" }}
-                onClick={handleDiscard}
-              >
+              <button className="save-button" onClick={handleSave}>
+                Save
+              </button>
+              <button className="discard-button" onClick={handleDiscard}>
                 Discard
               </button>
             </div>
