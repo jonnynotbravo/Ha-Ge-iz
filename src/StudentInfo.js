@@ -130,6 +130,14 @@ const StudentInfo = () => {
     );
   };
 
+  const handleDeleteItem = (subjectIndex, activityType, activityIndex) => {
+    setSubjectRows((prevSubjectRows) => {
+      const updatedSubjectRows = [...prevSubjectRows];
+      updatedSubjectRows[subjectIndex][activityType].splice(activityIndex, 1);
+      return updatedSubjectRows;
+    });
+  };
+
   const handleDiscard = () => {
     // Reset subjectRows to its original value
     if (student && student.subjectRows) {
@@ -214,25 +222,21 @@ const StudentInfo = () => {
 
   return (
     <div className="student-info">
+      <h2>Student Information</h2>
       {student ? (
         <div id="student-profile">
-          <p className="student-name">
+          <p>
             <strong>Name:</strong> {student.name}
           </p>
-          <p className="student-id">
+          <p>
             <strong>Id:</strong> {student.id}
-          </p>
-          <p className="student-grade">
-            <strong>Grade: </strong>
-            {student.grade}
           </p>
         </div>
       ) : (
         <p>Loading student information...</p>
       )}
+
       <div>
-        <br />
-        <br />
         <h2>Subjects and Activities</h2>
         <div className="button-container">
           {student && !isEditMode ? (
@@ -247,114 +251,125 @@ const StudentInfo = () => {
               </button>
             </div>
           )}
-
-          <table className="subject-activity-table">
-            <thead>
-              <tr>
-                <th>Subject</th>
-                <th>Assignments</th>
-                <th>Homeworks</th>
-                <th>Classworks</th>
-                <th>Worksheets</th>
-                <th>Quizzes</th>
-                <th>Tests</th>
-              </tr>
-            </thead>
-            <tbody>
-              {subjectRows.map((subject, subjectIndex) => (
-                <tr key={subjectIndex}>
-                  <td>
-                    <input
-                      type="text"
-                      value={subject.subjectName}
-                      onChange={(e) => handleSubjectNameChange(e, subjectIndex)}
-                      disabled={!isEditMode}
-                    />
-                  </td>
-                  {[
-                    "assignments",
-                    "homeworks",
-                    "classworks",
-                    "worksheets",
-                    "quizzes",
-                    "tests",
-                  ].map((activityType) => (
-                    <td key={activityType}>
-                      {isEditMode && (
-                        <button
-                          onClick={() =>
-                            handleAddActivity(activityType, subjectIndex)
-                          }
-                        >
-                          Add {activityType}
-                        </button>
-                      )}
-                      <ul>
-                        {subject[activityType].map(
-                          (activity, activityIndex) => (
-                            <li key={activityIndex}>
-                              <input
-                                type="text"
-                                value={activity.activityName}
-                                onChange={(e) =>
-                                  handleActivityChange(
-                                    e,
-                                    subjectIndex,
-                                    activityType,
-                                    activityIndex,
-                                    "activityName"
-                                  )
-                                }
-                                placeholder="Name"
-                                disabled={!isEditMode}
-                              />
-                              <input
-                                type="date"
-                                value={activity.activityDate}
-                                onChange={(e) =>
-                                  handleActivityChange(
-                                    e,
-                                    subjectIndex,
-                                    activityType,
-                                    activityIndex,
-                                    "activityDate"
-                                  )
-                                }
-                                disabled={!isEditMode}
-                              />
-                              <input
-                                type="text"
-                                value={activity.activityScore}
-                                onChange={(e) =>
-                                  handleActivityChange(
-                                    e,
-                                    subjectIndex,
-                                    activityType,
-                                    activityIndex,
-                                    "activityScore"
-                                  )
-                                }
-                                placeholder="Grade"
-                                disabled={!isEditMode}
-                              />
-                            </li>
-                          )
-                        )}
-                      </ul>
-                    </td>
-                  ))}
-                </tr>
-              ))}
-              {isEditMode && (
-                <tr>
-                  <td>
-                    <button onClick={handleAddSubject}>Add Subject</button>
-                  </td>
-                </tr>
-              )}
-            </tbody>
-          </table>
         </div>
+
+        <table className="subject-activity-table">
+          <thead>
+            <tr>
+              <th>Subject</th>
+              <th>Assignments</th>
+              <th>Homeworks</th>
+              <th>Classworks</th>
+              <th>Worksheets</th>
+              <th>Quizzes</th>
+              <th>Tests</th>
+            </tr>
+          </thead>
+          <tbody>
+            {subjectRows.map((subject, subjectIndex) => (
+              <tr key={subjectIndex}>
+                <td>
+                  <input
+                    type="text"
+                    value={subject.subjectName}
+                    onChange={(e) => handleSubjectNameChange(e, subjectIndex)}
+                    disabled={!isEditMode}
+                  />
+                </td>
+                {[
+                  "assignments",
+                  "homeworks",
+                  "classworks",
+                  "worksheets",
+                  "quizzes",
+                  "tests",
+                ].map((activityType) => (
+                  <td key={activityType}>
+                    {isEditMode && (
+                      <button
+                        onClick={() =>
+                          handleAddActivity(activityType, subjectIndex)
+                        }
+                      >
+                        Add {activityType}
+                      </button>
+                    )}
+                    <ul>
+                      {subject[activityType].map((activity, activityIndex) => (
+                        <li key={activityIndex}>
+                          <input
+                            type="text"
+                            value={activity.activityName}
+                            onChange={(e) =>
+                              handleActivityChange(
+                                e,
+                                subjectIndex,
+                                activityType,
+                                activityIndex,
+                                "activityName"
+                              )
+                            }
+                            placeholder="Name"
+                            disabled={!isEditMode}
+                          />
+                          <input
+                            type="date"
+                            value={activity.activityDate}
+                            onChange={(e) =>
+                              handleActivityChange(
+                                e,
+                                subjectIndex,
+                                activityType,
+                                activityIndex,
+                                "activityDate"
+                              )
+                            }
+                            disabled={!isEditMode}
+                          />
+                          <input
+                            type="text"
+                            value={activity.activityScore}
+                            onChange={(e) =>
+                              handleActivityChange(
+                                e,
+                                subjectIndex,
+                                activityType,
+                                activityIndex,
+                                "activityScore"
+                              )
+                            }
+                            placeholder="Grade"
+                            disabled={!isEditMode}
+                          />
+                          {isEditMode && (
+                            <button
+                              onClick={() =>
+                                handleDeleteItem(
+                                  subjectIndex,
+                                  activityType,
+                                  activityIndex
+                                )
+                              }
+                            >
+                              Delete
+                            </button>
+                          )}
+                        </li>
+                      ))}
+                    </ul>
+                  </td>
+                ))}
+              </tr>
+            ))}
+            {isEditMode && (
+              <tr>
+                <td>
+                  <button onClick={handleAddSubject}>Add Subject</button>
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
       </div>
     </div>
   );
