@@ -1,8 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { collection, getDocs } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDoc,
+  query,
+  where,
+  getDocs,
+} from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import { getAuth, signOut } from "firebase/auth";
-import { getFirestore } from "firebase/firestore"; // Import necessary Firestore functions
+import { getFirestore } from "firebase/firestore";
 
 const Teacher = ({ setTeacherLoggedIn }) => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -12,32 +19,56 @@ const Teacher = ({ setTeacherLoggedIn }) => {
   const firestore = getFirestore(); // Initialize the Firestore instance
   const navigate = useNavigate();
 
+  const user = auth.currentUser; // Get the current user
+
   // Function to handle the search query input
   const handleSearchInputChange = (e) => {
     setSearchQuery(e.target.value);
   };
-
-  // Function to handle the search button click
   useEffect(() => {
     const fetchData = async () => {
       try {
-        if (searchQuery === "") {
+        if (searchQuery === "" || !user) {
           setSearchResults([]);
           return;
         }
 
-        const studentsRef = collection(firestore, "Students");
-        const querySnapshot = await getDocs(studentsRef);
+        // Get the teacher's email
+        const teacherEmail = user.email;
 
-        const results = [];
-        querySnapshot.forEach((doc) => {
-          const studentData = doc.data();
-          if (
-            studentData.name.toLowerCase().includes(searchQuery.toLowerCase())
-          ) {
-            results.push(studentData);
+        // Query the "Schools" collection
+        const schoolsRef = collection(firestore, "Schools");
+        const schoolsQuery = await getDocs(schoolsRef);
+
+        let results = [];
+
+        for (const schoolDoc of schoolsQuery.docs) {
+          const schoolData = schoolDoc.data();
+
+          // Check if the teacher's email is in the list of teachers for the school
+          const teachersRef = collection(schoolDoc.ref, "Teachers");
+          const teachersQuerySnapshot = await getDocs(teachersRef);
+
+          const schoolTeachers = teachersQuerySnapshot.docs.map(
+            (doc) => doc.data().email
+          );
+
+          if (schoolTeachers.includes(teacherEmail)) {
+            const studentsRef = collection(schoolDoc.ref, "Students");
+            const studentsQuerySnapshot = await getDocs(studentsRef);
+
+            studentsQuerySnapshot.forEach((doc) => {
+              const studentData = doc.data();
+              if (
+                studentData.name
+                  .toLowerCase()
+                  .includes(searchQuery.toLowerCase())
+              ) {
+                results.push(studentData);
+              }
+            });
           }
-        });
+        }
 
         setSearchResults(results);
       } catch (error) {
@@ -46,7 +77,7 @@ const Teacher = ({ setTeacherLoggedIn }) => {
     };
 
     fetchData();
-  }, [searchQuery, firestore]);
+  }, [searchQuery, firestore, auth, user]);
 
   // Function to handle logout
   const handleLogout = () => {
