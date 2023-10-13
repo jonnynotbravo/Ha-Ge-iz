@@ -90,8 +90,8 @@ const Teacher = ({ setTeacherLoggedIn }) => {
       });
   };
 
-  const handleClick = (id) => {
-    navigate(`/teacher/${id}`);
+  const handleClick = (schoolId, id) => {
+    navigate(`/teacher/${schoolId}/${id}`);
   };
 
   return (
@@ -121,7 +121,7 @@ const Teacher = ({ setTeacherLoggedIn }) => {
                 key={index}
                 style={{ cursor: "pointer" }}
                 onClick={() => {
-                  handleClick(student.id);
+                  handleClick(student.school, student.id);
                 }}
               >
                 <li key={index}>{student.name}</li>

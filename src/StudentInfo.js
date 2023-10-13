@@ -13,32 +13,36 @@ import {
 import { getFirestore } from "firebase/firestore";
 
 const StudentInfo = () => {
-  const { id } = useParams();
+  const { schoolId, id } = useParams();
   const [student, setStudent] = useState(null);
   const [editableData, setEditableData] = useState({});
   const [isEditMode, setIsEditMode] = useState(false);
   const [subjectRows, setSubjectRows] = useState([]);
   const [showTooltip, setShowTooltip] = useState(false);
 
+  // console.log(student);
+
   useEffect(() => {
     // Initialize Firestore
     const firestore = getFirestore();
-    const studentsRef = collection(firestore, "Students");
-    const q = query(studentsRef, where("id", "==", id));
+
+    // Create a reference to the specific student within the "Students" collection of the school
+    const studentRef = doc(firestore, "Schools", schoolId, "Students", id);
 
     const fetchData = async () => {
       try {
-        const querySnapshot = await getDocs(q);
-        if (!querySnapshot.empty) {
-          querySnapshot.forEach((doc) => {
-            setStudent(doc.data());
-            setEditableData(doc.data());
-            if (doc.data().subjectRows) {
-              setSubjectRows(doc.data().subjectRows);
-            } else {
-              setSubjectRows([]);
-            }
-          });
+        const studentDoc = await getDoc(studentRef);
+        if (studentDoc.exists()) {
+          const studentData = studentDoc.data();
+
+          // Set the student's data and subjectRows
+          setStudent(studentData);
+          setEditableData(studentData);
+          if (studentData.subjectRows) {
+            setSubjectRows(studentData.subjectRows);
+          } else {
+            setSubjectRows([]);
+          }
         } else {
           console.error("Student not found");
         }
@@ -48,7 +52,7 @@ const StudentInfo = () => {
     };
 
     fetchData();
-  }, [id]);
+  }, [schoolId, id]);
 
   const handleEdit = () => {
     if (student) {
@@ -58,16 +62,46 @@ const StudentInfo = () => {
   };
 
   const handleSave = async () => {
-    const firestore = getFirestore();
-    const studentsRef = collection(firestore, "Students");
-    const studentRef = doc(studentsRef, id);
     try {
-      await setDoc(
-        studentRef,
-        { ...editableData, subjectRows },
-        { merge: true }
-      );
-      setIsEditMode(false);
+      const firestore = getFirestore();
+
+      // First, find the school based on its document ID
+      const schoolRef = doc(firestore, "Schools", schoolId);
+      const schoolDoc = await getDoc(schoolRef);
+
+      if (schoolDoc.exists()) {
+        // Access the "Students" collection within the school document
+        const studentsRef = collection(schoolDoc.ref, "Students");
+
+        // Find the student by their ID
+        const studentQuery = query(studentsRef, where("id", "==", id));
+        const studentQuerySnapshot = await getDocs(studentQuery);
+
+        if (!studentQuerySnapshot.empty) {
+          // Assuming you have only one student with the same ID, you can access the first document
+          const studentDoc = studentQuerySnapshot.docs[0];
+
+          // Reference the student's document for updating
+          const studentRef = doc(studentsRef, studentDoc.id);
+
+          // Update the student's data with the new values
+          await setDoc(
+            studentRef,
+            {
+              ...editableData,
+              subjectRows,
+            },
+            { merge: true }
+          );
+
+          // Exit edit mode
+          setIsEditMode(false);
+        } else {
+          console.error("Student not found");
+        }
+      } else {
+        console.error("School not found");
+      }
     } catch (error) {
       console.error("Error updating student data:", error);
     }

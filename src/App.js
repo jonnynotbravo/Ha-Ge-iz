@@ -76,7 +76,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/schools/:id" element={<School />} />
-        <Route path="/teacher/:id" element={<StudentInfo />} />
+        <Route path="/teacher/:schoolId/:id" element={<StudentInfo />} />
         {studentLoggedIn ? (
           <Route
             path="/student"
