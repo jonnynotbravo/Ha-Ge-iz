@@ -96,10 +96,16 @@ const Teacher = ({ setTeacherLoggedIn }) => {
     navigate(`/teacher/${schoolId}/${id}`);
   };
 
+  const handleMessage = () => {
+    navigate("/teacher/messages");
+  };
+
   return (
     <div className="teacher-container">
       <div className="left-content">
         <h1 className="header">Teacher Portal</h1>
+
+        <button onClick={handleMessage}>message</button>
         <div className="search-container">
           <input
             type="text"

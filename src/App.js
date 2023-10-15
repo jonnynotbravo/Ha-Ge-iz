@@ -19,6 +19,7 @@ import TermsAndConditions from "./TermsAndConditions";
 import PrivacyPolicy from "./PrivacyPolicy";
 import ViewGrade from "./ViewGrade";
 import StudentMessage from "./StudentMessage";
+import TeacherMessage from "./TeacherMessage";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 
 import { getAuth, onAuthStateChanged } from "firebase/auth";
@@ -107,6 +108,7 @@ function App() {
           />
         )}
         <Route path="/teacher/:schoolId/:id" element={<StudentInfo />} />
+        <Route path="/teacher/messages" element={<TeacherMessage />} />
 
         {loggedIn ? (
           <Route path="/admin" element={<Admin setLoggedIn={setLoggedIn} />} />

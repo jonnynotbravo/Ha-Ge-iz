@@ -18,15 +18,18 @@ const StudentMessage = () => {
   console.log(teacherId);
 
   const db = getDatabase();
-  const messagesRef = ref(db, "messages"); // "messages" is the path to your data
+  const messagePath = `${studentId}_${teacherId}`;
+  const messagesRef = ref(db, `messages/${messagePath}`);
+
+  // ...
 
   const handleSendMessage = () => {
     if (newMessage.trim() !== "") {
       push(messagesRef, {
         text: newMessage,
-        sender: studentId, // Replace with the actual sender's ID or username
-        receiver: teacherId, // Replace with the actual receiver's ID or username
-        timestamp: new Date().toISOString(), // Use a timestamp
+        sender: studentId,
+        receiver: teacherId,
+        timestamp: new Date().toISOString(),
       });
       setNewMessage("");
     }
