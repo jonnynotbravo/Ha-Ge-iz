@@ -62,7 +62,7 @@ const Student = ({ setStudentLoggedIn }) => {
         </div>
       </div>
       {/* Add cool features, e.g., a calendar, notifications, etc. */}
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };
