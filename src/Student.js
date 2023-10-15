@@ -22,6 +22,10 @@ const Student = ({ setStudentLoggedIn }) => {
     navigate(`/student/viewgrade`);
   };
 
+  const handlemessages = () => {
+    navigate(`/student/messages`);
+  };
+
   return (
     <div className="student-container">
       <h1 className="header" style={{ color: "black", fontSize: "70px" }}>
@@ -33,12 +37,12 @@ const Student = ({ setStudentLoggedIn }) => {
 
       <div className="big-options">
         <div className="left-options">
-          <Link to="/messages" className="big-option">
+          <div onClick={handlemessages} className="big-option">
             <div className="big-option-content">
               <h2>Messages</h2>
               <p>View and manage your messages</p>
             </div>
-          </Link>
+          </div>
           <div className="big-option" onClick={handleViewGrade}>
             <div className="big-option-content">
               <h2>Grades</h2>

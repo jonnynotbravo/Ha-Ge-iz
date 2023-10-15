@@ -31,12 +31,15 @@ const StudentLogin = ({ setStudentLoggedIn, setStudentId, setSchoolId }) => {
       setError("");
 
       const user = userCredential.user;
-      const { schoolId, studentId } = await findUserSchool(user.email);
+      const { schoolId, teacherId, studentId } = await findUserSchool(
+        user.email
+      );
       localStorage.setItem("schoolId", schoolId);
       localStorage.setItem("studentId", studentId);
+      localStorage.setItem("teacherId", teacherId);
 
-      setStudentId(studentId);
-      setSchoolId(schoolId);
+      // setStudentId(studentId);
+      // setSchoolId(schoolId);
       setStudentLoggedIn(true);
       navigate(`/student/`);
     } catch (error) {
@@ -69,8 +72,11 @@ const StudentLogin = ({ setStudentLoggedIn, setStudentId, setSchoolId }) => {
         const studentData = studentDoc.data();
         const studentSchoolId = studentData.school;
         const studentId = studentDoc.id;
+        const teacherId = studentData.teacher;
+
+        // console.log(studentId);
         // console.log(studentSchoolId, studentId);
-        return { schoolId, studentId };
+        return { schoolId, teacherId, studentId };
       }
     }
 
@@ -123,7 +129,7 @@ const StudentLogin = ({ setStudentLoggedIn, setStudentId, setSchoolId }) => {
           Back to Home
         </Link>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };

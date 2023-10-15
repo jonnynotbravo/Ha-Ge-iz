@@ -18,6 +18,7 @@ import ConfirmationPage from "./ConfirmationPage";
 import TermsAndConditions from "./TermsAndConditions";
 import PrivacyPolicy from "./PrivacyPolicy";
 import ViewGrade from "./ViewGrade";
+import StudentMessage from "./StudentMessage";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 
 import { getAuth, onAuthStateChanged } from "firebase/auth";
@@ -92,6 +93,7 @@ function App() {
           />
         )}
         <Route path="/student/viewgrade" element={<ViewGrade />} />
+        <Route path="/student/messages" element={<StudentMessage />} />
 
         {teacherLoggedIn ? (
           <Route
