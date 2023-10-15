@@ -21,6 +21,8 @@ const Teacher = ({ setTeacherLoggedIn }) => {
 
   const user = auth.currentUser; // Get the current user
 
+  console.log(user.email);
+
   // Function to handle the search query input
   const handleSearchInputChange = (e) => {
     setSearchQuery(e.target.value);

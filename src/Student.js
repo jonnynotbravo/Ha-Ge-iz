@@ -1,11 +1,31 @@
 import React, { useState, useEffect } from "react";
 import { getAuth, signOut } from "firebase/auth";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Footer from "./Footer";
 
 const Student = ({ setStudentLoggedIn }) => {
   const auth = getAuth();
   const navigate = useNavigate();
+
+  const [studentId, setStudentId] = useState(
+    localStorage.getItem("studentId") || ""
+  );
+  const [schoolId, setSchoolId] = useState(
+    localStorage.getItem("schoolId") || ""
+  );
+
+  useEffect(() => {
+    const studentIdFromLocalStorage = localStorage.getItem("studentId");
+    const schoolIdFromLocalStorage = localStorage.getItem("schoolId");
+
+    if (studentIdFromLocalStorage) {
+      setStudentId(studentIdFromLocalStorage);
+    }
+
+    if (schoolIdFromLocalStorage) {
+      setSchoolId(schoolIdFromLocalStorage);
+    }
+  }, []);
 
   const handleLogout = () => {
     signOut(auth)
@@ -18,10 +38,15 @@ const Student = ({ setStudentLoggedIn }) => {
       });
   };
 
+  const handleViewGrade = () => {
+    navigate(`/student/viewgrade`);
+  };
+
   return (
     <div className="student-container">
       <h1 className="header" style={{ color: "#0B63FF", fontSize: "70px" }}>
-        Student Portal
+        Student Portal id: {studentId}
+        school: {schoolId}
       </h1>
       <button onClick={handleLogout} className="logout-button">
         Logout
@@ -35,12 +60,12 @@ const Student = ({ setStudentLoggedIn }) => {
               <p>View and manage your messages</p>
             </div>
           </Link>
-          <Link to="/grades" className="big-option">
+          <div className="big-option" onClick={handleViewGrade}>
             <div className="big-option-content">
               <h2>Grades</h2>
               <p>Check your grades and progress</p>
             </div>
-          </Link>
+          </div>
         </div>
         <div className="right-options">
           <Link to="/report-card" className="big-option">

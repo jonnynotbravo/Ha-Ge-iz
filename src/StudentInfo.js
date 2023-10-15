@@ -20,8 +20,6 @@ const StudentInfo = () => {
   const [subjectRows, setSubjectRows] = useState([]);
   const [showTooltip, setShowTooltip] = useState(false);
 
-  // console.log(student);
-
   useEffect(() => {
     // Initialize Firestore
     const firestore = getFirestore();

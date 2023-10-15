@@ -17,6 +17,7 @@ import StudentInfo from "./StudentInfo";
 import ConfirmationPage from "./ConfirmationPage";
 import TermsAndConditions from "./TermsAndConditions";
 import PrivacyPolicy from "./PrivacyPolicy";
+import ViewGrade from "./ViewGrade";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 
 import { getAuth, onAuthStateChanged } from "firebase/auth";
@@ -68,18 +69,20 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/Terms-and-Conditions" element={<TermsAndConditions />} />
         <Route path="/Privacy-Policy" element={<PrivacyPolicy />} />
-        <Route
-          path="/schools/:id/form/confirmation-page"
-          element={<ConfirmationPage />}
-        />
+
         <Route path="/schools" element={<SchoolsList />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/schools/:id" element={<School />} />
-        <Route path="/teacher/:schoolId/:id" element={<StudentInfo />} />
+        <Route path="/schools/:id/form" element={<Form />} />
+        <Route
+          path="/schools/:id/form/confirmation-page"
+          element={<ConfirmationPage />}
+        />
+
         {studentLoggedIn ? (
           <Route
-            path="/student"
+            path="/student/"
             element={<Student setStudentLoggedIn={setStudentLoggedIn} />}
           />
         ) : (
@@ -88,6 +91,7 @@ function App() {
             element={<StudentLogin setStudentLoggedIn={setStudentLoggedIn} />}
           />
         )}
+        <Route path="/student/viewgrade" element={<ViewGrade />} />
 
         {teacherLoggedIn ? (
           <Route
@@ -100,8 +104,8 @@ function App() {
             element={<TeacherLogin setTeacherLoggedIn={setTeacherLoggedIn} />}
           />
         )}
+        <Route path="/teacher/:schoolId/:id" element={<StudentInfo />} />
 
-        <Route path="/schools/:id/form" element={<Form />} />
         {loggedIn ? (
           <Route path="/admin" element={<Admin setLoggedIn={setLoggedIn} />} />
         ) : (
@@ -111,8 +115,8 @@ function App() {
           />
         )}
 
-        <Route path="/404" element={<GenericNotFound />} />
         <Route path="*" element={<Navigate to="/" />} />
+        <Route path="/404" element={<GenericNotFound />} />
       </Routes>
     </div>
   );
