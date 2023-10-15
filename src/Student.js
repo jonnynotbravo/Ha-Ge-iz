@@ -7,26 +7,6 @@ const Student = ({ setStudentLoggedIn }) => {
   const auth = getAuth();
   const navigate = useNavigate();
 
-  const [studentId, setStudentId] = useState(
-    localStorage.getItem("studentId") || ""
-  );
-  const [schoolId, setSchoolId] = useState(
-    localStorage.getItem("schoolId") || ""
-  );
-
-  useEffect(() => {
-    const studentIdFromLocalStorage = localStorage.getItem("studentId");
-    const schoolIdFromLocalStorage = localStorage.getItem("schoolId");
-
-    if (studentIdFromLocalStorage) {
-      setStudentId(studentIdFromLocalStorage);
-    }
-
-    if (schoolIdFromLocalStorage) {
-      setSchoolId(schoolIdFromLocalStorage);
-    }
-  }, []);
-
   const handleLogout = () => {
     signOut(auth)
       .then(() => {
@@ -44,9 +24,8 @@ const Student = ({ setStudentLoggedIn }) => {
 
   return (
     <div className="student-container">
-      <h1 className="header" style={{ color: "#0B63FF", fontSize: "70px" }}>
-        Student Portal id: {studentId}
-        school: {schoolId}
+      <h1 className="header" style={{ color: "black", fontSize: "70px" }}>
+        Student Portal
       </h1>
       <button onClick={handleLogout} className="logout-button">
         Logout
@@ -83,6 +62,7 @@ const Student = ({ setStudentLoggedIn }) => {
         </div>
       </div>
       {/* Add cool features, e.g., a calendar, notifications, etc. */}
+      <Footer />
     </div>
   );
 };
