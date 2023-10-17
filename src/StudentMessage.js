@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { getDatabase, ref, push, onValue } from "firebase/database";
 
 const StudentMessage = () => {
@@ -8,11 +8,11 @@ const StudentMessage = () => {
   const [teacherId, setTeacherId] = useState(
     localStorage.getItem("teacherId") || ""
   );
-
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
 
   const db = getDatabase();
+  const messageListRef = useRef();
 
   const handleSendMessage = () => {
     if (newMessage.trim() !== "") {
@@ -22,7 +22,7 @@ const StudentMessage = () => {
       push(messagesRef, {
         text: newMessage,
         sender: studentId,
-        receiver: teacherId, // Set the receiver to the teacher
+        receiver: teacherId,
         timestamp: new Date().toISOString(),
       });
       setNewMessage("");
@@ -50,19 +50,29 @@ const StudentMessage = () => {
     }
   }, [teacherId, studentId]);
 
+  // Scroll to the bottom of the message list when new messages arrive
+  useEffect(() => {
+    if (messageListRef.current) {
+      messageListRef.current.scrollTop = messageListRef.current.scrollHeight;
+    }
+  }, [messages]);
+
   return (
-    <div>
-      <div>
+    <div className="student-message-container">
+      <div className="message-list" ref={messageListRef}>
         {messages.map((message, index) => (
-          <div key={index}>
-            <strong>
-              {message.sender} to {message.receiver}:
-            </strong>{" "}
+          <div
+            key={index}
+            className={`message-item ${
+              message.sender === studentId ? "receiver" : ""
+            }`}
+          >
+            <strong className="message-sender"></strong>
             {message.text}
           </div>
         ))}
       </div>
-      <div>
+      <div className="message-input">
         <input
           type="text"
           value={newMessage}

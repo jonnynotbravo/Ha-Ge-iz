@@ -2051,11 +2051,11 @@ footer {
 }
 
 #goback :hover {
-	background-color: #0056b3; /* Slightly darker blue on hover */
+	background-color: #0056b3; 
 }
 #goback {
-	background-color: #007bff; /* Blue color for the button */
-	color: #fff; /* White text color */
+	background-color: #007bff; 
+	color: #fff; 
 	border: none;
 	border-radius: 5px;
 	padding: 10px 20px;
@@ -2063,3 +2063,87 @@ footer {
 	cursor: pointer;
 	transition: background-color 0.3s ease;
   }
+
+
+/* student-message-container */
+
+.student-message-container {
+	max-width: 600px; 
+	margin: 0 auto;
+	margin-top: 10px;
+	border: 1px solid #ccc;
+	border-radius: 50px;
+	padding: 30px;
+	background-color: #f8f8f8;; 
+	box-shadow: 0 0 10px rgba(6, 120, 197, 0.64);
+	
+	
+  }
+  
+
+  
+  .message-list {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	background-color: #f8f8f8;
+	padding: 20px; 
+	height: 650px; 
+	overflow-y: auto; 
+  }
+  
+  
+  .message-item {
+	max-width: 50%;
+	padding: 10px;
+	border-radius: 10px;
+	word-wrap: break-word;
+	background-color: #e8e6e6; 
+	color: #000000;
+	margin: 10px 0;
+
+  }
+  
+  
+  .message-sender {
+	font-weight: bold;
+	
+  }
+  
+  
+  .message-item.receiver {
+	background-color: #803EE4; 
+	align-self: flex-end; 
+	color: #eeecec;
+  }
+  
+  
+  .message-input {
+	display: flex;
+	gap: 10px;
+	margin-top: 10px;
+  }
+  
+  
+  .message-input input {
+	flex: 1;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+  }
+  
+  
+  .message-input button {
+	padding: 10px 20px;
+	background-color: #007BFF; 
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+  }
+  
+  
+  .message-input button:hover {
+	background-color: #0056b3; 
+  }
+  
