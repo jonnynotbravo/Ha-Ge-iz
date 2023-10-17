@@ -2,43 +2,29 @@ import React, { useState, useEffect } from "react";
 import { getDatabase, ref, push, onValue } from "firebase/database";
 
 const TeacherMessage = () => {
-  const [studentId, setStudentId] = useState(
-    localStorage.getItem("studentId") || ""
-  );
   const [teacherId, setTeacherId] = useState(
     localStorage.getItem("teacherId") || ""
   );
+  const [students, setStudents] = useState(
+    JSON.parse(localStorage.getItem("students") || [])
+  );
+
+  const [selectedStudent, setSelectedStudent] = useState(""); // Track the selected student
+
   const [teacherMessages, setTeacherMessages] = useState([]);
   const [newTeacherMessage, setNewTeacherMessage] = useState("");
 
-  function sanitizeEmail(email) {
-    // Replace dots with underscores and remove other problematic characters
-    return email.replace(/[.#$[\]\/]/g, "").replace(/\./g, "_");
-  }
-  // Sanitize email addresses to create valid paths
-  // Sanitize email addresses to create valid paths
-  const sanitizedStudentId = sanitizeEmail(studentId); // Replace with the actual email or identifier
-  const sanitizedTeacherId = sanitizeEmail(teacherId); // Replace with the actual email or identifier
+  const db = getDatabase();
 
-  const messagePath = createUniqueMessagePath(
-    sanitizedStudentId,
-    sanitizedTeacherId
-  ); // Create a unique path
-  const db = getDatabase(); // Create a unique path
-  const messagesRef = ref(db, `messages/${messagePath}`);
-
-  const createUniqueMessagePath = (studentId, teacherId) => {
-    // You can create a unique path using the student and teacher IDs
-    return `${studentId}_${teacherId}`;
-  };
-
-  // ...
   const handleSendTeacherMessage = () => {
     if (newTeacherMessage.trim() !== "") {
+      // Define the path based on the teacher and selected student
+      const messagesRef = ref(db, `messages/${teacherId}/${selectedStudent}`);
+
       push(messagesRef, {
         text: newTeacherMessage,
         sender: teacherId,
-        receiver: studentId,
+        receiver: selectedStudent, // Set the receiver to the selected student
         timestamp: new Date().toISOString(),
       });
       setNewTeacherMessage("");
@@ -46,28 +32,48 @@ const TeacherMessage = () => {
   };
 
   useEffect(() => {
-    const teacherMessageListener = onValue(messagesRef, (snapshot) => {
-      const data = snapshot.val();
-      if (data) {
-        const teacherMessageList = Object.values(data);
-        setTeacherMessages(teacherMessageList);
-      } else {
-        setTeacherMessages([]);
-      }
-    });
+    if (selectedStudent) {
+      // Define the path based on the teacher and selected student
+      const messagesRef = ref(db, `messages/${teacherId}/${selectedStudent}`);
+      const teacherMessageListener = onValue(messagesRef, (snapshot) => {
+        const data = snapshot.val();
+        if (data) {
+          const teacherMessageList = Object.values(data);
+          setTeacherMessages(teacherMessageList);
+        } else {
+          setTeacherMessages([]);
+        }
+      });
 
-    return () => {
-      // Clean up the listener to avoid memory leaks
-      teacherMessageListener();
-    };
-  }, []);
+      return () => {
+        // Clean up the listener to avoid memory leaks
+        teacherMessageListener();
+      };
+    }
+  }, [selectedStudent]);
 
   return (
     <div>
       <div>
+        <select
+          value={selectedStudent}
+          onChange={(e) => setSelectedStudent(e.target.value)}
+        >
+          <option value="">Select a student</option>
+          {students.map((student, index) => (
+            <option key={index} value={student.id}>
+              {student.name}
+            </option>
+          ))}
+        </select>
+      </div>
+      <div>
         {teacherMessages.map((message, index) => (
           <div key={index}>
-            <strong>{message.sender}:</strong> {message.text}
+            <strong>
+              {message.sender} to {message.receiver}:
+            </strong>{" "}
+            {message.text}
           </div>
         ))}
       </div>

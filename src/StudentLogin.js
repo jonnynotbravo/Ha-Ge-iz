@@ -31,12 +31,15 @@ const StudentLogin = ({ setStudentLoggedIn, setStudentId, setSchoolId }) => {
       setError("");
 
       const user = userCredential.user;
-      const { schoolId, teacherId, studentId } = await findUserSchool(
+      const { schoolId, teacherId, studentId, students } = await findUserSchool(
         user.email
       );
       localStorage.setItem("schoolId", schoolId);
       localStorage.setItem("studentId", studentId);
       localStorage.setItem("teacherId", teacherId);
+      localStorage.setItem("students", JSON.stringify(students));
+
+      console.log(teacherId);
 
       // setStudentId(studentId);
       // setSchoolId(schoolId);
@@ -53,6 +56,8 @@ const StudentLogin = ({ setStudentLoggedIn, setStudentId, setSchoolId }) => {
   // Function to find the user's school based on their email
   const findUserSchool = async (userEmail) => {
     const firestore = getFirestore();
+    const students = []; // Initialize an array to store students
+    console.log(students);
 
     // Query for the "Schools" collection
     const schoolsRef = collection(firestore, "Schools");
@@ -66,21 +71,31 @@ const StudentLogin = ({ setStudentLoggedIn, setStudentId, setSchoolId }) => {
       const studentQuery = query(studentsRef, where("email", "==", userEmail));
       const studentQuerySnapshot = await getDocs(studentQuery);
 
+      const allStudentsQuerySnapshot = await await getDocs(studentsRef);
+
+      allStudentsQuerySnapshot.forEach((studentDoc) => {
+        const studentData = studentDoc.data();
+        students.push(studentData); // Push the student data to the array
+      });
+
       if (!studentQuerySnapshot.empty) {
-        // Student found in this school, return the school ID and student ID
+        // Student found in this school, add the student to the array
         const studentDoc = studentQuerySnapshot.docs[0];
         const studentData = studentDoc.data();
         const studentSchoolId = studentData.school;
         const studentId = studentDoc.id;
         const teacherId = studentData.teacher;
 
-        // console.log(studentId);
-        // console.log(studentSchoolId, studentId);
-        return { schoolId, teacherId, studentId };
+        return { schoolId, teacherId, studentId, students }; // Push the student data to the array
       }
     }
 
-    throw new Error("Student not found in any school.");
+    if (students.length > 0) {
+      // Student(s) found, return the array of students
+      return { students };
+    } else {
+      throw new Error("Student not found in any school.");
+    }
   };
 
   return (

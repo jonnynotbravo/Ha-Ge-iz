@@ -20,6 +20,8 @@ const ViewGrade = () => {
     localStorage.getItem("schoolId") || ""
   );
 
+  console.log(studentId, schoolId);
+
   const [grades, setGrades] = useState([]);
 
   useEffect(() => {
