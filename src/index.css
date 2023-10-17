@@ -2146,4 +2146,86 @@ footer {
   .message-input button:hover {
 	background-color: #0056b3; 
   }
-  
+
+/* Container for the TeacherMessage component */
+.teacher-message-container {
+	max-width: 700px; 
+	margin: 0 auto;
+	margin-top: 10px;
+	border: 1px solid #ccc;
+	border-radius: 50px;
+	padding: 30px;
+	background-color: #f8f8f8;; 
+	box-shadow: 0 0 10px rgba(6, 120, 197, 0.64);
+  }
+
+  .teacher-message-container select {
+	width: 100%;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+  }
+
+  .teacher-message-container .message-list {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	background-color: #f8f8f8;
+	padding: 20px; 
+	height: 570px; 
+	overflow-y: auto; 
+  }
+
+  .teacher-message-container .message-item {
+	max-width: 50%;
+	padding: 10px;
+	border-radius: 10px;
+	word-wrap: break-word;
+	background-color: #e8e6e6; 
+	color: #000000;
+	margin: 10px 0;
+
+	
+  }
+
+  .teacher-message-container .message-item.sent {
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 30px;
+	margin-bottom: 10px;
+	background-color: #803EE4; 
+	color: #eeecec;
+	align-self: flex-end; 
+  }
+
+  .teacher-message-container .message-item.received {
+	background-color: #803EE4; 
+	background-color: #dfe2e6;
+	color: #000000;
+
+  }
+
+  .teacher-message-container .message-input {
+	display: flex;
+	align-items: center;
+	margin-top: 20px;
+  }
+
+  .teacher-message-container .message-input input {
+	flex: 1;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+  }
+  .teacher-message-container .message-input button {
+	padding: 10px 20px;
+	background-color: #007BFF;
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+  }
+
+  .teacher-message-container .message-input button:hover {
+	background-color: #0056b3;
+  }
