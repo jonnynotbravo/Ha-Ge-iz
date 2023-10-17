@@ -23,6 +23,7 @@ import TeacherMessage from "./TeacherMessage";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import TeacherGrade from "./TeacherGrade";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -107,7 +108,11 @@ function App() {
             element={<TeacherLogin setTeacherLoggedIn={setTeacherLoggedIn} />}
           />
         )}
-        <Route path="/teacher/:schoolId/:id" element={<StudentInfo />} />
+        <Route path="/teacher/input-grade" element={<TeacherGrade />} />
+        <Route
+          path="/teacher/input-grade/:schoolId/:id"
+          element={<StudentInfo />}
+        />
         <Route path="/teacher/messages" element={<TeacherMessage />} />
 
         {loggedIn ? (
