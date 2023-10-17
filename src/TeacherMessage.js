@@ -57,18 +57,19 @@ const TeacherMessage = () => {
 
   return (
     <div className="teacher-message-container">
-      <div>
-        <select
-          value={selectedStudent}
-          onChange={(e) => setSelectedStudent(e.target.value)}
-        >
-          <option value="">Select a student</option>
+      <div className="student-list">
+        <h2>Students</h2>
+        <ul>
           {students.map((student, index) => (
-            <option key={index} value={student.id}>
+            <li
+              key={index}
+              onClick={() => setSelectedStudent(student.id)}
+              className={student.id === selectedStudent ? "selected" : ""}
+            >
               {student.name}
-            </option>
+            </li>
           ))}
-        </select>
+        </ul>
       </div>
       <div className="message-list" ref={messageListRef}>
         {teacherMessages.map((message, index) => (

@@ -2082,7 +2082,8 @@ footer {
   
 
   
-  .message-list {
+ 
+.student-message-container .message-list {
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
@@ -2090,42 +2091,50 @@ footer {
 	padding: 20px; 
 	height: 650px; 
 	overflow-y: auto; 
+	
   }
   
   
-  .message-item {
-	max-width: 50%;
+  
+.student-message-container .message-item {
 	padding: 10px;
 	border-radius: 10px;
 	word-wrap: break-word;
 	background-color: #e8e6e6; 
 	color: #000000;
 	margin: 10px 0;
-
+	max-width: 30%;
   }
   
   
-  .message-sender {
+  
+.student-message-container .message-sender {
 	font-weight: bold;
+	max-width: 30%;
 	
   }
   
   
-  .message-item.receiver {
+  
+.student-message-container .message-item.receiver {
 	background-color: #803EE4; 
 	align-self: flex-end; 
 	color: #eeecec;
+	max-width: 50%;
   }
+
   
   
-  .message-input {
+  
+.student-message-container .message-input {
 	display: flex;
 	gap: 10px;
 	margin-top: 10px;
   }
   
   
-  .message-input input {
+
+  .student-message-container .message-input input {
 	flex: 1;
 	padding: 10px;
 	border: 1px solid #ccc;
@@ -2133,7 +2142,8 @@ footer {
   }
   
   
-  .message-input button {
+  
+.student-message-container .message-input button {
 	padding: 10px 20px;
 	background-color: #007BFF; 
 	color: #fff;
@@ -2143,80 +2153,131 @@ footer {
   }
   
   
-  .message-input button:hover {
+  
+.student-message-container .message-input button:hover {
 	background-color: #0056b3; 
   }
 
-/* Container for the TeacherMessage component */
+/* Styles for the Teacher Message Container */
+/* Styles for the Teacher Message Container */
 .teacher-message-container {
-	max-width: 700px; 
+	max-width: 1000px;
 	margin: 0 auto;
 	margin-top: 10px;
+	background-color: #f5f5f5;
+	display: flex;
 	border: 1px solid #ccc;
 	border-radius: 50px;
-	padding: 30px;
-	background-color: #f8f8f8;; 
-	box-shadow: 0 0 10px rgba(6, 120, 197, 0.64);
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+	position: relative; /* Add relative positioning to the container */
   }
-
-  .teacher-message-container select {
-	width: 100%;
-	padding: 10px;
-	border: 1px solid #ccc;
-	border-radius: 5px;
-  }
-
-  .teacher-message-container .message-list {
+  
+  /* Styles for the Student List */
+  .student-list {
+	width: 150px; /* Set a fixed width for the student list */
+	padding: 20px;
+	background-color: #007BFF;
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
+	color: #fff;
+	text-align: center;
 	display: flex;
 	flex-direction: column;
-	gap: 10px;
-	background-color: #f8f8f8;
-	padding: 20px; 
-	height: 570px; 
-	overflow-y: auto; 
+	/* align-items: flex-start; Adjusted to align items to the left */
   }
-
-  .teacher-message-container .message-item {
-	max-width: 50%;
+  
+  .student-list h2 {
+	font-size: 20px;
+	margin-bottom: 10px;
+	text-align: center;
+	color: #fff
+  }
+  
+  .student-list ul {
+	list-style: none;
+	padding: 0;
+  }
+  
+  .student-list li {
 	padding: 10px;
+	font-size: 18px;
+	cursor: pointer;
+	transition: background-color 0.2s;
+	background-color: #000000;
+  }
+  
+  .student-list li:hover {
+	background-color: #0056b3;
+  }
+  
+  .student-list .selected {
+	font-weight: bold;
+	background-color: #0056b3;
+  }
+  
+  /* Styles for the Message List */
+  .teacher-message-container .message-list {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	padding: 50px;
+	background-color: #fff;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	border: 1px solid #ccc;
+	overflow-y: auto;
+	height: 700px;
+  }
+  
+  .teacher-message-container .message-list .message-item {
+	padding: 10px;
+	background-color: #e8e6e6;
 	border-radius: 10px;
 	word-wrap: break-word;
-	background-color: #e8e6e6; 
-	color: #000000;
 	margin: 10px 0;
-
+	font-size: 16px;
 	
   }
 
-  .teacher-message-container .message-item.sent {
-	padding: 10px;
-	border: 1px solid #ccc;
+  
+  .teacher-message-container .message-list .message-item.sent {
+	align-self: flex-end;
+	background-color: #007BFF;
+	color: #fff;
 	border-radius: 30px;
-	margin-bottom: 10px;
-	background-color: #803EE4; 
-	color: #eeecec;
-	align-self: flex-end; 
+	max-width: 30%;
+	
   }
-
-  .teacher-message-container .message-item.received {
-	background-color: #803EE4; 
+  
+  .teacher-message-container .message-list .message-item.received {
 	background-color: #dfe2e6;
-	color: #000000;
-
+	max-width: 30%;
+	border-radius: 30px;
   }
-
+  
+  /* Styles for Input and Send Button */
   .teacher-message-container .message-input {
 	display: flex;
 	align-items: center;
-	margin-top: 20px;
+	padding: 10px;
+	background-color: #fff;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	position: absolute; /* Position at the bottom */
+	bottom: 0; /* Stick to the bottom */
+	left: 0;
+	width: 100%;
   }
-
+  
   .teacher-message-container .message-input input {
 	flex: 1;
 	padding: 10px;
 	border: 1px solid #ccc;
 	border-radius: 5px;
+	/* margin-right: 10px; */
   }
+  
   .teacher-message-container .message-input button {
 	padding: 10px 20px;
 	background-color: #007BFF;
@@ -2224,8 +2285,6 @@ footer {
 	border: none;
 	border-radius: 5px;
 	cursor: pointer;
+	margin-right: 5px;
   }
-
-  .teacher-message-container .message-input button:hover {
-	background-color: #0056b3;
-  }
+  
