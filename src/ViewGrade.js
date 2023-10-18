@@ -87,7 +87,7 @@ const ViewGrade = () => {
               ))}
             </tbody>
             <tbody>
-              {subject.assignments.map((assignment, i) => (
+              {subject.worksheets.map((assignment, i) => (
                 <tr key={i}>
                   <td>Assignment</td>
                   <td>{assignment.activityName}</td>

@@ -320,8 +320,7 @@ const StudentInfo = () => {
               <th>Worksheets</th>
               <th>Quizzes</th>
               <th>Tests</th>
-              <th>Action</th>{" "}
-              {/* Add a new column for subject delete buttons */}
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>

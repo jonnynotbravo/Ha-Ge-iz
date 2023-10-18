@@ -94,7 +94,7 @@ const TeacherGrade = ({ setTeacherLoggedIn }) => {
   };
 
   return (
-    <div className="teacher-container">
+    <div className="teacher-grade">
       <div className="left-content">
         <h1 className="header">Teacher Portal</h1>
 

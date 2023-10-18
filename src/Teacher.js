@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { getAuth, signOut } from "firebase/auth";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Footer from "./Footer";
 
 const Teacher = ({ setTeacherLoggedIn }) => {
@@ -36,9 +36,7 @@ const Teacher = ({ setTeacherLoggedIn }) => {
 
   return (
     <div className="teacher-container">
-      <h1 className="header" style={{ color: "black", fontSize: "70px" }}>
-        Teacher Portal
-      </h1>
+      <h1 className="teacher-header">Teacher Portal</h1>
       <button onClick={handleLogout} className="logout-button">
         Logout
       </button>
@@ -57,18 +55,18 @@ const Teacher = ({ setTeacherLoggedIn }) => {
               <p>Submit student grades</p>
             </div>
           </div>
-          <div className="big-option" onClick={handleAttendance}>
-            <div className="big-option-content">
-              <h2>Manage Attendance</h2>
-              <p>Record and manage student attendance</p>
-            </div>
-          </div>
         </div>
         <div className="right-options">
           <div className="big-option" onClick={handleInputReportCard}>
             <div className="big-option-content">
               <h2>Input Report Card</h2>
               <p>Submit report card information</p>
+            </div>
+          </div>
+          <div className="big-option" onClick={handleAttendance}>
+            <div className="big-option-content">
+              <h2>Manage Attendance</h2>
+              <p>Record and manage student attendance</p>
             </div>
           </div>
         </div>
