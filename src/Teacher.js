@@ -26,13 +26,15 @@ const Teacher = ({ setTeacherLoggedIn }) => {
     navigate(`/teacher/messages`);
   };
 
-  const handleAttendance = () => {
-    navigate(`/teacher/attendance`);
-  };
+
 
   const handleInputReportCard = () => {
     navigate(`/teacher/inputreportcard`);
   };
+
+  const handleInputAttendance = () => {
+    navigate('/teacher/input-attendance/')
+  }
 
   return (
     <div className="teacher-container">
@@ -63,7 +65,7 @@ const Teacher = ({ setTeacherLoggedIn }) => {
               <p>Submit report card information</p>
             </div>
           </div>
-          <div className="big-option" onClick={handleAttendance}>
+          <div className="big-option" onClick={handleInputAttendance}>
             <div className="big-option-content">
               <h2>Manage Attendance</h2>
               <p>Record and manage student attendance</p>
