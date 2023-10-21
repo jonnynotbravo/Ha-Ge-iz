@@ -24,6 +24,7 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import TeacherGrade from "./TeacherGrade";
+import AttendanceSearch from "./AttendanceSearch";
 import InputAttendance from "./InputAttendance";
 
 function App() {
@@ -117,6 +118,10 @@ function App() {
         <Route path="/teacher/messages" element={<TeacherMessage />} />
         <Route
           path="/teacher/input-attendance/"
+          element={<AttendanceSearch />}
+        />
+        <Route
+          path="/teacher/input-attendance/:schoolId/:id"
           element={<InputAttendance />}
         />
 

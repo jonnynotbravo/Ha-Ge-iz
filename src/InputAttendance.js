@@ -1,107 +1,268 @@
 import React, { useState, useEffect } from "react";
-import { collection, getDocs } from "firebase/firestore";
-import { useNavigate } from "react-router-dom";
-import { getAuth } from "firebase/auth";
+import { useParams } from "react-router-dom";
+import Modal from "./Modal";
+import {
+  collection,
+  addDoc,
+  query,
+  where,
+  getDocs,
+  doc,
+  deleteDoc,
+} from "firebase/firestore";
 import { getFirestore } from "firebase/firestore";
 
-const InputAttendance = ({ setTeacherLoggedIn }) => {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
+const InputAttendance = () => {
+  const { id, schoolId } = useParams();
 
-  const auth = getAuth(); // Initialize the Auth instance
-  const firestore = getFirestore(); // Initialize the Firestore instance
-  const navigate = useNavigate();
+  const today = new Date();
+  today.setMinutes(today.getMinutes() - today.getTimezoneOffset()); // Adjust for time zone
+  const initialDate = today.toISOString().split("T")[0];
 
-  const user = auth.currentUser; // Get the current user
+  const [currentDateTime, setCurrentDateTime] = useState(new Date());
+  const [attendanceStatus, setAttendanceStatus] = useState("present");
+  const [attendanceDate, setAttendanceDate] = useState(initialDate);
+  const [attendancePeriod, setAttendancePeriod] = useState("1st Period");
+  const [attendanceRecords, setAttendanceRecords] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Function to handle the search query input
-  const handleSearchInputChange = (e) => {
-    setSearchQuery(e.target.value);
+  // Define a fixed set of 7 periods
+  const periods = [
+    "1st Period",
+    "2nd Period",
+    "3rd Period",
+    "4th Period",
+    "5th Period",
+    "6th Period",
+    "7th Period",
+  ];
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCurrentDateTime(new Date());
+    }, 1000); // Update the date and time every second
+
+    return () => {
+      clearInterval(intervalId); // Cleanup on component unmount
+    };
+  }, []);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+  // Function to handle attendance status change
+  const handleAttendanceStatusChange = (e) => {
+    setAttendanceStatus(e.target.value);
+  };
+
+  // Function to handle date change
+  const handleDateChange = (e) => {
+    setAttendanceDate(e.target.value);
+  };
+
+  // Function to handle period change
+  const handlePeriodChange = (e) => {
+    setAttendancePeriod(e.target.value);
+  };
+
+  // Function to add a new attendance record
+  const addAttendanceRecord = async () => {
+    try {
+      const firestore = getFirestore();
+      const studentRef = doc(firestore, "Schools", schoolId, "Students", id);
+      const attendanceRef = collection(studentRef, "Attendance");
+
+      const newAttendance = {
+        date: attendanceDate,
+        period: attendancePeriod,
+        status: attendanceStatus,
+      };
+
+      // Check if a record with the same date and period already exists
+      const existingRecordQuery = query(
+        attendanceRef,
+        where("date", "==", attendanceDate),
+        where("period", "==", attendancePeriod)
+      );
+      const existingRecordSnapshot = await getDocs(existingRecordQuery);
+
+      if (existingRecordSnapshot.empty) {
+        // If no existing record found, add the new attendance record
+        await addDoc(attendanceRef, newAttendance);
+
+        // Clear the form after submission
+        setAttendanceStatus("present");
+        setAttendanceDate(new Date().toISOString().split("T")[0]);
+        setAttendancePeriod("1st Period");
+
+        // Refresh attendance records
+        fetchAttendanceRecords();
+      } else {
+        // Handle the case when a duplicate record is detected
+        console.log(
+          "Attendance record for this date and period already exists."
+        );
+      }
+    } catch (error) {
+      console.error("Error adding attendance:", error);
+    }
+  };
+
+  // Function to fetch and display existing attendance records
+  const fetchAttendanceRecords = async () => {
+    try {
+      const firestore = getFirestore();
+      const studentRef = doc(firestore, "Schools", schoolId, "Students", id);
+      const attendanceRef = collection(studentRef, "Attendance");
+
+      const querySnapshot = await getDocs(attendanceRef);
+      const records = [];
+
+      querySnapshot.forEach((doc) => {
+        records.push(doc.data());
+      });
+
+      setAttendanceRecords(records);
+    } catch (error) {
+      console.error("Error fetching attendance records:", error);
+    }
   };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        if (searchQuery === "" || !user) {
-          setSearchResults([]);
-          return;
-        }
+    fetchAttendanceRecords();
+  }, [id, schoolId]);
 
-        // Get the teacher's email
-        const teacherEmail = user.email;
+  const deleteAttendanceRecord = async (record) => {
+    try {
+      const firestore = getFirestore();
+      const studentRef = doc(firestore, "Schools", schoolId, "Students", id);
+      const attendanceRef = collection(studentRef, "Attendance");
 
-        // Query the "Schools" collection (similar to your TeacherGrade component)
-        const schoolsRef = collection(firestore, "Schools");
-        const schoolsQuery = await getDocs(schoolsRef);
+      const querySnapshot = await getDocs(
+        query(
+          attendanceRef,
+          where("date", "==", record.date),
+          where("period", "==", record.period)
+        )
+      );
 
-        let results = [];
+      querySnapshot.forEach(async (doc) => {
+        await deleteDoc(doc.ref);
+      });
 
-        for (const schoolDoc of schoolsQuery.docs) {
-          const schoolData = schoolDoc.data();
+      fetchAttendanceRecords();
+    } catch (error) {
+      console.error("Error deleting attendance:", error);
+    }
+  };
 
-          // Check if the teacher's email is in the list of teachers for the school (similar to your TeacherGrade component)
-          const teachersRef = collection(schoolDoc.ref, "Teachers");
-          const teachersQuerySnapshot = await getDocs(teachersRef);
+  //   const formatDateToMonthName = (date) => {
+  //     const options = { year: "numeric", month: "long", day: "numeric" };
+  //     return new Date(date).toLocaleDateString(undefined, options);
+  //   };
 
-          const schoolTeachers = teachersQuerySnapshot.docs.map(
-            (doc) => doc.data().email
-          );
-
-          if (schoolTeachers.includes(teacherEmail)) {
-            const studentsRef = collection(schoolDoc.ref, "Students");
-            const studentsQuerySnapshot = await getDocs(studentsRef);
-
-            studentsQuerySnapshot.forEach((doc) => {
-              const studentData = doc.data();
-              if (
-                studentData.name
-                  .toLowerCase()
-                  .includes(searchQuery.toLowerCase())
-              ) {
-                results.push(studentData);
-              }
-            });
-          }
-        }
-
-        setSearchResults(results);
-      } catch (error) {
-        console.error("Error searching for students:", error);
-      }
+  const formatDateToDayName = (date) => {
+    const options = {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: true, // Use 12-hour time format
     };
+    return new Date(date).toLocaleDateString(undefined, options);
+  };
 
-    fetchData();
-  }, [searchQuery, firestore, auth, user]);
+  const uniqueDates = [
+    ...new Set(attendanceRecords.map((record) => record.date)),
+  ].sort();
 
-  // Add the rendering logic for search results
   return (
     <div className="input-attendance">
-      <div className="search-container">
-        <input
-          type="text"
-          placeholder="Search for a student name"
-          value={searchQuery}
-          onChange={handleSearchInputChange}
-          className="search-input"
-        />
+      <h2 className="input-attendance-header">Input Attendance for Student</h2>
+      <div className="current-date-time">
+        Current Date and Time: {formatDateToDayName(currentDateTime)}
       </div>
-      <div className="search-results">
-        <h2 id="searchh2">Search Results</h2>
-        {searchResults.map((student, index) => {
-          return (
-            <ul
-              key={index}
-              style={{ cursor: "pointer" }}
-              onClick={() => {
-                // Handle click action for search results (e.g., navigate to student details)
-                // You can define your own behavior here.
-              }}
-            >
-              <li key={index}>{student.name}</li>
-            </ul>
-          );
-        })}
-      </div>
+      <button className="input-attendance-add-button" onClick={openModal}>
+        Add Attendance Record
+      </button>
+
+      <Modal isOpen={isModalOpen} onRequestClose={closeModal}>
+        <h3 className="modal-title">Add Attendance Record</h3>
+        <form className="modal-form">
+          <label>Date:</label>
+          <input
+            type="date"
+            value={attendanceDate}
+            onChange={(e) => setAttendanceDate(e.target.value)}
+          />
+          <label>Period:</label>
+          <select value={attendancePeriod} onChange={handlePeriodChange}>
+            {periods.map((period, index) => (
+              <option key={index} value={period}>
+                {period}
+              </option>
+            ))}
+          </select>
+          <label>Status:</label>
+          <select
+            value={attendanceStatus}
+            onChange={handleAttendanceStatusChange}
+          >
+            <option value="present">Present</option>
+            <option value="absent">Absent</option>
+            <option value="late">Late</option>
+          </select>
+          <button type="button" onClick={addAttendanceRecord}>
+            Add Record
+          </button>
+        </form>
+      </Modal>
+
+      <h3 className="input-attendance-record-header">Attendance Records</h3>
+      {uniqueDates.map((date) => (
+        <div key={date}>
+          <h4>{date}</h4>
+          <table className="input-attendance-table">
+            <thead>
+              <tr>
+                <th>Period</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {periods.map((period) => {
+                const recordsForDateAndPeriod = attendanceRecords.filter(
+                  (record) => record.date === date && record.period === period
+                );
+
+                return recordsForDateAndPeriod.length > 0
+                  ? recordsForDateAndPeriod.map((record, index) => (
+                      <tr key={index}>
+                        <td>{record.period}</td>
+                        <td>{record.status}</td>
+                        <td>
+                          <button
+                            onClick={() => deleteAttendanceRecord(record)}
+                          >
+                            Delete
+                          </button>
+                        </td>
+                      </tr>
+                    ))
+                  : null;
+              })}
+            </tbody>
+          </table>
+        </div>
+      ))}
     </div>
   );
 };

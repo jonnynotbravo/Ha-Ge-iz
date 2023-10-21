@@ -2338,3 +2338,161 @@ footer {
   }
   
 
+
+/* InputAttendan/* InputAttend/* InputAttendance.css */
+
+.input-attendance {
+	margin: 20px;
+	padding: 20px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	background-color: #f9f9f9;
+  }
+  
+  .input-attendance-header {
+	font-size: 24px;
+	margin-bottom: 20px;
+  }
+  
+  .input-attendance-add-button {
+	background-color: #007BFF;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	padding: 10px 20px;
+	cursor: pointer;
+	font-size: 16px;
+  }
+  
+  .input-attendance-add-button:hover {
+	background-color: #0056b3;
+  }
+  
+  .modal-title {
+	font-size: 20px;
+	margin-bottom: 20px;
+  }
+  
+  .modal-form label {
+	display: block;
+	margin-bottom: 10px;
+  }
+  
+  .modal-form input, .modal-form select {
+	width: 99%;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	margin-bottom: 15px;
+	font-size: 16px;
+  }
+  
+  .modal-form button {
+	background-color: #007BFF;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	padding: 10px 20px;
+	cursor: pointer;
+	font-size: 16px;
+  }
+  
+  .modal-form button:hover {
+	background-color: #0056b3;
+  }
+  
+  .input-attendance-record-header {
+	font-size: 20px;
+	margin-top: 20px;
+	margin-bottom: 10px;
+  }
+  
+  table.input-attendance-table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-bottom: 20px;
+  }
+  
+  table.input-attendance-table th, table.input-attendance-table td {
+	border: 1px solid #ccc;
+	padding: 10px;
+	text-align: center;
+  }
+  
+  table.input-attendance-table th {
+	background-color: #007BFF;
+	color: white;
+  }
+  
+  table.input-attendance-table tr:nth-child(even) {
+	background-color: #f2f2f2;
+  }
+  
+  table.input-attendance-table tr:nth-child(odd) {
+	background-color: #fff;
+  }
+  
+  table.input-attendance-table button {
+	background-color: #dc3545;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	padding: 5px 10px;
+	cursor: pointer;
+  }
+  
+  table.input-attendance-table button:hover {
+	background-color: #a02b3e;
+  }
+  
+  /* Modal.css */
+  
+  .modal-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.6);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 1000;
+  }
+  
+  .modal-content {
+	background-color: white;
+	padding: 20px;
+	border-radius: 5px;
+	width: 80%;
+	max-width: 500px;
+	position: relative;
+	text-align: left;
+  }
+  
+  .modal-close-button {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	background: red;
+	padding: 10px;
+	border: none;
+	font-size: 16px;
+	cursor: pointer;
+	color: #ffffff;
+  }
+  
+  .current-date-time {
+	font-size: 20px; 
+	font-weight: 600; 
+	color: #333; 
+	margin: 20px 0; 
+	padding: 10px; 
+	border: 1px solid #ccc; 
+	background-color: #f7f7f7; 
+	border-radius: 4px; 
+	text-align: center; 
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
+
+  }
+  
