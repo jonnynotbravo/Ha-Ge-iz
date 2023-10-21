@@ -9,6 +9,7 @@ import {
   getDocs,
   doc,
   deleteDoc,
+  setDoc,
 } from "firebase/firestore";
 import { getFirestore } from "firebase/firestore";
 
@@ -70,47 +71,51 @@ const InputAttendance = () => {
   };
 
   // Function to add a new attendance record
-  const addAttendanceRecord = async () => {
-    try {
-      const firestore = getFirestore();
-      const studentRef = doc(firestore, "Schools", schoolId, "Students", id);
-      const attendanceRef = collection(studentRef, "Attendance");
+ // Function to add a new attendance record
+const addAttendanceRecord = async () => {
+  try {
+    const firestore = getFirestore();
+    const studentRef = doc(firestore, "Schools", schoolId, "Students", id);
+    const attendanceRef = collection(studentRef, "Attendance");
 
-      const newAttendance = {
-        date: attendanceDate,
-        period: attendancePeriod,
-        status: attendanceStatus,
-      };
+    const newAttendance = {
+      date: attendanceDate,
+      period: attendancePeriod,
+      status: attendanceStatus,
+    };
 
-      // Check if a record with the same date and period already exists
-      const existingRecordQuery = query(
-        attendanceRef,
-        where("date", "==", attendanceDate),
-        where("period", "==", attendancePeriod)
+    // Create a unique document ID using a composite key of date and period
+    const documentId = `${attendanceDate}_${attendancePeriod}`;
+
+    // Check if a record with the same date and period already exists
+    const existingRecordQuery = query(
+      attendanceRef,
+      where("date_period", "==", documentId)
+    );
+    const existingRecordSnapshot = await getDocs(existingRecordQuery);
+
+    if (existingRecordSnapshot.empty) {
+      // If no existing record found, add the new attendance record with the calculated document ID
+      await setDoc(doc(attendanceRef, documentId), newAttendance);
+
+      // Clear the form after submission
+      setAttendanceStatus("present");
+      setAttendanceDate(new Date().toISOString().split("T")[0]);
+      setAttendancePeriod("1st Period");
+
+      // Refresh attendance records
+      fetchAttendanceRecords();
+    } else {
+      // Handle the case when a duplicate record is detected
+      console.log(
+        "Attendance record for this date and period already exists."
       );
-      const existingRecordSnapshot = await getDocs(existingRecordQuery);
-
-      if (existingRecordSnapshot.empty) {
-        // If no existing record found, add the new attendance record
-        await addDoc(attendanceRef, newAttendance);
-
-        // Clear the form after submission
-        setAttendanceStatus("present");
-        setAttendanceDate(new Date().toISOString().split("T")[0]);
-        setAttendancePeriod("1st Period");
-
-        // Refresh attendance records
-        fetchAttendanceRecords();
-      } else {
-        // Handle the case when a duplicate record is detected
-        console.log(
-          "Attendance record for this date and period already exists."
-        );
-      }
-    } catch (error) {
-      console.error("Error adding attendance:", error);
     }
-  };
+  } catch (error) {
+    console.error("Error adding attendance:", error);
+  }
+};
+
 
   // Function to fetch and display existing attendance records
   const fetchAttendanceRecords = async () => {
@@ -124,6 +129,11 @@ const InputAttendance = () => {
 
       querySnapshot.forEach((doc) => {
         records.push(doc.data());
+      });
+
+      // Sort the records by period in ascending order using the predefined 'periods' array
+      records.sort((a, b) => {
+        return periods.indexOf(a.period) - periods.indexOf(b.period);
       });
 
       setAttendanceRecords(records);

@@ -20,6 +20,7 @@ import PrivacyPolicy from "./PrivacyPolicy";
 import ViewGrade from "./ViewGrade";
 import StudentMessage from "./StudentMessage";
 import TeacherMessage from "./TeacherMessage";
+import StudentAttendance from "./StudentAttendance";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 
 import { getAuth, onAuthStateChanged } from "firebase/auth";
@@ -98,6 +99,7 @@ function App() {
         )}
         <Route path="/student/viewgrade" element={<ViewGrade />} />
         <Route path="/student/messages" element={<StudentMessage />} />
+        <Route path="/student/attendance" element={<StudentAttendance />} />
 
         {teacherLoggedIn ? (
           <Route

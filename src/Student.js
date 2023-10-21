@@ -26,6 +26,9 @@ const Student = ({ setStudentLoggedIn }) => {
     navigate(`/student/messages`);
   };
 
+  const handleAttendance = (schoolId, id) => {
+    navigate(`/student/attendance`);
+  };
   return (
     <div className="student-container">
       <h1 className="header" style={{ color: "black", fontSize: "70px" }}>
@@ -57,12 +60,12 @@ const Student = ({ setStudentLoggedIn }) => {
               <p>View your academic performance</p>
             </div>
           </Link>
-          <Link to="/profile" className="big-option">
+          <div className="big-option" onClick={handleAttendance}>
             <div className="big-option-content">
-              <h2>Profile</h2>
-              <p>Manage your profile settings</p>
+              <h2>Manage Attendance</h2>
+              <p>Check your Attendance</p>
             </div>
-          </Link>
+          </div>
         </div>
       </div>
       {/* Add cool features, e.g., a calendar, notifications, etc. */}
