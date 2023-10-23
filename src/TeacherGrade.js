@@ -76,13 +76,7 @@ const TeacherGrade = ({ setTeacherLoggedIn }) => {
 
   // Function to handle logout
   const handleLogout = () => {
-    signOut(auth)
-      .then(() => {
-        setTeacherLoggedIn(false);
-      })
-      .catch((error) => {
-        console.error("Error logging out:", error);
-      });
+    navigate("/teacher");
   };
 
   const handleClick = (schoolId, id) => {
@@ -112,7 +106,7 @@ const TeacherGrade = ({ setTeacherLoggedIn }) => {
       </div>
       <div className="right-content">
         <button onClick={handleLogout} className="logout-button">
-          Log Out
+          Go back
         </button>
         <div className="search-results">
           <h2 id="searchh2">Search Results</h2>
