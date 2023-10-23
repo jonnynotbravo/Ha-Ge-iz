@@ -90,7 +90,7 @@ const TeacherGrade = ({ setTeacherLoggedIn }) => {
   return (
     <div className="teacher-grade">
       <div className="left-content">
-        <h1 className="header">Teacher Portal</h1>
+        <h1 className="header">Search Portal</h1>
 
         {/* <button onClick={handleMessage}>message</button> */}
         <div className="search-container">

@@ -40,9 +40,17 @@ const Admin = ({ setLoggedIn }) => {
                 ...doc.data(),
                 documentId: doc.id,
               }));
-              setStudentsData(studentsData);
+
+              // Sort studentsData in ascending order by timestamp
+              const sortedStudentsData = studentsData.sort((a, b) => {
+                const dateA = new Date(a.timestamp).getTime();
+                const dateB = new Date(b.timestamp).getTime();
+                return dateA - dateB;
+              });
+
+              setStudentsData(sortedStudentsData);
               setLoading(false);
-              setCurrentSchool(studentsData[0].school);
+              setCurrentSchool(sortedStudentsData[0].school);
             } else {
               console.log("No matching admin user found for email:", userEmail);
             }
@@ -71,6 +79,7 @@ const Admin = ({ setLoggedIn }) => {
       unsubscribe();
     };
   }, [auth, setLoggedIn, userEmail]);
+
   if (loading) {
     const loadingStyles = {
       display: "flex",
@@ -93,15 +102,6 @@ const Admin = ({ setLoggedIn }) => {
       });
   };
 
-  const sortedStudentsData = studentsData.sort((a, b) => {
-    const dateA = new Date(a.timestamp).toLocaleDateString();
-    const dateB = new Date(b.timestamp).toLocaleDateString();
-
-    if (dateA > dateB) return -1;
-    if (dateA < dateB) return 1;
-    return 0;
-  });
-
   const formatDate = (timestamp) => {
     const date = new Date(timestamp);
     const year = date.getFullYear();
@@ -111,7 +111,7 @@ const Admin = ({ setLoggedIn }) => {
   };
 
   const uniqueDatesSet = new Set();
-  sortedStudentsData.forEach((student) => {
+  studentsData.forEach((student) => {
     const date = formatDate(student.timestamp);
     uniqueDatesSet.add(date);
   });
@@ -122,7 +122,7 @@ const Admin = ({ setLoggedIn }) => {
   }));
 
   // Group students with the same timestamp (ignoring the time part)
-  sortedStudentsData.forEach((student) => {
+  studentsData.forEach((student) => {
     const date = formatDate(student.timestamp);
     const groupIndex = timestampGroups.findIndex(
       (group) => group.date === date

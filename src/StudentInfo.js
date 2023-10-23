@@ -261,7 +261,7 @@ const StudentInfo = () => {
   };
 
   return (
-    <div className="student-info">
+    <div className="student-info2">
       <h2>Student Information</h2>
       {student ? (
         <div id="student-profile">
