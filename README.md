@@ -14,6 +14,17 @@ Our mission is to make the process of finding and securing a school placement in
 
 - **Powered by React and Firebase**: Our front-end is built with React, while Firebase handles the backend, including authentication, Firestore database, and Firebase Functions. This robust technology stack ensures a seamless and secure user experience.
 
+## Student and Parent Portal
+
+In addition to helping you find the perfect school, Hageiz offers a secure and personalized Student and Parent Portal. Once enrolled in a school through Hageiz, students and parents can log in to their associated schools' portals to:
+
+- **View Grades**: Access and review academic grades for courses.
+
+- **Report Cards**: Retrieve electronic versions of report cards.
+
+- **Attendance Records**: Monitor attendance records to stay informed about attendance patterns.
+
+- **Communication with Teachers**: Facilitate communication with teachers for a more collaborative educational experience.
 
 ## Issues and Bug Reports
 
@@ -28,8 +39,4 @@ Have questions or need assistance? Feel free to reach out to us at [jobuiznes@gm
 Thank you for choosing Hageiz as your trusted partner in your academic journey. We look forward to helping you find the perfect school and making your educational dreams a reality.
 
 [Visit Hageiz](https://www.hageiz.com)
-
-![](/assets/logo.png)
-
 ---
-
